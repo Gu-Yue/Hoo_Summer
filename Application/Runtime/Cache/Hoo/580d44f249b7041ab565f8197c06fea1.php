@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Hoo</title>
+        <title>分类管理</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="stilearning">
@@ -22,7 +22,7 @@
         <!-- bower:css -->
         <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
         <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.css">
-        <link rel="stylesheet" href="/bower_components/animate.css/animate.min.css">
+        <link rel="stylesheet" href="/bower_components/animate/animate.min.css">
         <link rel="stylesheet" href="/bower_components/Hover/css/hover.css">
         <!-- endbower -->
         <!-- endbuild -->
@@ -217,13 +217,13 @@
                 </div>
             </div><!-- header-profile -->
 
-            <form role="form" class="form-inline">
+            <!-- <form role="form" class="form-inline">
                 <button type="button" class="btn btn-default btn-expand-search"><i class="fa fa-search"></i></button>
                 <div class="toggle-search">
                     <input type="text" class="form-control" placeholder="搜索" />    
                     <button type="button" class="btn btn-default btn-collapse-search"><i class="fa fa-times"></i></button>
                 </div>
-            </form><!--/form-search-->
+            </form> -->
 
             <!-- header menu -->
             <ul class="hidden-xs header-menu pull-right">
@@ -338,12 +338,12 @@
                             </li>
                         </ul>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a href="/hoo/resources/admin">
                             <i class="sidebar-icon fa fa-folder-o "></i>
                             <span class="sidebar-text">资源</span>
                         </a>
-                    </li><!--/sidebar-item-->
+                    </li>  -->
                     <li>
                         <a href="/hoo/user/admin" data-pjax=".content-body">
                             <i class="sidebar-icon fa fa-user"></i>
@@ -526,7 +526,7 @@
 </style>
 <form id="cates-form" method="post">  
 <div class="row col-md-12">
-<div id="panel-fileinput" class="panel panel-default" data-toggle="sortable-widget">
+<div id="panel-fileinput" class="panel panel-default" data-toggle="sortable-widget" style="min-height:0px !important;">
   <div class="panel-body" id="cates-wrap">
                                     <?php foreach($cates as $cate): ?>
                                     <div class="panel hoo-bg-slight sortable-widget-item hoo-no-margin-lr option-group" id="panel-close">
@@ -622,7 +622,6 @@
         <script src="/bower_components/jquery.tagsinput/jquery.tagsinput.min.js"></script>
         <script src="/bower_components/multiselect/js/jquery.multi-select.js"></script>
         <script src="/bower_components/select2/select2.js"></script>
-        <script src="/bower_components/jquery-selectboxit/src/javascripts/jquery.selectBoxIt.js"></script>
         <script src="/bower_components/momentjs/moment.js"></script>
         <script src="/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
         <script src="/bower_components/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>

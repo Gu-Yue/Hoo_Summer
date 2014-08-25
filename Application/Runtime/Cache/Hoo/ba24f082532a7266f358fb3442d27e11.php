@@ -22,7 +22,7 @@
         <!-- bower:css -->
         <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
         <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.css">
-        <link rel="stylesheet" href="/bower_components/animate.css/animate.min.css">
+        <link rel="stylesheet" href="/bower_components/animate/animate.min.css">
         <link rel="stylesheet" href="/bower_components/Hover/css/hover.css">
         <!-- endbower -->
         <!-- endbuild -->
@@ -338,12 +338,12 @@
                             </li>
                         </ul>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a href="/hoo/resources/admin">
                             <i class="sidebar-icon fa fa-folder-o "></i>
                             <span class="sidebar-text">资源</span>
                         </a>
-                    </li><!--/sidebar-item-->
+                    </li>  -->
                     <li>
                         <a href="/hoo/user/admin" data-pjax=".content-body">
                             <i class="sidebar-icon fa fa-user"></i>
@@ -752,7 +752,6 @@
         <script src="/bower_components/jquery.tagsinput/jquery.tagsinput.min.js"></script>
         <script src="/bower_components/multiselect/js/jquery.multi-select.js"></script>
         <script src="/bower_components/select2/select2.js"></script>
-        <script src="/bower_components/jquery-selectboxit/src/javascripts/jquery.selectBoxIt.js"></script>
         <script src="/bower_components/momentjs/moment.js"></script>
         <script src="/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
         <script src="/bower_components/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>

@@ -1,4 +1,4 @@
-<extend name="layout/template"/>
+<extend name="Layout/template"/>
 <block name="title">分类管理</block>
 <block name="control">
 
@@ -58,7 +58,7 @@
 </style>
 <form id="cates-form" method="post">  
 <div class="row col-md-12">
-<div id="panel-fileinput" class="panel panel-default" data-toggle="sortable-widget">
+<div id="panel-fileinput" class="panel panel-default" data-toggle="sortable-widget" style="min-height:0px !important;">
   <div class="panel-body" id="cates-wrap">
                                     <php>foreach($cates as $cate):</php>
                                     <div class="panel hoo-bg-slight sortable-widget-item hoo-no-margin-lr option-group" id="panel-close">

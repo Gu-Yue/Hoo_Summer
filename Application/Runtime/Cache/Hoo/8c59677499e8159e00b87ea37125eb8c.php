@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title><block name='title'></block></title>
+        <title></title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="stilearning">
@@ -22,7 +22,7 @@
         <!-- bower:css -->
         <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
         <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.css">
-        <link rel="stylesheet" href="/bower_components/animate/animate.min.css">
+        <link rel="stylesheet" href="/bower_components/animate.css/animate.min.css">
         <link rel="stylesheet" href="/bower_components/Hover/css/hover.css">
         <!-- endbower -->
         <!-- endbuild -->
@@ -182,8 +182,8 @@
 		}
         /* /管理表格 */
         </style>
-        <block name='header-styles'></block>
-        <block name='hide-header-styles'></block>
+        
+        
     </head>
 
     <body class="animated fadeIn">
@@ -200,20 +200,20 @@
             <!-- header-profile -->
             <div class="header-profile">
                 <div class="profile-nav">
-                    <span class="profile-username"><php>echo USER_NAME;</php></span>
+                    <span class="profile-username"><?php echo USER_NAME; ?></span>
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <span class="fa fa-angle-down"></span>
                     </a>
                     <ul class="dropdown-menu animated flipInX pull-right" role="menu">
                         <!-- <li><a href="/hoo/user/profiles"><i class="fa fa-user"></i>个人中心</a></li> -->
-                        <li><a href="/hoo/user/create/n/<php>echo USER_ID;</php>"><i class="fa fa-pencil-square-o"></i> 资料编辑</a></li> 
+                        <li><a href="/hoo/user/create/n/<?php echo USER_ID; ?>"><i class="fa fa-pencil-square-o"></i> 资料编辑</a></li> 
                         <li><a href="/hoo/user/repassword"><i class="fa fa-circle-o"></i> 修改密码</a></li> 
                         <li class="divider"></li>
                         <li><a href="/hoo/user/logout"><i class="fa fa-sign-out"></i> 注销</a></li>
                     </ul>
                 </div>
                 <div class="profile-picture">
-                    <img alt="" src="<php>echo USER_AVATAR;</php>">
+                    <img alt="" src="<?php echo USER_AVATAR; ?>">
                 </div>
             </div><!-- header-profile -->
 
@@ -338,12 +338,12 @@
                             </li>
                         </ul>
                     </li>
-                    <!-- <li>
+                    <li>
                         <a href="/hoo/resources/admin">
                             <i class="sidebar-icon fa fa-folder-o "></i>
                             <span class="sidebar-text">资源</span>
                         </a>
-                    </li>  -->
+                    </li><!--/sidebar-item-->
                     <li>
                         <a href="/hoo/user/admin" data-pjax=".content-body">
                             <i class="sidebar-icon fa fa-user"></i>
@@ -355,7 +355,7 @@
                                     <span class="sidebar-text">个人中心</span>
                                 </a>
                             </li> -->
-                            <li><a href="/hoo/user/create/n/<php>echo USER_ID;</php>">资料编辑</a></li>
+                            <li><a href="/hoo/user/create/n/<?php echo USER_ID; ?>">资料编辑</a></li>
                         	<li>
                                 <a href="/hoo/user/repassword" data-pjax=".content-body">
                                     <span class="sidebar-text">修改密码</span>
@@ -444,7 +444,7 @@
              
             	<div class="panel hoo-hide hoo-no-padding hoo-no-margin" id="hide_options_wrap">
             	<div class="panel-body bg-cloud" id="hoo-hide-heder-options">
-                <block name="page-options"></block>
+                
             	</div>
             	</div>
             	<!-- /隐藏的选项容器 -->
@@ -452,35 +452,260 @@
             	<!-- 隐藏帮助容器 -->
             	<div class="panel hoo-hide hoo-no-padding hoo-no-margin" id="hide_help_wrap">
             	<div class="panel-body bg-cloud">
-            	<block name="page-help"></block> 
+            	
+<p>在这里列出所有的上传文件，可以对它们进行编辑. 还可以在这里上传编辑文件.</p>	
+ 
             	</div>
             	</div>
             	<!-- /隐藏帮助容器 -->
             	
                 <!-- content-control -->
                 <div class="content-control">
-                	<block name="control"></block>
+                	
+<!--control-nav-->
+                    <ul class="control-nav pull-right">
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/hoo/helper/uploadsetting">
+                            设置上传图片尺寸
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#" id="hide_help_button">
+                               帮助  <i class="fa fa-caret-down"></i>
+                            </a>
+                        </li>
+                    </ul><!--/control-nav-->
+                    
+                    <!--breadcrumb-->
+                    <ul class="breadcrumb">
+                        <li><a href="index.php"><i class="fa fa-folder-o"></i> 资源</a></li>
+                    </ul>
+
                 </div><!-- /content-control -->
                 <div class="content-body">
-                  <php>if(isset($hoo_message)&&is_array($hoo_message)):</php>
+                  <?php if(isset($hoo_message)&&is_array($hoo_message)): ?>
                   <div class="row col-md-12">
-                  	 <php>
-                  	 foreach($hoo_message['error'] as $info){
-                     echo '<div class="callout callout-danger fade in hoo-auto-buzz-out">'.$info.'<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>';
-                     }
-                  	 foreach($hoo_message['success'] as $info){
-                     echo '<div class="callout callout-info fade in">'.$info.'<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>';
-                     }
-                     </php>
+                  	 <?php foreach($hoo_message['error'] as $info){ echo '<div class="callout callout-danger fade in hoo-auto-buzz-out">'.$info.'<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>'; } foreach($hoo_message['success'] as $info){ echo '<div class="callout callout-info fade in">'.$info.'<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>'; } ?>
                   </div>
-                  <php>endif;</php>
-                  <block name="content">{$content}</block>  
+                  <?php endif; ?>
+                  
+<style>
+/*所有的条目的容器*/
+.resources-wrap{
+  padding: 0px;
+  width:72.4%;
+}
+.resources-wrap .navbar-nav li a{
+  height: 30px;
+  margin: 0px 2px;
+  padding: 6px 10px;
+}
+.resources-wrap .navbar-nav li.active a{
+  background: #EEE;
+}
+.resources-wrap input{
+  margin: 1px;
+}
+.resources-wrap .pagination li a{
+  margin: 2px 0 0 0;
+}
+
+/*图片显示容器*/
+.resource-item{
+   margin: 10px;
+   width:auto;
+   border: 2px solid #FFFFFF;
+}
+.resource-item:hover{
+  cursor:pointer;
+  border: 2px solid #13A89E;
+}
+
+.resource-item .progress{
+  margin: 6px 0px 0px 0px;
+}
+.resource-item li{
+  padding: 0px;
+}
+
+/*编辑条目信息栏*/
+.resource-info{
+  padding: 0px;
+   width:240px;
+   margin-top: -1px;
+   display: none;
+}
+.resource-info .list-group-item{
+  padding: 5px 20px;
+  width: 110%;
+  border-radius: 0px !important;
+}
+.resources-manager{
+	min-width:960px;
+}
+.item-info{
+  width: 100px;
+  overflow:hidden;
+  font-size:12px;
+  position: relative;
+  bottom:0;
+  border: none;
+}
+.resource-file{
+  text-align: center;
+}
+.resource-file img{
+  width: 100px;
+  height: 100px;
+  margin: 0px auto !important;;
+}
+.resource-item{
+  height: 150px;
+  overflow: hidden;
+  vertical-align: center;
+  background: #FFF;
+}
+</style>	
+<div class="resources-manager">
+<ul class="col-md-2 nav nav-tabs nav-pills nav-stacked hoo-no-padding hoo-no-border" id="resources-left-nav">
+    
+    <li><button class="btn form-control btn-default" data-target="#create-new-folder-modal" data-toggle="modal">新建文件夹</button></li>
+    <li><hr></li>
+    <li class="active"><a href="#contabs1" data-toggle="tab">默认文件夹</a></li>
+   
+     
+
+</ul>
+<div class="tab-content">	
+<div class="col-md-9 tab-pane fade active in" id="contabs1">
+                            <?php $image_active = $_GET['type'] != 'file' ? 'active' : ''; $file_active = $_GET['type'] == 'file' ? 'active' : ''; $image_active2 = $_GET['type'] != 'file' ? 'active in' : ''; $file_active2 = $_GET['type'] == 'file' ? 'active in' : ''; ?>
+                            <ul class="nav nav-tabs">
+                                <li class="<?php echo ($image_active); ?>"><a href="/hoo/resources/admin/type/image" >图片库</a></li>
+							    <li class="<?php echo ($file_active); ?>"><a href="/hoo/resources/admin/type/file" >文件库</a></li>
+                                <li class=""><a href="#botabs1" data-toggle="tab">上传资源</a></li>
+                                <!-- <li><a href="#upload-by-url" data-toggle="tab">从URL添加</a></li>  -->
+                            </ul>
+                            <div class="tab-content hoo-no-padding" style="padding-top:15px;">
+                          
+                          
+                          
+                                <div class="tab-pane fade" id="botabs1">
+                                <form action="/hoo/resources/upload" data-input="dropzone" class="dropzone" enctype="multipart/form-data">
+		                            <div class="fallback">
+		                                <input name="mydropzone" type="file" multiple />
+		                            </div>
+		                        </form><!--/form-->	
+                                </div>
+                                
+                                <!-- 从URL上传文件 -->
+                                <div class="tab-pane fade" id="upload-by-url">
+                                <br><br><br>	
+								<div class="input-group">
+                                            <input class="form-control" id="upload-by-url-input" type="text" placeholder="输入URL...">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-primary" type="button">上传</button>
+                                            </span>
+                                        </div>
+                                </div>
+                                <!--/ 从URL上传文件 -->
+                                
+                                
+                                <div class="tab-pane fade <?php echo ($image_active2); ?>" id="botabs2">
+          
+           <div class="col-md-8 resources-wrap hoo-bg-slight">
+           <div class="collapse navbar-collapse hoo-no-padding hoo-no-margin hoo-bg-slight">
+                                    <!-- <ul class="nav navbar-nav hoo-no-padding hoo-no-margin">
+                                        <li class="active hoo-no-padding hoo-no-margin"><a href="#">所有图片</a></li>
+                                        <li class="hoo-no-padding hoo-no-margin"><a href="#">最近使用</a></li>
+                                        <li class="hoo-no-padding hoo-no-margin"><a href="#">常使用</a></li>
+                                    </ul>
+
+                                    <form class="navbar-form navbar-left hoo-no-padding hoo-no-margin" role="search">
+                                        <div class="form-group">
+                                            <input class="form-control input-sm" placeholder="Search" type="text">
+                                        </div>
+                                    </form>
+                                    
+                                    <ul class="navbar-left pagination pagination-sm  pull-right hoo-no-padding hoo-no-margin">
+                                        <li class="disabled"><a href="#">«</a></li>
+                                        <li class="active"><a href="#">1</a></li>
+                                        <li><a href="#">2</a></li>
+                                        <li><a href="#">3</a></li>
+                                        <li><a href="#">4</a></li>
+                                        <li><a href="#">5</a></li>
+                                        <li><a href="#">»</a></li>
+                                    </ul> -->
+                                </div>     	
+
+                	
+						<?php foreach($images as $image): ?>
+                        <ul class="list-group col-md-3 hoo-no-padding resource-item">
+    					<li class="list-group-item resource-file" id="<?php echo ($image["name"]); ?>">
+                        <img alt="100*100" src="<?php echo substr($image['path'],1); ?>" style=""> 
+    					</li>
+    					<li class="list-group-item text-blue item-info" title="<?php echo ($image["alias"]); ?>">
+                        <?php echo ($image["alias"]); ?> 
+    					</li>
+						</ul> 
+                        <?php endforeach; ?>
+                               		
+          
+ 						</div>
+                        <div class="col-md-4  resource-info">
+                        <!-- 图片信息 -->
+ 					    </div>
+ 					    
+                                </div>
+                                <div class="tab-pane fade <?php echo ($file_active2); ?>" id="botabs3">
+
+                	
+						<?php foreach($files as $file): ?>
+                        <ul class="list-group col-md-3 hoo-no-padding resource-item resource-item-file">
+    					<br/>
+    					<li class="list-group-item resource-file" style="border: none;">
+                        <img alt="100*100" src="/images/file.png" style=""> 
+    					</li>
+    					<li class="list-group-item text-blue item-info" title="<?php echo ($file["alias"]); ?>">
+                        <?php echo ($file["alias"]); ?> 
+    					</li>
+						</ul> 
+                        <?php endforeach; ?>
+                               		
+          
+ 									</div>
+                            </div><!-- /tab-content -->
+                        
+ </div>	
+ </div>
+</div> 
+
+<!-- 新建文件夹Modal -->
+<div style="display: none;" class="modal fade" id="create-new-folder-modal" tabindex="-1" role="dialog" aria-labelledby="modalSmallLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-sm">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                            <h4 class="modal-title" id="modalSmallLabel">新建文件夹</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <input class="form-control" id="new-folder-name"  placeholder="输入文件夹名称.."/>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                            <button type="button" class="btn btn-primary" id="create-new-folder">新建文件夹</button>
+                                        </div>
+                                    </div><!-- /.modal-content -->
+                                </div><!-- /.modal-dialog -->
+</div>                  
+  
                 </div><!--/content-body -->
             </div><!--/content -->
 
         </section><!--/content section -->
         
-        <block name="side-right"></block>
+        
         
 
 
@@ -525,6 +750,7 @@
         <script src="/bower_components/jquery.tagsinput/jquery.tagsinput.min.js"></script>
         <script src="/bower_components/multiselect/js/jquery.multi-select.js"></script>
         <script src="/bower_components/select2/select2.js"></script>
+        <script src="/bower_components/jquery-selectboxit/src/javascripts/jquery.selectBoxIt.js"></script>
         <script src="/bower_components/momentjs/moment.js"></script>
         <script src="/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
         <script src="/bower_components/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
@@ -746,7 +972,9 @@
         </script>
         
         <!-- footer load 模块 -->
-        <block name="footer-load"></block>
+        
+<script src="/scripts/functions/resources/resources-admin.js"></script> 	
+
         <!--/ footer load 模块 -->
     </body>
 </html>

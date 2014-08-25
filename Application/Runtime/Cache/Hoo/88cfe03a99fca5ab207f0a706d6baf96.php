@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Hoo</title>
+        <title>所有用户</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="stilearning">
@@ -219,13 +219,13 @@
                 </div>
             </div><!-- header-profile -->
 
-            <form role="form" class="form-inline">
+            <!-- <form role="form" class="form-inline">
                 <button type="button" class="btn btn-default btn-expand-search"><i class="fa fa-search"></i></button>
                 <div class="toggle-search">
                     <input type="text" class="form-control" placeholder="搜索" />    
                     <button type="button" class="btn btn-default btn-collapse-search"><i class="fa fa-times"></i></button>
                 </div>
-            </form><!--/form-search-->
+            </form> -->
 
             <!-- header menu -->
             <ul class="hidden-xs header-menu pull-right">

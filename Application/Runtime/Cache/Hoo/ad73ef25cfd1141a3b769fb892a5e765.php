@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title><block name='title'></block></title>
+        <title>上传设置</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="stilearning">
@@ -182,8 +182,8 @@
 		}
         /* /管理表格 */
         </style>
-        <block name='header-styles'></block>
-        <block name='hide-header-styles'></block>
+        
+        
     </head>
 
     <body class="animated fadeIn">
@@ -200,20 +200,20 @@
             <!-- header-profile -->
             <div class="header-profile">
                 <div class="profile-nav">
-                    <span class="profile-username"><php>echo USER_NAME;</php></span>
+                    <span class="profile-username"><?php echo USER_NAME; ?></span>
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <span class="fa fa-angle-down"></span>
                     </a>
                     <ul class="dropdown-menu animated flipInX pull-right" role="menu">
                         <!-- <li><a href="/hoo/user/profiles"><i class="fa fa-user"></i>个人中心</a></li> -->
-                        <li><a href="/hoo/user/create/n/<php>echo USER_ID;</php>"><i class="fa fa-pencil-square-o"></i> 资料编辑</a></li> 
+                        <li><a href="/hoo/user/create/n/<?php echo USER_ID; ?>"><i class="fa fa-pencil-square-o"></i> 资料编辑</a></li> 
                         <li><a href="/hoo/user/repassword"><i class="fa fa-circle-o"></i> 修改密码</a></li> 
                         <li class="divider"></li>
                         <li><a href="/hoo/user/logout"><i class="fa fa-sign-out"></i> 注销</a></li>
                     </ul>
                 </div>
                 <div class="profile-picture">
-                    <img alt="" src="<php>echo USER_AVATAR;</php>">
+                    <img alt="" src="<?php echo USER_AVATAR; ?>">
                 </div>
             </div><!-- header-profile -->
 
@@ -355,7 +355,7 @@
                                     <span class="sidebar-text">个人中心</span>
                                 </a>
                             </li> -->
-                            <li><a href="/hoo/user/create/n/<php>echo USER_ID;</php>">资料编辑</a></li>
+                            <li><a href="/hoo/user/create/n/<?php echo USER_ID; ?>">资料编辑</a></li>
                         	<li>
                                 <a href="/hoo/user/repassword" data-pjax=".content-body">
                                     <span class="sidebar-text">修改密码</span>
@@ -444,7 +444,7 @@
              
             	<div class="panel hoo-hide hoo-no-padding hoo-no-margin" id="hide_options_wrap">
             	<div class="panel-body bg-cloud" id="hoo-hide-heder-options">
-                <block name="page-options"></block>
+                
             	</div>
             	</div>
             	<!-- /隐藏的选项容器 -->
@@ -452,35 +452,107 @@
             	<!-- 隐藏帮助容器 -->
             	<div class="panel hoo-hide hoo-no-padding hoo-no-margin" id="hide_help_wrap">
             	<div class="panel-body bg-cloud">
-            	<block name="page-help"></block> 
+            	
+<p>在这里可进行上传设置.</p>	
+ 
             	</div>
             	</div>
             	<!-- /隐藏帮助容器 -->
             	
                 <!-- content-control -->
                 <div class="content-control">
-                	<block name="control"></block>
+                	
+<ul class="control-nav pull-right">
+                        <li class="divider"></li>
+                       <li>
+                            <a href="#" id="hide_help_button">
+                               帮助  <i class="fa fa-caret-down"></i>
+                            </a>
+                        </li>
+                    </ul><!--/control-nav-->
+                    
+                    <!--breadcrumb-->
+                    <ul class="breadcrumb">
+                        <li><a href="/hoo"><i class="fa fa-sliders"></i> 设置</a></li>
+                        <li>上传设置</li>
+                    </ul>
+
                 </div><!-- /content-control -->
                 <div class="content-body">
-                  <php>if(isset($hoo_message)&&is_array($hoo_message)):</php>
+                  <?php if(isset($hoo_message)&&is_array($hoo_message)): ?>
                   <div class="row col-md-12">
-                  	 <php>
-                  	 foreach($hoo_message['error'] as $info){
-                     echo '<div class="callout callout-danger fade in hoo-auto-buzz-out">'.$info.'<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>';
-                     }
-                  	 foreach($hoo_message['success'] as $info){
-                     echo '<div class="callout callout-info fade in">'.$info.'<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>';
-                     }
-                     </php>
+                  	 <?php foreach($hoo_message['error'] as $info){ echo '<div class="callout callout-danger fade in hoo-auto-buzz-out">'.$info.'<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>'; } foreach($hoo_message['success'] as $info){ echo '<div class="callout callout-info fade in">'.$info.'<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>'; } ?>
                   </div>
-                  <php>endif;</php>
-                  <block name="content">{$content}</block>  
+                  <?php endif; ?>
+                  
+<style>
+	.option-groups  .sortable-placeholder{
+		margin-bottom:6px !important;
+		margin-top:0px !important;
+	}
+	.option-resources .panel-heading{
+		margin-bottom: -1px;
+	}
+	.option-group{
+		margin-bottom:5px;
+		margin-top:0px;
+	}
+</style>
+<form role="form" class="form-horizontal form-bordered" method="post">	
+<div class="row col-md-12">
+<div id="panel-fileinput" class="panel panel-default sortable-widget-item">
+	<div class="panel-body">
+    
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label" >上传文件限制大小</label>
+                                    <div class="col-sm-5">
+                                            <div class="input-group">
+                                            <input class="form-control"  type="text" name="max_file_size" value="<?php echo ($upload->max_file_size); ?>" >
+                                            <span class="input-group-addon">KB</span>
+                                        </div>         
+                                    </div><!--/cols-->
+                                </div><!--/form-group-->
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label" >上传图片大小</label>
+                                    <div class="col-sm-5">
+                                           <div class="input-group">
+                                            <input class="form-control"  type="text" name="max_image_size" value="<?php echo ($upload->max_image_size); ?>" >
+                                            <span class="input-group-addon">KB</span>
+                                        </div>         
+                                    </div><!--/cols-->
+                                </div><!--/form-group-->
+                                <div class="form-group hoo-no-padding-botttom">
+                                    <label class="col-sm-3 control-label" >生成图片尺寸</label>
+                                    <div class="col-sm-5">
+								     <input type="text" id="tagsinput" data-input="tags" class="form-control" name="image_sizes" value="<?php echo ($upload->image_sizes); ?>" placeholder="形如100*100" />                                   
+                                     <p class="helper-block">
+                                     	<small>
+                                     	输入形如 100*100 形式,以回车结束，单位为px	
+                                        </small>
+                                     </p>
+                                    </div><!--/cols-->
+                                    
+                                </div><!--/form-group-->
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label" ></label>
+                                    <div class="col-sm-5">
+                                    <button type="submit" class="btn btn-primary form-control text-white">保存设置</button>														
+                                    </div><!--/cols-->
+                                </div><!--/form-group--> 
+                              
+                                                          
+   </div><!-- /panel-body -->
+   </div>
+</div>
+
+</form>
+  
                 </div><!--/content-body -->
             </div><!--/content -->
 
         </section><!--/content section -->
         
-        <block name="side-right"></block>
+        
         
 
 
@@ -746,7 +818,7 @@
         </script>
         
         <!-- footer load 模块 -->
-        <block name="footer-load"></block>
+        
         <!--/ footer load 模块 -->
     </body>
 </html>

@@ -25,7 +25,7 @@
 	<?php endif; ?>
 	<!-- /panel-heading -->
 	<div class="panel-body hoo-no-padding">
-	  <form>
+	  <form method="post">
 	  <?php if(count($table->rows)>0): ?>		
 	  <table class="table table-hover hoo-no-margin">
 	  	
@@ -43,7 +43,7 @@
                             </tr>
                         </tfoot>
                         <tbody>
-                                <?php foreach($table->rows as $row){ echo '<tr>'; echo '<td><input class="checkbox-o hoo-check" type="checkbox" value="'.$row['id'].'"></td>'; $i = 0; foreach($table->index as $index){ echo '<td class="'.$table->thead[$i]->class.'">'; if($index->href=='y'){ $link = $index->ident == 'y' ? $index->link.'/'.$row[$table->ident] : $index->link; $_blank = $index->_blank == 'y'?'target="_blank"':''; echo '<a href="'.$link.'" '.$_blank.'>'.$row[$index->name].'</a>'; }else{ echo $row[$index->name]; } echo '</td>'; $i++; } echo '<td class="'.$table->thead[$i]->class.'">'; foreach($table->options as $option){ $flag = $option->flag =='y' ? $row['flag'] : ''; echo '<a title="'.$option->title.'" '.$flag.' class="'.$option->class.'" href="'.$option->href.'/'.$row[$table->ident].'">
+                                <?php foreach($table->rows as $row){ echo '<tr>'; $flag = $row['flag'] !='' ? 'disabled' : 'name="multis[]"'; echo '<td><input class="checkbox-o hoo-check" type="checkbox" '.$flag.' value="'.$row[$table->ident].'"></td>'; $i = 0; foreach($table->index as $index){ echo '<td class="'.$table->thead[$i]->class.'">'; if($index->href=='y'){ $link = $index->ident == 'y' ? $index->link.'/'.$row[$table->ident] : $index->link; $_blank = $index->_blank == 'y'?'target="_blank"':''; echo '<a href="'.$link.'" '.$_blank.'>'.$row[$index->name].'</a>'; }else{ echo $row[$index->name]; } echo '</td>'; $i++; } echo '<td class="'.$table->thead[$i]->class.'">'; foreach($table->options as $option){ $flag = $option->flag =='y' ? $row['flag'] : ''; $_blank = $option->_blank == 'y'?'target="_blank"':''; echo '<a title="'.$option->title.'" '.$flag.' '.$_blank.'class="'.$option->class.'" href="'.$option->href.'/'.$row[$table->ident].'">
                                 			  <i class="'.$option->icon.'"></i>
                                 			  </a>'; } echo '</td>'; echo '</tr>'; } ?>
                         </tbody>
@@ -62,7 +62,8 @@
 		     <div class="col-md-2 hoo-no-margin option-multi"> 	                              
 		     <form>
 		     <select class="form-control input-sm" name="multi">
-		     	<?php foreach($table->multis as $action){ echo '<option>'.$action.'</option>'; } ?>
+		     	<option value="">批量操作</option>
+		     	<?php foreach($table->multis as $k=>$action){ echo '<option value="'.$k.'">'.$action.'</option>'; } ?>
              </select>
              
 		    </div>

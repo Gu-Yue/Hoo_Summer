@@ -1,5 +1,5 @@
 <extend name="layout/template" />
-<block name="title">文章管理</block>
+<block name="title">所有文章</block>
 
 
 
@@ -94,14 +94,17 @@
                     </h3><!-- /contact-heading -->
                      <div class="contact-body">
                         <ul class="contacts-list">
-                    <php>
-                        	foreach($reposts as $re){
-                            echo '
-                            <li class="online">
-                            <a href="/hoo/item/view/n/'.$re['id'].'" class="hoo-js-link" title="'.$re['update_date'].'" target="_blank">
-                            <i data-original-title="online" class="fa fa-circle-o" title="" rel="tooltip-bottom"></i>'
-                            .$re['post_title']
-                            .'</a></li>';
+                    <php>   if(is_array($reposts)&&count($reposts)>0){
+                    	       foreach($reposts as $re){
+	                            echo '
+	                            <li class="online">
+	                            <a href="/hoo/item/view/n/'.$re['id'].'" class="hoo-js-link" title="'.$re['update_date'].'" target="_blank">
+	                            <i data-original-title="online" class="fa fa-circle-o" title="" rel="tooltip-bottom"></i>'
+	                            .$re['post_title']
+	                            .'</a></li>';
+	                            }
+                            }else{
+                        	   echo '<li class="disable"><a href="/hoo/item/create" class="hoo-js-link">点击添加文章</a></li>';
                             }
                             </php>
                               </ul><!-- /contacts-list -->
@@ -125,14 +128,17 @@
                     </h3><!-- /contact-heading -->
                      <div class="contact-body">
                         <ul class="contacts-list">
-                    <php>
-                        	foreach($tags as $tag){
-                            echo '
-                            <li class="online">
-                            <a href="/hoo/item/admin/tag/'.$tag['tag_name'].'" class="hoo-js-link">
-                            <i data-original-title="online" class="fa fa-tag" title="" rel="tooltip-bottom"></i>'
-                            .$tag['tag_name']
-                            .'</a></li>';
+                    <php>   
+                    	    if(is_array($tags)&&count($tags)>0){
+                    			foreach($tags as $tag){
+		                            echo '<li class="online">
+		                            	  <a href="/hoo/item/admin/tag/'.$tag['tag_name'].'" class="hoo-js-link">
+		                            	  <i data-original-title="online" class="fa fa-tag" title="" rel="tooltip-bottom"></i>'
+		                            	 .$tag['tag_name']
+		                                 .'</a></li>';
+		                            }
+                            }else{
+                        	   echo '<li class="disable"><a href="" class="">没有标签</a></li>';
                             }
                             </php>
                               </ul><!-- /contacts-list -->
@@ -156,14 +162,18 @@
                     </h3><!-- /contact-heading -->
                      <div class="contact-body">
                         <ul class="contacts-list">
-                    <php>
-                        	foreach($piges as $pige){
-                            echo '
-                            <li class="online">
-                            <a href="/hoo/item/admin/year/'.$pige['year'].'/month/'.$pige['month'].'" class="hoo-js-link">
-                            <i data-original-title="online" class="fa fa-circle-o" title="" rel="tooltip-bottom"></i>'
-                            .$pige['year'].'年'.$pige['month'].'月'
-                            .'</a></li>';
+                    <php>   
+                    	    if(is_array($piges)&&count($piges)>0){
+                    			foreach($piges as $pige){
+	                            echo '
+	                            <li class="online">
+	                            <a href="/hoo/item/admin/year/'.$pige['year'].'/month/'.$pige['month'].'" class="hoo-js-link">
+	                            <i data-original-title="online" class="fa fa-circle-o" title="" rel="tooltip-bottom"></i>'
+	                            .$pige['year'].'年'.$pige['month'].'月'
+	                            .'</a></li>';
+	                            }
+                            }else{
+                        	   echo '<li class="disable"><a href="" class="">没有归档</a></li>';
                             }
                             </php>
                               </ul><!-- /contacts-list -->
@@ -185,16 +195,22 @@
                     </h3><!-- /contact-heading -->
                      <div class="contact-body">
                         <ul class="contacts-list">
-                    <php>
-                        	foreach($groups as $group){
-                            echo '
-                            <li class="online">
-                            <a href="/hoo/item/admin/page/'.$page['id'].'/group/'.$group.'" class="hoo-js-link">
-                            <i data-original-title="online" class="fa fa-tag" title="" rel="tooltip-bottom"></i>'
-                            .$group
-                            .'</a></li>';
+                    <php>   
+                    	    if(is_array($groups)&&count($groups)>0){
+                    	       foreach($groups as $group){
+                    	       	echo '<li class="online">
+		                              <a href="/hoo/item/admin/page/'.$page['id'].'/group/'.$group.'" class="hoo-js-link">
+		                              <i data-original-title="online" class="fa fa-tag" title="" rel="tooltip-bottom"></i>'
+		                             .$group
+		                             .'</a></li>';
+		                            }
+                            }else{
+                        	   echo '<li class="disable"><a href="/hoo/page/create/n/'.$page['id'].'" class="hoo-js-link">
+                            		  点击添加分组
+                                      </a></li>';
                             }
-                            </php>
+                        	
+                     </php>
                               </ul><!-- /contacts-list -->
                     </div>
                 </div><!-- /chat-contact -->

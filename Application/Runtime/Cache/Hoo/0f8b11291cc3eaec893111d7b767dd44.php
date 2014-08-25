@@ -217,13 +217,13 @@
                 </div>
             </div><!-- header-profile -->
 
-            <form role="form" class="form-inline">
+            <!-- <form role="form" class="form-inline">
                 <button type="button" class="btn btn-default btn-expand-search"><i class="fa fa-search"></i></button>
                 <div class="toggle-search">
                     <input type="text" class="form-control" placeholder="搜索" />    
                     <button type="button" class="btn btn-default btn-collapse-search"><i class="fa fa-times"></i></button>
                 </div>
-            </form><!--/form-search-->
+            </form> -->
 
             <!-- header menu -->
             <ul class="hidden-xs header-menu pull-right">
@@ -374,12 +374,12 @@
                         </ul> 
                     </li> 
                     <!--sidebar-item-->
-                    <li>
-                        <a href="/hoo/user/admin" data-pjax=".content-body">  
+                    <!-- <li>
+                        <a href="/hoo/logs/system" data-pjax=".content-body">  
                             <i class="sidebar-icon fa fa-bar-chart-o"></i>
                             <span class="sidebar-text">系统日志</span>
                         </a>
-                        <!-- <ul class="sidebar-child animated flipInY">
+                        <ul class="sidebar-child animated flipInY">
                             <li>
                                 <a href="/hoo/logs/visitors" data-pjax=".content-body">
                                     <span class="sidebar-text">访问统计</span>
@@ -400,8 +400,8 @@
                                     <span class="sidebar-text">系统日志</span>
                                 </a>
                             </li>
-                        </ul>  -->
-                    </li> 
+                        </ul> 
+                    </li>  -->
                     <!--sidebar-item-->
                     <li>
                         <a href="/hoo/helper/sitesetting" data-pjax=".content-body">  
@@ -452,7 +452,9 @@
             	<!-- 隐藏帮助容器 -->
             	<div class="panel hoo-hide hoo-no-padding hoo-no-margin" id="hide_help_wrap">
             	<div class="panel-body bg-cloud">
-            	 
+            	
+<p>在此页面可以添加用户，并可上传头像. 或编辑个人信息.</p>	
+ 
             	</div>
             	</div>
             	<!-- /隐藏帮助容器 -->
@@ -475,15 +477,9 @@
                             </a>
                         </li> -->
                         <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                显示选项  <i class="caret"></i>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                               帮助  <i class="caret"></i>
+                       <li>
+                            <a href="#" id="hide_help_button">
+                               帮助  <i class="fa fa-caret-down"></i>
                             </a>
                         </li>
                     </ul><!--/control-nav-->
@@ -864,12 +860,7 @@
         
         //--  管理表格全选
         $(".hoo-check-all").click(function(){
-        	var check = $(this).is(":checked");
-    		if(check == false){
-    	   	   $(".hoo-check").removeAttr("checked");
-    		}else{
-    	   	   $(".hoo-check").attr("checked",'checked');	
-    	    }
+    	    $(".hoo-check").click();
     	    
         });
         //--/ 管理表格全选

@@ -34,8 +34,9 @@ $(function(){
             activeMenuUl = $('.sidebar').find('[href="' + urlFilename + '"]').parent().parent(),
             hasActiveMenuChild = activeMenuUl.hasClass('sidebar-child'),
             hasActiveMenuChildInline = activeMenuUl.hasClass('sidebar-child-inline'),
-            label = activeMenu.children('.sidebar-text').text(),
-            icon = activeMenu.children('.sidebar-icon');
+            // label = activeMenu.children('.sidebar-text').text(),
+            // icon = activeMenu.children('.sidebar-icon');
+            label = $('title:first').text();
 
         $('.sidebar').find('li').removeClass('active');
 
@@ -59,7 +60,7 @@ $(function(){
         // change .content-title
         if (label == 'Dashboard') {
             // if dashboard set to default
-            $('.content-title').html('<i class="' + icon.attr('class') + '"></i> Welcome to Stilearn 2.0');
+            $('.content-title').html('<i class="' + icon.attr('class') +'"></i>');
         }
         else{
             // Use label for content title
@@ -67,7 +68,7 @@ $(function(){
         }
 
         // change page title
-        $('title').text(label + ' | Stilearn Admin Bootstrap');
+        $('title').text(label + ' | Hoo');
     }
     // initialize defaultActiveMenu
     setActiveMenu();

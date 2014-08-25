@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Hoo</title>
+        <title>所有页面</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="stilearning">
@@ -219,13 +219,13 @@
                 </div>
             </div><!-- header-profile -->
 
-            <form role="form" class="form-inline">
+            <!-- <form role="form" class="form-inline">
                 <button type="button" class="btn btn-default btn-expand-search"><i class="fa fa-search"></i></button>
                 <div class="toggle-search">
                     <input type="text" class="form-control" placeholder="搜索" />    
                     <button type="button" class="btn btn-default btn-collapse-search"><i class="fa fa-times"></i></button>
                 </div>
-            </form><!--/form-search-->
+            </form> -->
 
             <!-- header menu -->
             <ul class="hidden-xs header-menu pull-right">
@@ -376,12 +376,12 @@
                         </ul> 
                     </li> 
                     <!--sidebar-item-->
-                    <li>
-                        <a href="/hoo/user/admin" data-pjax=".content-body">  
+                    <!-- <li>
+                        <a href="/hoo/logs/system" data-pjax=".content-body">  
                             <i class="sidebar-icon fa fa-bar-chart-o"></i>
                             <span class="sidebar-text">系统日志</span>
                         </a>
-                        <!-- <ul class="sidebar-child animated flipInY">
+                        <ul class="sidebar-child animated flipInY">
                             <li>
                                 <a href="/hoo/logs/visitors" data-pjax=".content-body">
                                     <span class="sidebar-text">访问统计</span>
@@ -402,8 +402,8 @@
                                     <span class="sidebar-text">系统日志</span>
                                 </a>
                             </li>
-                        </ul>  -->
-                    </li> 
+                        </ul> 
+                    </li>  -->
                     <!--sidebar-item-->
                     <li>
                         <a href="/hoo/helper/sitesetting" data-pjax=".content-body">  
@@ -762,12 +762,7 @@
         
         //--  管理表格全选
         $(".hoo-check-all").click(function(){
-        	var check = $(this).is(":checked");
-    		if(check == false){
-    	   	   $(".hoo-check").removeAttr("checked");
-    		}else{
-    	   	   $(".hoo-check").attr("checked",'checked');	
-    	    }
+    	    $(".hoo-check").click();
     	    
         });
         //--/ 管理表格全选

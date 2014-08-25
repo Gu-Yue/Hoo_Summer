@@ -4,65 +4,113 @@
     }
 ?>
 <!DOCTYPE html>
-<html>
-<head>
-    <title>Flatty - Flat administration template</title>
-    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport' />
-    
-    <!--[if lt IE 9]>
-    <script src='/front/flatty-assets/javascripts/html5shiv.js' type='text/javascript'></script>
-    <![endif]-->
-    <link href='/front/flatty-assets/stylesheets/bootstrap/bootstrap.css' media='all' rel='stylesheet' type='text/css' />
-    <link href='/front/flatty-assets/stylesheets/bootstrap/bootstrap-responsive.css' media='all' rel='stylesheet' type='text/css' />
-    <!-- / flatty theme -->
-    <link href='/front/flatty-assets/stylesheets/light-theme.css' id='color-settings-body-color' media='all' rel='stylesheet' type='text/css' />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
-<body class='contrast-red application-error 404-error contrast-background'>
-<div id='wrapper'>
-    <div class='error-type'>
-        <i class='icon-question-sign'></i>
-        <span>404</span>
-    </div>
-    <div class='error-message'>
-    	<?php echo strip_tags($e['message']);?>
-        <?php if(isset($e['file'])) {?>
-			<div class="info">
-				<div class="title">
-					<h3>错误位置</h3>
-				</div>
-				<div class="text">
-					<p>FILE: <?php echo $e['file'] ;?> &#12288;LINE: <?php echo $e['line'];?></p>
-				</div>
-			</div>
-		<?php }?>
-		<?php if(isset($e['trace'])) {?>
-			<div class="info">
-				<div class="title">
-					<h3>TRACE</h3>
-				</div>
-				<div class="text">
-					<p><?php echo nl2br($e['trace']);?></p>
-				</div>
-			</div>
-		<?php }?>
-    </div>
-    <div class='youcan'>
-        <small class='text-center'>You can</small>
-    </div>
-    <div class='search'>
-        <form accept-charset="UTF-8" action="#" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="CFC7d00LWKQsSahRqsfD+e/mHLqbaVIXBvlBGe/KP+I=" /></div>
-            <input id="q_" name="q[]" placeholder="Search..." size="30" type="text" />
-            <button class="btn"><i class='icon-search'></i>
-            </button>
-        </form>
-    </div>
-    <div class='youcan'>
-        <small class='text-center'>or</small>
-    </div>
-    <a href="index.html" class="btn btn-block"><i class='icon-chevron-left'></i>
-        Go back
-    </a>
-</div>
-</body>
-</html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>访问出错啦！</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="stilearning">
 
+        <meta http-equiv="x-pjax-version" content="v173">
+
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        <!-- fav and touch icons -->
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/favico-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/favico-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/favico-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="ico/favico-57-precomposed.png">
+        <link rel="shortcut icon" href="ico/favico.png">
+        <link rel="shortcut icon" href="ico/favico.ico">
+
+        <!-- build:css /styles/vendor.css -->
+        <!-- bower:css -->
+        <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
+        <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.css">
+        <link rel="stylesheet" href="/bower_components/animate.css/animate.css">
+        <link rel="stylesheet" href="/bower_components/Hover/css/hover.css">
+        <!-- endbower -->
+        <!-- endbuild -->
+        
+        <!-- build:css(.tmp) /styles/main.css -->
+        <link id="style-components" href="/styles/loaders.css" rel="stylesheet">
+        <link id="style-components" href="/styles/bootstrap-theme.css" rel="stylesheet">
+        <link id="style-components" href="/styles/dependencies.css" rel="stylesheet">
+        <link id="style-base" href="/styles/stilearn.css" rel="stylesheet">
+        <link id="style-responsive" href="/styles/stilearn-responsive.css" rel="stylesheet">
+        <link id="style-helper" href="/styles/helper.css" rel="stylesheet">
+        <link id="style-sample" href="/styles/pages-style.css" rel="stylesheet">
+        <!-- endbuild -->
+        
+        <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+          <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script>
+        <![endif]-->
+        <style>
+        body{
+        	font-size: 13px;
+        }
+        .tab-content{
+        	overflow: hidden;
+        }
+        .hoo-auto-buzz-out{
+        	display: inline-block;
+			transform: translateZ(0px);
+			box-shadow: 0px 0px 1px transparent;
+			animation-name: buzz-out;
+			animation-duration: 0.45s;
+			animation-timing-function: linear;
+			animation-iteration-count: 2;
+        }
+        #signup-form  button{
+		    width: 70px !important;;
+		}
+        </style>
+    </head>
+
+    <body class="animated fadeIn">		
+
+		<div class="content content-full">
+			<div class="container">
+			<!-- PAGE 404
+                    ====================== -->
+                    <div class="error-wrapper">
+                    	<h1 class="error-title"><i class="fa fa-warning animated animated-infinite animated-dur-3 flash text-danger"></i>糟糕！ 访问出错啦.</h1>
+                    	<p class="lead"><?php echo strip_tags($e['message']);?></p>
+                    	<!-- <form action="" role="form">
+                    		<div class="form-group">
+                    			<div class="col-md-8 col-md-offset-2 input-group input-group-in">
+	                    			<input type="text" class="form-control input-lg" placeholder=" " focus />
+	                    			<span class="input-group-btn">
+	                    				<button class="btn btn-lg btn-primary" type="submit">
+											<i class="fa fa-search"></i>
+										</button>
+	                    			</span>
+                    			</div>
+                    		</div>
+                    	</form> -->
+                    	<?php if(isset($e['file'])) {?>
+							<div class="info">
+								<div class="title">
+									<h3>错误位置</h3>
+								</div>
+								<div class="text">
+									<p>FILE: <?php echo $e['file'] ;?> &#12288;LINE: <?php echo $e['line'];?></p>
+								</div>
+							</div>
+						<?php }?>
+						<?php if(isset($e['trace'])) {?>
+							<div class="info">
+								<div class="title">
+									<h3>TRACE</h3>
+								</div>
+								<div class="text">
+									<p><?php echo nl2br($e['trace']);?></p>
+								</div>
+							</div>
+						<?php }?>
+                    </div><!--/error-wrapper-->	
+			</div>
+		</div><!--/content-->
+    </body>
+</html>

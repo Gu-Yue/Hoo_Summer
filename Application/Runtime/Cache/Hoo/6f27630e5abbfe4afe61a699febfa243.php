@@ -205,11 +205,11 @@
                         <span class="fa fa-angle-down"></span>
                     </a>
                     <ul class="dropdown-menu animated flipInX pull-right" role="menu">
-                        <li><a href="/hoo/user/profiles"><i class="fa fa-user"></i>个人中心</a></li>
-                        <li><a href="/hoo/user/create/n/<?php echo USER_ID; ?>"><i class="fa fa-pencil-square-o"></i>资料编辑</a></li> 
-                        <li><a href="/hoo/user/repassword"><i class="fa fa-circle-o"></i>修改密码</a></li> 
+                        <!-- <li><a href="/hoo/user/profiles"><i class="fa fa-user"></i>个人中心</a></li> -->
+                        <li><a href="/hoo/user/create/n/<?php echo USER_ID; ?>"><i class="fa fa-pencil-square-o"></i> 资料编辑</a></li> 
+                        <li><a href="/hoo/user/repassword"><i class="fa fa-circle-o"></i> 修改密码</a></li> 
                         <li class="divider"></li>
-                        <li><a href="/hoo/user/logout"><i class="fa fa-sign-out"></i>注销</a></li>
+                        <li><a href="/hoo/user/logout"><i class="fa fa-sign-out"></i> 注销</a></li>
                     </ul>
                 </div>
                 <div class="profile-picture">
@@ -350,11 +350,12 @@
                             <span class="sidebar-text">用户</span>
                         </a>
                         <ul class="sidebar-child animated flipInY">
-                        	<li>
+                        	<!-- <li>
                                 <a href="/hoo/user/profiles" data-pjax=".content-body">
                                     <span class="sidebar-text">个人中心</span>
                                 </a>
-                            </li>
+                            </li> -->
+                            <li><a href="/hoo/user/create/n/<?php echo USER_ID; ?>">资料编辑</a></li>
                         	<li>
                                 <a href="/hoo/user/repassword" data-pjax=".content-body">
                                     <span class="sidebar-text">修改密码</span>
@@ -373,10 +374,10 @@
                         </ul> 
                     </li> 
                     <!--sidebar-item-->
-                    <li>
-                        <a href="/hoo/user/admin" data-pjax=".content-body">  
+                    <!-- <li>
+                        <a href="/hoo/logs/system" data-pjax=".content-body">  
                             <i class="sidebar-icon fa fa-bar-chart-o"></i>
-                            <span class="sidebar-text">数据统计</span>
+                            <span class="sidebar-text">系统日志</span>
                         </a>
                         <ul class="sidebar-child animated flipInY">
                             <li>
@@ -399,8 +400,8 @@
                                     <span class="sidebar-text">系统日志</span>
                                 </a>
                             </li>
-                        </ul><!--/sidebar-child-->
-                    </li><!--/sidebar-item-->
+                        </ul> 
+                    </li>  -->
                     <!--sidebar-item-->
                     <li>
                         <a href="/hoo/helper/sitesetting" data-pjax=".content-body">  
@@ -706,12 +707,7 @@
         
         //--  管理表格全选
         $(".hoo-check-all").click(function(){
-        	var check = $(this).is(":checked");
-    		if(check == false){
-    	   	   $(".hoo-check").removeAttr("checked");
-    		}else{
-    	   	   $(".hoo-check").attr("checked",'checked');	
-    	    }
+    	    $(".hoo-check").click();
     	    
         });
         //--/ 管理表格全选

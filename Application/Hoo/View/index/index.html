@@ -80,10 +80,14 @@
                               <ul class="list-group hoo-no-margin">
     <php>foreach($notices as $notice):</php>
     <li class="list-group-item">
+    	<span class="badge badge-primary"><a href="/hoo/index/index/deleteNotice/{$notice.id}" class="text-white"><i class="fa fa-trash-o"></i></a></span>
         <span class="badge badge-primary"><php>echo date('Y-m-d H:i',$notice['time'])</php></span>
-        {$notice.title}
+        <a href="#{$notice.id}_side" data-toggle="side-right">{$notice.title}</a>
     </li>
     <php>endforeach;</php>
+    <php>if(count($notices)<1):</php>
+    <li class="list-group-item">无历史公告</li>
+    <php>endif;</php>
 </ul>
                                 </div> 
                             </div>  
@@ -96,46 +100,37 @@
  </div> 
 <div class="col-md-6">
 <div class="panel border-cloud hoo-no-padding  profiles-wrap dashboard-counts sortable-widget-item">	
-<div class="panel-heading sortable-widget-handle border-cloud" style="padding-top:30px">
+<!-- <div class="panel-heading sortable-widget-handle border-cloud" style="padding-top:30px">
 <ul class="nav nav-tabs panel-heading bg-white hoo-no-padding pull-left">
         <li class="active"><a href="#botabs1" data-toggle="tab">统计</a></li>
         <li class=""><a href="#botabs2" data-toggle="tab" class="">系统</a></li>
 </ul>
-</div>
+</div> -->
 <div class="tab-content panel-body hoo-no-padding-lr" style="padding-top:25px">
      <div class="tab-pane fade active in" id="botabs1">
-     	
      <div class="col-md-12">
-                                    <div id="overall-visitor" class="panel  bg-primary">
+                            <div id="overall-phisicmem" class="panel  panel-primary bg-primary">
                                         <div class="panel-body hoo-no-padding">
-                                            <div class="panel-actions-fly">
-                                                <button data-refresh="#overall-visitor" data-error-place="#error-placement" title="刷新数据" class="btn-panel">
+                                             <!-- <div class="panel-actions-fly">
+                                                <button data-refresh="#overall-bandwidth" data-error-place="#error-placement" title="refresh" class="btn-panel">
                                                     <i class="glyphicon glyphicon-refresh"></i>
-                                                </button><!--/btn-panel-->
-                                                <a href="#" title="查看详细统计" class="btn-panel">
+                                                </button> 
+                                                <a href="#" title="Go to server stats page" class="btn-panel">
                                                     <i class="glyphicon glyphicon-stats"></i>
-                                                </a><!--/btn-panel-->
-                                            </div><!--/panel-action-fly-->
+                                                </a> 
+                                            </div>  -->
 
-                                            <p class="lead"><strong>访问量</strong></p><!--/lead as title-->
+                                            <p class="lead">磁盘空间</p><!--/lead as title-->
 
-                                            <ul class="list-percentages row">
-                                                <li class="col-xs-4 hoo-no-padding">
-                                                    <p class="text-ellipsis">本月</p>
-                                                    <p class="text-lg"><strong>765,298</strong></p>
-                                                </li>
-                                                <li class="col-xs-4 hoo-no-padding">
-                                                    <p class="text-ellipsis">本周</p>
-                                                    <p class="text-lg"><strong>1,765</strong></p>
-                                                </li>
-                                                <li class="col-xs-4 hoo-no-padding">
-                                                    <p class="text-ellipsis">今天</p>
-                                                    <p class="text-lg"><strong>563</strong></p>
-                                                </li>
-                                            </ul><!--/list-percentages-->
+                                            <p>
+                                                </p><div class="easyPieChart" data-barcolor="#232332" data-trackcolor="#ecf0f1" data-scalecolor="#ecf0f1" data-percent="{$disk.percent}" data-size="120">
+                                                    <span>{$disk.percent}%</span>
+                                                </div>
+                                                <p class="text-ellipsis text-center">{$disk.used} GB / {$disk.total} GB</p>
+                                            <p></p>
                                         </div><!--/panel-body-->
-                                    </div><!--/panel overal-visitor-->
-                                </div><!--/cols-->
+                                    </div><!--/panel overal-phisicmem-->
+                            </div>
 								
                                 <!-- <div class="col-md-12">
                                     <div id="overall-users" class="panel  bg-primary">
@@ -172,29 +167,29 @@
      											<div class="col-md-12">
                                     <div id="overall-orders" class="panel  bg-primary">
                                         <div class="panel-body hoo-no-padding">
-                                            <div class="panel-actions-fly">
+                                            <!-- <div class="panel-actions-fly">
                                                 <button data-refresh="#overall-orders" data-error-place="#error-placement" title="刷新数据" class="btn-panel">
                                                     <i class="glyphicon glyphicon-refresh"></i>
-                                                </button><!--/btn-panel-->
+                                                </button> 
                                                 <a href="#" title="查看详细统计" class="btn-panel">
                                                     <i class="glyphicon glyphicon-stats"></i>
-                                                </a><!--/btn-panel-->
-                                            </div><!--/panel-action-fly-->
+                                                </a> 
+                                            </div> --> 
 
-                                            <p class="lead"><strong>文章数</strong></p><!--/lead as title-->
+                                            <p class="lead"><strong>统计</strong></p><!--/lead as title-->
 
                                             <ul class="list-percentages row">
                                                 <li class="col-xs-4 hoo-no-padding">
-                                                    <p class="text-ellipsis">所有文章</p>
-                                                    <p class="text-lg"><strong>1,954,452</strong></p>
+                                                    <p class="text-ellipsis">文章数</p>
+                                                    <p class="text-lg"><strong>{$count.items}</strong></p>
                                                 </li>
                                                 <li class="col-xs-4 hoo-no-padding">
-                                                    <p class="text-ellipsis">本月+</p>
-                                                    <p class="text-lg"><strong>43,671</strong></p>
+                                                    <p class="text-ellipsis">页面数</p>
+                                                    <p class="text-lg"><strong>{$count.pages}</strong></p>
                                                 </li>
                                                 <li class="col-xs-4 hoo-no-padding">
-                                                    <p class="text-ellipsis">今天+</p>
-                                                    <p class="text-lg"><strong>1,219</strong></p>
+                                                    <p class="text-ellipsis">分类数</p>
+                                                    <p class="text-lg"><strong>{$count.cates}</strong></p>
                                                 </li>
                                             </ul><!--/list-percentages-->
                                         </div><!--/panel-body-->
@@ -202,29 +197,6 @@
                                </div><!--/cols-->  
      </div>
      <div class="tab-pane fade" id="botabs2">
-     	<div class="col-md-12">
-                            <div id="overall-phisicmem" class="panel  panel-primary bg-primary">
-                                        <div class="panel-body">
-                                             <div class="panel-actions-fly">
-                                                <button data-refresh="#overall-bandwidth" data-error-place="#error-placement" title="refresh" class="btn-panel">
-                                                    <i class="glyphicon glyphicon-refresh"></i>
-                                                </button><!--/btn-panel-->
-                                                <a href="#" title="Go to server stats page" class="btn-panel">
-                                                    <i class="glyphicon glyphicon-stats"></i>
-                                                </a><!--/btn-panel-->
-                                            </div><!--/panel-action-fly-->
-
-                                            <p class="lead">Bandwidth</p><!--/lead as title-->
-
-                                            <p>
-                                                </p><div class="easyPieChart" data-barcolor="#232332" data-trackcolor="#ecf0f1" data-scalecolor="#ecf0f1" data-percent="16" data-size="120">
-                                                    <span>16%</span>
-                                                <canvas width="120" height="120"></canvas></div>
-                                                <p class="text-ellipsis text-center">Bandwidth Usage 120,4 GB / 2 TB</p>
-                                            <p></p>
-                                        </div><!--/panel-body-->
-                                    </div><!--/panel overal-phisicmem-->
-                            </div>
      </div>
 </div><!-- /tab-content -->
 	
@@ -238,4 +210,35 @@
 </div>
 
 </div>
+
+
+<php>foreach($notices as $notice):</php>
+    <!-- side-right -->
+        <aside class="side-right" id="{$notice.id}_side">
+            <div class="module" data-toggle="niceScroll">
+                <div class="chat-contact">
+                    <h3 class="contact-heading">
+                        <div class="btn-group pull-right">
+                            <a href="#" data-toggle="side-right">
+                                <i class="fa fa-times text-sm"></i>
+                            </a>
+                        </div>
+                                                           公告                                     
+                    </h3><!-- /contact-heading -->
+                    <div class="contact-body">
+                    <div class="" style="padding: 20px;">
+                    <p>标题：{$notice.title}</p>
+                    <p>时间：<php>echo date('Y-m-d H:i',$notice['time'])</php></p>
+                    <p></p>
+                    <p>内容：
+                    {$notice.content}
+                    </p>	
+                    </div>
+                    </div>
+                </div><!-- /chat-contact -->
+
+
+            </div><!-- /module -->
+        </aside><!--/side-right -->
+<php>endforeach;</php>
 </block>

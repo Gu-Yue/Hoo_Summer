@@ -374,12 +374,12 @@
                         </ul> 
                     </li> 
                     <!--sidebar-item-->
-                    <li>
-                        <a href="/hoo/user/admin" data-pjax=".content-body">  
+                    <!-- <li>
+                        <a href="/hoo/logs/system" data-pjax=".content-body">  
                             <i class="sidebar-icon fa fa-bar-chart-o"></i>
                             <span class="sidebar-text">系统日志</span>
                         </a>
-                        <!-- <ul class="sidebar-child animated flipInY">
+                        <ul class="sidebar-child animated flipInY">
                             <li>
                                 <a href="/hoo/logs/visitors" data-pjax=".content-body">
                                     <span class="sidebar-text">访问统计</span>
@@ -400,8 +400,8 @@
                                     <span class="sidebar-text">系统日志</span>
                                 </a>
                             </li>
-                        </ul>  -->
-                    </li> 
+                        </ul> 
+                    </li>  -->
                     <!--sidebar-item-->
                     <li>
                         <a href="/hoo/helper/sitesetting" data-pjax=".content-body">  
@@ -452,7 +452,9 @@
             	<!-- 隐藏帮助容器 -->
             	<div class="panel hoo-hide hoo-no-padding hoo-no-margin" id="hide_help_wrap">
             	<div class="panel-body bg-cloud">
-            	 
+            	
+<p>在这里列出所有的分类，可以对它们进行编辑.</p>	
+ 
             	</div>
             	</div>
             	<!-- /隐藏帮助容器 -->
@@ -533,7 +535,7 @@
 									<button class="btn-panel cate-edi" type="button">
 					                <i class="fa fa-pencil"></i>
 					                </button>	
-									<button class="btn-panel cate-close" type="button" style="<?php echo ($cate["flag"]); ?>">
+									<button class="btn-panel cate-close" type="button" style="<?php echo ($cate["flag"]); ?>" tid="<?php echo ($cate["name"]); ?>">
 					                <i class="fa fa-times"></i>
 					                </button>
 									</div>
@@ -565,8 +567,8 @@
                                             <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
                                             <button type="button" class="btn btn-primary" id="create-new-cate">添加分类</button>
                                         </div>
-                                    </div><!-- /.modal-content -->
-                                </div><!-- /.modal-dialog -->
+                                    </div>
+                                </div>
 </div>  
 </form>
   
@@ -752,12 +754,7 @@
         
         //--  管理表格全选
         $(".hoo-check-all").click(function(){
-        	var check = $(this).is(":checked");
-    		if(check == false){
-    	   	   $(".hoo-check").removeAttr("checked");
-    		}else{
-    	   	   $(".hoo-check").attr("checked",'checked');	
-    	    }
+    	    $(".hoo-check").click();
     	    
         });
         //--/ 管理表格全选
@@ -850,6 +847,15 @@
         
 <script>
 $(function(){
+	$("#new-cate-name").keypress(function(e){
+		if(e.keyCode == 13){
+		   e.preventDefault();	
+		   $('#create-new-cate').click();
+		}
+		
+	});
+	
+	
 	function init_edi(){
 		var $wrap = $(this).parent().parent().parent().find('span:first');
 		    var Name = $wrap.find('.edi-input:first').val();
@@ -857,7 +863,8 @@ $(function(){
 		    var $this = $(this);
 		    if(Name!=oldName){
 			    $.get('/hoo/page/addcate/oldName/'+oldName,{termname:Name},function(d){
-			    	if(d=='success'){
+			    	var d = JSON.parse(d) ? JSON.parse(d) : null;
+				        if(d.status=='success'){
 			    		$wrap.html(Name);
 			    		$wrap.parent().parent().find('.hidden-cate').val(Name);
 			    		$this.find('i').removeClass('fa-check').addClass('fa-pencil');
@@ -876,7 +883,7 @@ $(function(){
     	$('.cate-edi').unbind('click').click(function(){
     		var $wrap = $(this).parent().parent().parent().find('span:first');
     		$(this).attr('n',$wrap.text());
-    		$wrap.html('<input class="form-control input-sm edi-input" type="text" value="'+$wrap.text()+'" style="width:200px;height:20px;display:inline;height: 37px;position: absolute;top: 0px;" />');
+    		$wrap.html('<input class="form-control input-sm edi-input" type="text" value="'+$wrap.text()+'" style="width:300px;height:20px;display:inline;height: 37px;position: absolute;top: 0px;" />');
     		$(this).find('i').removeClass('fa-pencil').addClass('fa-check');
     		$(this).unbind('click').click(init_edi);
     	});
@@ -884,13 +891,17 @@ $(function(){
    }
 	$('#create-new-cate').click(function(){
 		var cateName = $('#new-cate-name').val();
-		var html =   '<div class="panel hoo-bg-slight sortable-widget-item hoo-no-margin-lr option-group" id="panel-close">'
+		if($.trim(cateName)!=''){
+			$.get('/hoo/page/addcate',{termname:cateName},function(d){
+				var d = JSON.parse(d) ? JSON.parse(d) : null;
+				if(d.status=='success'){
+				var html =   '<div class="panel hoo-bg-slight sortable-widget-item hoo-no-margin-lr option-group" id="panel-close">'
 					+'<div class="panel-heading hoo-bg-slight">'
 					+'<div class="panel-actions">'
 					+'<button class="btn-panel cate-edi" type="button">'
 	                +'<i class="fa fa-pencil"></i>'
 	                +'</button>'
-					+'<button class="btn-panel cate-close" type="button">'
+					+'<button class="btn-panel cate-close" type="button" tid="'+d.name+'">'
 	                +'<i class="fa fa-times"></i>'
 	                +'</button>'
 					+'</div>'
@@ -901,9 +912,6 @@ $(function(){
 					+'<input cates="cate[]" class="hidden-cate" value="'+cateName+'" type="hidden" />'
 					+'</div>'	
 					+'</div>';
-		if($.trim(cateName)!=''){
-			$.get('/hoo/page/addcate',{termname:cateName},function(d){
-				if(d=='success'){
 				$('#cates-wrap').append(html);
 				$('#create-new-cate-modal').modal('hide');
 			  	$('#new-cate-name').val('');
@@ -923,7 +931,16 @@ $(function(){
 		  	
 	});
 	$('.cate-close').click(function(){
-	  		$(this).parent().parent().parent().remove();
+		    var name = $(this).attr('tid');
+		    var $this = $(this);
+		    $.get('/hoo/page/deleteCate',{name:name},function(d){
+		     var d = JSON.parse(d) ? JSON.parse(d) : null;
+			if(d.status=='success'){	
+	  		    $this.parent().parent().parent().remove();
+	  		}else{
+			   	alert(d);
+			}
+			});
     });
     edi_cate();
     

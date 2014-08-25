@@ -95,10 +95,30 @@ class ItemController extends Controller {
            $this->display("create");
         }
     }
+    public function delete(){
+        if(isset($_POST['multis']) || isset($_GET['delete'])){
+           $_db = M('Posts');
+           $action = isset($_POST['multi']) ? $_POST['multi'] : null;
+           if(isset($_POST['multis'])){
+               switch ($action) {
+                       case 'delete':
+                                 foreach ($_POST['multis'] as $value) {
+                                          $_db->where(array('id'=>$value))->delete();
+                                 }
+                             break;
+               }
+           }
+           if(isset($_GET['delete'])){
+              $_db->where(array('id'=>$_GET['delete']))->delete();               
+           } 
+        }
+    }
+     
     public function admin($page=null,$tag=null,$year=null,$month=null,$group=null){
     checkUserLogin();
     setKey("item","admin",true);
-    checkUserLogin();    
+    $this->delete();
+    
     /*****************************
      *获取管理数据 
      *****************************/
@@ -155,7 +175,7 @@ class ItemController extends Controller {
                          (object)array('name'=>"创建日期",'class'=>'item-post-date'),
                          (object)array('name'=>"选项",'class'=>'item-option')
                          );
-    $table->multis=array("删除文章","编辑文章","更改页面","更改分组");
+    $table->multis=array('delete'=>"删除文章");
     //绑定数据
     $table->rows = $datas['items'];
     //确定操作标识符
@@ -170,9 +190,9 @@ class ItemController extends Controller {
     
     //确定操作选项
     $table->options=array(
-                    (object)array('title'=>'编辑文章','class'=>'','icon'=>'fa fa-pencil','href'=>'/hoo/item/create/n'),
+                    (object)array('title'=>'编辑文章','class'=>'','icon'=>'fa fa-pencil','href'=>'/hoo/item/create/n','_blank'=>'y'),
                     //(object)array('title'=>'查看统计','class'=>'','icon'=>'fa fa-bar-chart-o','href'=>'/hoo/item/count'),
-                    (object)array('title'=>'删除页面','class'=>'','icon'=>'fa fa-times-circle','href'=>'/hoo/item/delete'),
+                    (object)array('title'=>'删除页面','class'=>'','icon'=>'fa fa-times-circle','href'=>'/hoo/item/admin/delete'),
                     );
     //无数据项的提示信息
     $table->message = '暂无文章! &nbsp;&nbsp;<a href="/hoo/item/create">新建一篇文章</a>';                
@@ -203,8 +223,10 @@ class ItemController extends Controller {
     }
     
     public function view($owner=null,$n=null){
-        
+        checkUserLogin();
         $item = hoo_get_item(array("id"=>$n));
+        $item = isset($item) ? $item:null;
+        !$item ? E('查看文章不存在!',25) : '';
         $page = hoo_get_page(array("id"=>$item['post_parent']));
         $resources = hoo_post_resources($n);
         $this->assign("item",$item);

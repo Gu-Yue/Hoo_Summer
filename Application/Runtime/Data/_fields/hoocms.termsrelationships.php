@@ -1,0 +1,1 @@
+a:7:{i:0;s:3:"uid";i:1;s:9:"term_name";i:2;s:9:"term_type";i:3;s:7:"post_id";i:4;s:11:"post_status";s:3:"_pk";s:7:"post_id";s:5:"_type";a:5:{s:3:"uid";s:10:"bigint(20)";s:9:"term_name";s:12:"varchar(200)";s:9:"term_type";s:11:"varchar(20)";s:7:"post_id";s:10:"bigint(20)";s:11:"post_status";s:11:"varchar(20)";}}

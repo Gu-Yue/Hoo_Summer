@@ -34,7 +34,7 @@ class PageController extends Controller {
               hoo_save_resources(USER_ID,$args['id']);
               hoo_add_terms(USER_ID,"cate",array($_POST['post_terms']),$args['id']);        
               // echo json_encode(array("status"=>"success","id"=>$args['id']));
-              redirect('/hoo/page/view/n/'.$args['id']);
+              redirect('/hoo/item/admin/page/'.$args['id']);
            }else{
               echo "error";    
            }
@@ -68,8 +68,28 @@ class PageController extends Controller {
            $this->display("create");
         }
     }
+    public function delete(){
+        if(isset($_POST['multis']) || isset($_GET['delete'])){
+           $_db = M('Posts');
+           $action = isset($_POST['multi']) ? $_POST['multi'] : null;
+           if(isset($_POST['multis'])){
+               switch ($action) {
+                       case 'delete':
+                                 foreach ($_POST['multis'] as $value) {
+                                          $_db->where(array('id'=>$value))->delete();
+                                 }
+                             break;
+               }
+           }
+           if(isset($_GET['delete'])){
+              $_db->where(array('id'=>$_GET['delete']))->delete();               
+           } 
+        }
+    }
+    
     public function admin($cate=null,$year=null,$month=null){
     checkUserLogin();    
+    $this->delete();
     /*************************************
      *获取表格数据
      *************************************/
@@ -110,7 +130,7 @@ class PageController extends Controller {
                          (object)array('name'=>"创建日期",'class'=>'page-post-date'),
                          (object)array('name'=>"选项",'class'=>'page-option')
                          );
-    $table->multis=array("删除页面","编辑页面","更改分类");
+    $table->multis=array("delete"=>"删除页面");
     //绑定数据
     $table->rows = $datas['pages'];
     //确定操作标识符
@@ -125,9 +145,9 @@ class PageController extends Controller {
     //确定操作选项
     $table->options=array(
                     (object)array('title'=>'添加文章','class'=>'','icon'=>'fa fa-plus-circle','href'=>'/hoo/item/create/add'),
-                    (object)array('title'=>'编辑页面','class'=>'','icon'=>'fa fa-pencil','href'=>'/hoo/page/create/n'),
+                    (object)array('title'=>'编辑页面','class'=>'','icon'=>'fa fa-pencil','href'=>'/hoo/page/create/n','_blank'=>'y'),
                     //(object)array('title'=>'查看统计','class'=>'','icon'=>'fa fa-bar-chart-o','href'=>'/hoo/page/view/n'),
-                    (object)array('title'=>'删除页面','class'=>'','icon'=>'fa fa-times-circle','href'=>'/hoo/page/delete','flag'=>'y'),
+                    (object)array('title'=>'删除页面','class'=>'','icon'=>'fa fa-times-circle','href'=>'/hoo/page/admin/delete','flag'=>'y'),
                     );
     //无数据项的提示信息
     $table->message = '该目录没有页面! &nbsp;&nbsp;<a href="/hoo/page/create">新建页面</a>';                    
@@ -201,6 +221,7 @@ class PageController extends Controller {
         checkUserLogin();
         setKey("page","cate",true); 
         if(isset($_GET['termname'])){
+           $_GET = filterData($_GET);
            $db_terms = M("Terms");
            $_GET['termname'] = strip_tags($_GET['termname']);    
            $_GET['termname'] = trim($_GET['termname']);
@@ -212,9 +233,13 @@ class PageController extends Controller {
               $term  = hoo_add_terms(USER_ID,"cate",array($_GET['termname']));
            }                    
            if($term){
-            echo 'success';
+            echo json_encode(array('status'=>'success','name'=>$_GET['termname']));
            }else{
-            echo "编辑分类失败";
+            if(M('Terms')->where(array('uid'=>USER_ID,'name'=>$_GET['termname'],'type'=>'cate'))->find()){
+                echo '该分类已存在';
+            }else{
+                echo "编辑分类失败";
+            }
            }
              
            }else{
@@ -223,6 +248,17 @@ class PageController extends Controller {
                
         }
     }
+    public function deleteCate(){
+        checkUserLogin();    
+        if($_GET['name']){
+            if(M('Terms')->where(array('uid'=>USER_ID,'name'=>$_GET['name'],'type'=>'cate'))->delete()){
+               echo json_encode(array('status'=>'success'));
+            }else{
+               echo '删除分类错误!';
+            }
+        }
+    }
+    
     
     public function cate(){
     checkUserLogin();

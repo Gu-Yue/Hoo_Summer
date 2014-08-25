@@ -1,0 +1,1 @@
+a:6:{i:0;s:4:"role";i:1;s:6:"module";i:2;s:8:"function";i:3;s:5:"token";s:3:"_pk";s:8:"function";s:5:"_type";a:4:{s:4:"role";s:12:"varchar(100)";s:6:"module";s:12:"varchar(100)";s:8:"function";s:12:"varchar(100)";s:5:"token";s:11:"varchar(32)";}}

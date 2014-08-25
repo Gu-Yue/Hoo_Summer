@@ -14,10 +14,7 @@ return array(
     'MODULE_ALLOW_LIST'    =>    array('Home',"Hoo",'File'),
     //关闭自动启动session
     'SESSION_AUTO_START' =>false,
+    'SHOW_ERROR_MSG'      =>  true,    // 显示错误信息
     'TMPL_EXCEPTION_FILE' => APP_PATH.'/Common/View/error/404.html',
-    //网站信息配置
-    "find_domain"=>"hoocms.com",
-    "find_title"=>"发现+",
-    
     
 );

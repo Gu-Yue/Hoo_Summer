@@ -10,7 +10,6 @@ class LogsController extends Controller {
     checkUserLogin();
     
     $this->assign("system_logs_file",array_reverse(scandir(LOG_PATH)));
-    print_r(array_reverse(scandir(LOG_PATH)));
     $this->display("system");    
     }
     

@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Hoo</title>
+        <title>文章管理</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="stilearning">
@@ -219,13 +219,13 @@
                 </div>
             </div><!-- header-profile -->
 
-            <form role="form" class="form-inline">
+            <!-- <form role="form" class="form-inline">
                 <button type="button" class="btn btn-default btn-expand-search"><i class="fa fa-search"></i></button>
                 <div class="toggle-search">
                     <input type="text" class="form-control" placeholder="搜索" />    
                     <button type="button" class="btn btn-default btn-collapse-search"><i class="fa fa-times"></i></button>
                 </div>
-            </form><!--/form-search-->
+            </form> -->
 
             <!-- header menu -->
             <ul class="hidden-xs header-menu pull-right">
@@ -376,12 +376,12 @@
                         </ul> 
                     </li> 
                     <!--sidebar-item-->
-                    <li>
-                        <a href="/hoo/user/admin" data-pjax=".content-body">  
+                    <!-- <li>
+                        <a href="/hoo/logs/system" data-pjax=".content-body">  
                             <i class="sidebar-icon fa fa-bar-chart-o"></i>
                             <span class="sidebar-text">系统日志</span>
                         </a>
-                        <!-- <ul class="sidebar-child animated flipInY">
+                        <ul class="sidebar-child animated flipInY">
                             <li>
                                 <a href="/hoo/logs/visitors" data-pjax=".content-body">
                                     <span class="sidebar-text">访问统计</span>
@@ -402,8 +402,8 @@
                                     <span class="sidebar-text">系统日志</span>
                                 </a>
                             </li>
-                        </ul>  -->
-                    </li> 
+                        </ul> 
+                    </li>  -->
                     <!--sidebar-item-->
                     <li>
                         <a href="/hoo/helper/sitesetting" data-pjax=".content-body">  
@@ -580,10 +580,10 @@
                     </h3><!-- /contact-heading -->
                      <div class="contact-body">
                         <ul class="contacts-list">
-                    <?php foreach($reposts as $re){ echo '
-                            <li class="online">
-                            <a href="/hoo/item/view/n/'.$re['id'].'" class="hoo-js-link" title="'.$re['update_date'].'" target="_blank">
-                            <i data-original-title="online" class="fa fa-circle-o" title="" rel="tooltip-bottom"></i>' .$re['post_title'] .'</a></li>'; } ?>
+                    <?php if(is_array($reposts)&&count($reposts)>0){ foreach($reposts as $re){ echo '
+	                            <li class="online">
+	                            <a href="/hoo/item/view/n/'.$re['id'].'" class="hoo-js-link" title="'.$re['update_date'].'" target="_blank">
+	                            <i data-original-title="online" class="fa fa-circle-o" title="" rel="tooltip-bottom"></i>' .$re['post_title'] .'</a></li>'; } }else{ echo '<li class="disable"><a href="/hoo/item/create" class="hoo-js-link">点击添加文章</a></li>'; } ?>
                               </ul><!-- /contacts-list -->
                     </div>
                 </div><!-- /chat-contact -->
@@ -605,10 +605,9 @@
                     </h3><!-- /contact-heading -->
                      <div class="contact-body">
                         <ul class="contacts-list">
-                    <?php foreach($tags as $tag){ echo '
-                            <li class="online">
-                            <a href="/hoo/item/admin/tag/'.$tag['tag_name'].'" class="hoo-js-link">
-                            <i data-original-title="online" class="fa fa-tag" title="" rel="tooltip-bottom"></i>' .$tag['tag_name'] .'</a></li>'; } ?>
+                    <?php if(is_array($tags)&&count($tags)>0){ foreach($tags as $tag){ echo '<li class="online">
+		                            	  <a href="/hoo/item/admin/tag/'.$tag['tag_name'].'" class="hoo-js-link">
+		                            	  <i data-original-title="online" class="fa fa-tag" title="" rel="tooltip-bottom"></i>' .$tag['tag_name'] .'</a></li>'; } }else{ echo '<li class="disable"><a href="" class="">没有标签</a></li>'; } ?>
                               </ul><!-- /contacts-list -->
                     </div>
                 </div><!-- /chat-contact -->
@@ -630,10 +629,10 @@
                     </h3><!-- /contact-heading -->
                      <div class="contact-body">
                         <ul class="contacts-list">
-                    <?php foreach($piges as $pige){ echo '
-                            <li class="online">
-                            <a href="/hoo/item/admin/year/'.$pige['year'].'/month/'.$pige['month'].'" class="hoo-js-link">
-                            <i data-original-title="online" class="fa fa-circle-o" title="" rel="tooltip-bottom"></i>' .$pige['year'].'年'.$pige['month'].'月' .'</a></li>'; } ?>
+                    <?php if(is_array($piges)&&count($piges)>0){ foreach($piges as $pige){ echo '
+	                            <li class="online">
+	                            <a href="/hoo/item/admin/year/'.$pige['year'].'/month/'.$pige['month'].'" class="hoo-js-link">
+	                            <i data-original-title="online" class="fa fa-circle-o" title="" rel="tooltip-bottom"></i>' .$pige['year'].'年'.$pige['month'].'月' .'</a></li>'; } }else{ echo '<li class="disable"><a href="" class="">没有归档</a></li>'; } ?>
                               </ul><!-- /contacts-list -->
                     </div>
                 </div><!-- /chat-contact -->
@@ -653,10 +652,11 @@
                     </h3><!-- /contact-heading -->
                      <div class="contact-body">
                         <ul class="contacts-list">
-                    <?php foreach($groups as $group){ echo '
-                            <li class="online">
-                            <a href="/hoo/item/admin/page/'.$page['id'].'/group/'.$group.'" class="hoo-js-link">
-                            <i data-original-title="online" class="fa fa-tag" title="" rel="tooltip-bottom"></i>' .$group .'</a></li>'; } ?>
+                    <?php if(is_array($groups)&&count($groups)>0){ foreach($groups as $group){ echo '<li class="online">
+		                              <a href="/hoo/item/admin/page/'.$page['id'].'/group/'.$group.'" class="hoo-js-link">
+		                              <i data-original-title="online" class="fa fa-tag" title="" rel="tooltip-bottom"></i>' .$group .'</a></li>'; } }else{ echo '<li class="disable"><a href="/hoo/page/create/n/'.$page['id'].'" class="hoo-js-link">
+                            		  点击添加分组
+                                      </a></li>'; } ?>
                               </ul><!-- /contacts-list -->
                     </div>
                 </div><!-- /chat-contact -->
@@ -841,12 +841,7 @@
         
         //--  管理表格全选
         $(".hoo-check-all").click(function(){
-        	var check = $(this).is(":checked");
-    		if(check == false){
-    	   	   $(".hoo-check").removeAttr("checked");
-    		}else{
-    	   	   $(".hoo-check").attr("checked",'checked');	
-    	    }
+    	    $(".hoo-check").click();
     	    
         });
         //--/ 管理表格全选

@@ -137,10 +137,28 @@ class UserController extends Controller {
          $this->display("create");
      }
      
+     public function delete(){
+        if(isset($_POST['multis']) || isset($_GET['delete'])){
+           $_db = M('User');
+           $action = isset($_POST['multi']) ? $_POST['multi'] : null;
+           if(isset($_POST['multis'])){
+               switch ($action) {
+                       case 'delete':
+                                 foreach ($_POST['multis'] as $value) {
+                                          $_db->where(array('uid'=>$value))->delete();
+                                 }
+                             break;
+               }
+           }
+           if(isset($_GET['delete'])){
+              $_db->where(array('uid'=>$_GET['delete']))->delete();               
+           } 
+        }
+    }
      public function admin($role=null){
          checkUserLogin();
          setKey("user","admin",true);
-         
+     $this->delete();    
     /*****************************
      *获取管理数据 
      *****************************/
@@ -182,7 +200,7 @@ class UserController extends Controller {
                          (object)array('name'=>"创建日期",'class'=>'item-post-date'),
                          (object)array('name'=>"选项",'class'=>'item-option')
                          );
-    $table->multis=array("禁用用户","删除用户");
+    $table->multis=array("delete"=>"删除用户");
     //绑定数据
     $table->rows = $datas['users'];
     
@@ -196,7 +214,7 @@ class UserController extends Controller {
     //确定操作选项
     $table->options=array(
                     //(object)array('title'=>'用户信息','class'=>'','icon'=>'fa fa-bar-chart-o','href'=>'/hoo/item/count'),
-                    (object)array('title'=>'删除用户','class'=>'','icon'=>'fa fa-times-circle','href'=>'/hoo/user/delete','flag'=>'y'),
+                    (object)array('title'=>'删除用户','class'=>'','icon'=>'fa fa-times-circle','href'=>'/hoo/user/admin/delete','flag'=>'y'),
                     );
     //获取表格分页
     $table->pagination = $datas['pagination'];

@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Hoo</title>
+        <title>仪盘表</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="stilearning">
@@ -217,13 +217,13 @@
                 </div>
             </div><!-- header-profile -->
 
-            <form role="form" class="form-inline">
+            <!-- <form role="form" class="form-inline">
                 <button type="button" class="btn btn-default btn-expand-search"><i class="fa fa-search"></i></button>
                 <div class="toggle-search">
                     <input type="text" class="form-control" placeholder="搜索" />    
                     <button type="button" class="btn btn-default btn-collapse-search"><i class="fa fa-times"></i></button>
                 </div>
-            </form><!--/form-search-->
+            </form> -->
 
             <!-- header menu -->
             <ul class="hidden-xs header-menu pull-right">
@@ -374,12 +374,12 @@
                         </ul> 
                     </li> 
                     <!--sidebar-item-->
-                    <li>
+                    <!-- <li>
                         <a href="/hoo/logs/system" data-pjax=".content-body">  
                             <i class="sidebar-icon fa fa-bar-chart-o"></i>
                             <span class="sidebar-text">系统日志</span>
                         </a>
-                        <!-- <ul class="sidebar-child animated flipInY">
+                        <ul class="sidebar-child animated flipInY">
                             <li>
                                 <a href="/hoo/logs/visitors" data-pjax=".content-body">
                                     <span class="sidebar-text">访问统计</span>
@@ -400,8 +400,8 @@
                                     <span class="sidebar-text">系统日志</span>
                                 </a>
                             </li>
-                        </ul>  -->
-                    </li> 
+                        </ul> 
+                    </li>  -->
                     <!--sidebar-item-->
                     <li>
                         <a href="/hoo/helper/sitesetting" data-pjax=".content-body">  
@@ -546,10 +546,14 @@
                               <ul class="list-group hoo-no-margin">
     <?php foreach($notices as $notice): ?>
     <li class="list-group-item">
+    	<span class="badge badge-primary"><a href="/hoo/index/index/deleteNotice/<?php echo ($notice["id"]); ?>" class="text-white"><i class="fa fa-trash-o"></i></a></span>
         <span class="badge badge-primary"><?php echo date('Y-m-d H:i',$notice['time']) ?></span>
-        <?php echo ($notice["title"]); ?>
+        <a href="#<?php echo ($notice["id"]); ?>_side" data-toggle="side-right"><?php echo ($notice["title"]); ?></a>
     </li>
     <?php endforeach; ?>
+    <?php if(count($notices)<1): ?>
+    <li class="list-group-item">无历史公告</li>
+    <?php endif; ?>
 </ul>
                                 </div> 
                             </div>  
@@ -562,46 +566,37 @@
  </div> 
 <div class="col-md-6">
 <div class="panel border-cloud hoo-no-padding  profiles-wrap dashboard-counts sortable-widget-item">	
-<div class="panel-heading sortable-widget-handle border-cloud" style="padding-top:30px">
+<!-- <div class="panel-heading sortable-widget-handle border-cloud" style="padding-top:30px">
 <ul class="nav nav-tabs panel-heading bg-white hoo-no-padding pull-left">
         <li class="active"><a href="#botabs1" data-toggle="tab">统计</a></li>
         <li class=""><a href="#botabs2" data-toggle="tab" class="">系统</a></li>
 </ul>
-</div>
+</div> -->
 <div class="tab-content panel-body hoo-no-padding-lr" style="padding-top:25px">
      <div class="tab-pane fade active in" id="botabs1">
-     	
      <div class="col-md-12">
-                                    <div id="overall-visitor" class="panel  bg-primary">
+                            <div id="overall-phisicmem" class="panel  panel-primary bg-primary">
                                         <div class="panel-body hoo-no-padding">
-                                            <div class="panel-actions-fly">
-                                                <button data-refresh="#overall-visitor" data-error-place="#error-placement" title="刷新数据" class="btn-panel">
+                                             <!-- <div class="panel-actions-fly">
+                                                <button data-refresh="#overall-bandwidth" data-error-place="#error-placement" title="refresh" class="btn-panel">
                                                     <i class="glyphicon glyphicon-refresh"></i>
-                                                </button><!--/btn-panel-->
-                                                <a href="#" title="查看详细统计" class="btn-panel">
+                                                </button> 
+                                                <a href="#" title="Go to server stats page" class="btn-panel">
                                                     <i class="glyphicon glyphicon-stats"></i>
-                                                </a><!--/btn-panel-->
-                                            </div><!--/panel-action-fly-->
+                                                </a> 
+                                            </div>  -->
 
-                                            <p class="lead"><strong>访问量</strong></p><!--/lead as title-->
+                                            <p class="lead">磁盘空间</p><!--/lead as title-->
 
-                                            <ul class="list-percentages row">
-                                                <li class="col-xs-4 hoo-no-padding">
-                                                    <p class="text-ellipsis">本月</p>
-                                                    <p class="text-lg"><strong>765,298</strong></p>
-                                                </li>
-                                                <li class="col-xs-4 hoo-no-padding">
-                                                    <p class="text-ellipsis">本周</p>
-                                                    <p class="text-lg"><strong>1,765</strong></p>
-                                                </li>
-                                                <li class="col-xs-4 hoo-no-padding">
-                                                    <p class="text-ellipsis">今天</p>
-                                                    <p class="text-lg"><strong>563</strong></p>
-                                                </li>
-                                            </ul><!--/list-percentages-->
+                                            <p>
+                                                </p><div class="easyPieChart" data-barcolor="#232332" data-trackcolor="#ecf0f1" data-scalecolor="#ecf0f1" data-percent="<?php echo ($disk["percent"]); ?>" data-size="120">
+                                                    <span><?php echo ($disk["percent"]); ?>%</span>
+                                                </div>
+                                                <p class="text-ellipsis text-center"><?php echo ($disk["used"]); ?> GB / <?php echo ($disk["total"]); ?> GB</p>
+                                            <p></p>
                                         </div><!--/panel-body-->
-                                    </div><!--/panel overal-visitor-->
-                                </div><!--/cols-->
+                                    </div><!--/panel overal-phisicmem-->
+                            </div>
 								
                                 <!-- <div class="col-md-12">
                                     <div id="overall-users" class="panel  bg-primary">
@@ -638,29 +633,29 @@
      											<div class="col-md-12">
                                     <div id="overall-orders" class="panel  bg-primary">
                                         <div class="panel-body hoo-no-padding">
-                                            <div class="panel-actions-fly">
+                                            <!-- <div class="panel-actions-fly">
                                                 <button data-refresh="#overall-orders" data-error-place="#error-placement" title="刷新数据" class="btn-panel">
                                                     <i class="glyphicon glyphicon-refresh"></i>
-                                                </button><!--/btn-panel-->
+                                                </button> 
                                                 <a href="#" title="查看详细统计" class="btn-panel">
                                                     <i class="glyphicon glyphicon-stats"></i>
-                                                </a><!--/btn-panel-->
-                                            </div><!--/panel-action-fly-->
+                                                </a> 
+                                            </div> --> 
 
-                                            <p class="lead"><strong>文章数</strong></p><!--/lead as title-->
+                                            <p class="lead"><strong>统计</strong></p><!--/lead as title-->
 
                                             <ul class="list-percentages row">
                                                 <li class="col-xs-4 hoo-no-padding">
-                                                    <p class="text-ellipsis">所有文章</p>
-                                                    <p class="text-lg"><strong>1,954,452</strong></p>
+                                                    <p class="text-ellipsis">文章数</p>
+                                                    <p class="text-lg"><strong><?php echo ($count["items"]); ?></strong></p>
                                                 </li>
                                                 <li class="col-xs-4 hoo-no-padding">
-                                                    <p class="text-ellipsis">本月+</p>
-                                                    <p class="text-lg"><strong>43,671</strong></p>
+                                                    <p class="text-ellipsis">页面数</p>
+                                                    <p class="text-lg"><strong><?php echo ($count["pages"]); ?></strong></p>
                                                 </li>
                                                 <li class="col-xs-4 hoo-no-padding">
-                                                    <p class="text-ellipsis">今天+</p>
-                                                    <p class="text-lg"><strong>1,219</strong></p>
+                                                    <p class="text-ellipsis">分类数</p>
+                                                    <p class="text-lg"><strong><?php echo ($count["cates"]); ?></strong></p>
                                                 </li>
                                             </ul><!--/list-percentages-->
                                         </div><!--/panel-body-->
@@ -668,29 +663,6 @@
                                </div><!--/cols-->  
      </div>
      <div class="tab-pane fade" id="botabs2">
-     	<div class="col-md-12">
-                            <div id="overall-phisicmem" class="panel  panel-primary bg-primary">
-                                        <div class="panel-body">
-                                             <div class="panel-actions-fly">
-                                                <button data-refresh="#overall-bandwidth" data-error-place="#error-placement" title="refresh" class="btn-panel">
-                                                    <i class="glyphicon glyphicon-refresh"></i>
-                                                </button><!--/btn-panel-->
-                                                <a href="#" title="Go to server stats page" class="btn-panel">
-                                                    <i class="glyphicon glyphicon-stats"></i>
-                                                </a><!--/btn-panel-->
-                                            </div><!--/panel-action-fly-->
-
-                                            <p class="lead">Bandwidth</p><!--/lead as title-->
-
-                                            <p>
-                                                </p><div class="easyPieChart" data-barcolor="#232332" data-trackcolor="#ecf0f1" data-scalecolor="#ecf0f1" data-percent="16" data-size="120">
-                                                    <span>16%</span>
-                                                <canvas width="120" height="120"></canvas></div>
-                                                <p class="text-ellipsis text-center">Bandwidth Usage 120,4 GB / 2 TB</p>
-                                            <p></p>
-                                        </div><!--/panel-body-->
-                                    </div><!--/panel overal-phisicmem-->
-                            </div>
      </div>
 </div><!-- /tab-content -->
 	
@@ -704,6 +676,37 @@
 </div>
 
 </div>
+
+
+<?php foreach($notices as $notice): ?>
+    <!-- side-right -->
+        <aside class="side-right" id="<?php echo ($notice["id"]); ?>_side">
+            <div class="module" data-toggle="niceScroll">
+                <div class="chat-contact">
+                    <h3 class="contact-heading">
+                        <div class="btn-group pull-right">
+                            <a href="#" data-toggle="side-right">
+                                <i class="fa fa-times text-sm"></i>
+                            </a>
+                        </div>
+                                                           公告                                     
+                    </h3><!-- /contact-heading -->
+                    <div class="contact-body">
+                    <div class="" style="padding: 20px;">
+                    <p>标题：<?php echo ($notice["title"]); ?></p>
+                    <p>时间：<?php echo date('Y-m-d H:i',$notice['time']) ?></p>
+                    <p></p>
+                    <p>内容：
+                    <?php echo ($notice["content"]); ?>
+                    </p>	
+                    </div>
+                    </div>
+                </div><!-- /chat-contact -->
+
+
+            </div><!-- /module -->
+        </aside><!--/side-right -->
+<?php endforeach; ?>
   
                 </div><!--/content-body -->
             </div><!--/content -->
@@ -887,12 +890,7 @@
         
         //--  管理表格全选
         $(".hoo-check-all").click(function(){
-        	var check = $(this).is(":checked");
-    		if(check == false){
-    	   	   $(".hoo-check").removeAttr("checked");
-    		}else{
-    	   	   $(".hoo-check").attr("checked",'checked');	
-    	    }
+    	    $(".hoo-check").click();
     	    
         });
         //--/ 管理表格全选

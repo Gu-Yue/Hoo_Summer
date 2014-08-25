@@ -1,0 +1,1 @@
+a:6:{i:0;s:3:"key";i:1;s:5:"value";i:2;s:4:"type";i:3;s:5:" flag";s:3:"_pk";s:4:"type";s:5:"_type";a:4:{s:3:"key";s:12:"varchar(255)";s:5:"value";s:8:"longtext";s:4:"type";s:11:"varchar(60)";s:5:" flag";s:11:"varchar(20)";}}

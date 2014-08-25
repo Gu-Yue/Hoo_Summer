@@ -35,8 +35,9 @@ $(function(){
             hasActiveMenuChild = activeMenuUl.hasClass('sidebar-child'),
             hasActiveMenuChildInline = activeMenuUl.hasClass('sidebar-child-inline'),
             // label = activeMenu.children('.sidebar-text').text(),
-            // icon = activeMenu.children('.sidebar-icon');
-            label = $('title:first').text();
+            label = $('title:first').text(),
+            icon = activeMenu.children('.sidebar-icon');
+            
 
         $('.sidebar').find('li').removeClass('active');
 

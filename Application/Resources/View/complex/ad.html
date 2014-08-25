@@ -1,0 +1,45 @@
+<?php $content = json_decode($item['resource_content']);?>
+<div aria-hidden="true" style="display: none;" class="modal hide fade" id="modal-ad" role="dialog" tabindex="-1">
+<div class="modal-header">
+	<button class="close source_cancel" tid='modal-ad' data-dismiss="modal" type="button">×</button>
+	<h3>{$dialogTitle}</h3>
+</div>
+<div class="modal-body">
+	<form class="form form-horizontal" style="margin-bottom: 0;" id="source_form_ad">
+		<div class="control-group">
+			<label class="control-label">分组标题</label>
+			<div class="controls">
+				<input class="span12" id="source_ad_cate" type="text" maxlength="10" placeholder="默认为:资源文件" value="{$item.resource_group}">
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label">广告标题</label>
+			<div class="controls">
+				<input class="span12" id="source_ad_title" type="text" value="{$item.resource_title}">
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label">广告链接</label>
+			<div class="controls">
+				<input class="span12" id="source_ad_link" type="text" value="{$content->link}">
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label">显示图片</label>
+			<div class="controls">
+				<input class="span12" id="source_ad_image" type="file" title="添加本地图片">{$content->img}
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label">广告代码</label>
+			<div class="controls">
+				<textarea class="span12" id="source_ad_code">{$content->code}</textarea>
+			</div>
+		</div>
+	</form>
+</div>
+<div class="modal-footer">
+	<button class="btn source_cancel" tid='modal-ad' data-dismiss="modal" id="source_ad_clear">取消</button>
+	<button class="btn btn-primary resources_submit" tid='modal-ad' itemID="{$itemID}" editype="Ad">{$dialogSubmit}</button>
+</div>
+</div>

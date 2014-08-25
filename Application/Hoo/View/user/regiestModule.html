@@ -1,0 +1,118 @@
+<extend name="layout/template"/>
+<block name="title">添加用户</block>
+<block name="header-load">
+<style>
+a:hover{
+	text-decoration:none;
+}	
+</style>	
+</block>
+<block name="footer-load">
+<script>
+$(".del").click(function(){
+var r=confirm("确认删除该模块功能?");
+if (!r) return false;
+});	
+</script>	
+</block>
+<block name="control">
+<!--control-nav-->
+ <ul class="control-nav pull-right">
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/hoo/page/create">
+                              <i class="fa fa-key"></i> 判断角色是否拥有权限
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/hoo/page/cate">
+                     <i class="fa fa-book"></i> 开发手册
+                            </a>
+                        </li>
+                    </ul><!--/control-nav-->
+                    
+                    <ul class="breadcrumb">
+                        <li><i class="fa fa-sitemap"></i> 模块功能注册(开发时使用)</li>
+                    </ul>
+</block>
+<block name="content">
+    <div class="col-md-9 panel panel-primary hoo-no-padding">
+            <div class="accordion"  style="margin-bottom:0;background:#FFFFFF;border-radius: 5px;">
+            	<php>
+            	$length = count($list);
+            	foreach($list as $k=>$v):	
+            	</php>
+            	<php>
+            		
+            	$in = 1?"in":"";
+            	$style = 1?"auto":"0px";
+            	if($k==0||$list[$k]['module']!=$list[$k-1]['module']):
+            	</php>
+                <div class="panel hoo-no-margin">
+                    <div class="panel-heading hoo-bg-slight">
+                        <a class="accordion-toggle" data-parent="#accordion" data-toggle="collapse" href="#collapseOne-accordion{$k}">
+                        <strong>{$v.module_name}({$v.module})</strong>
+                        </a>
+                    </div>
+                    <div style="height: {$style};" class="panel-body {$in} collapse" id="collapseOne-accordion{$k}">
+                        <div class="accordion-inner">
+                        <table class="table-hover tabl" style="width:100%;">
+                        <!-- <thead><tr><td><small>功能别名</small></td><td><small>标识符</small></td></tr></thead> -->
+                        <tbody>
+                <php>endif;</php>    
+                         <tr><td width="40%">{$v.function_name}</td><td width="40%">标识符： {$v.function}</td><td><a style="color:rgba(90, 82, 82, 1);" href="/hoo/user/regiestModule/del/{$v.function}-{$v.module}" class="fa fa-trash-o pull-right del"></a><a style="color:#3D579D;" href="/hoo/user/regiestModule/edi/{$v.function}-{$v.module}" class="fa fa-edit pull-right "></a></td></tr>
+                         
+                <php>if($k==$length-1||$list[$k]['module']!=$list[$k+1]['module']):</php>        
+                        </tbody>
+                        </table>
+                        </div>
+                    </div>
+                    </div>
+                <php>endif;</php>    
+                
+                <php>endforeach;</php>
+            </div>
+    	
+    </div>
+    <div class="col-md-3 ">
+    <div class="panel panel-primary">
+    	<div class="panel-heading bg-primary">{$title}</div>
+    	<div class="panel-body">
+    	<form class="form" style="margin-bottom: 0;" method="post">
+							<div class="control-group">
+								<label class="control-label">模块别称</label>
+								<div class="controls">
+									<input class="span12" name="module_name" type="text" value="{$edi.module_name}">
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">模块标识符</label>
+								<div class="controls">
+									<input class="span12" name="module"  type="text" value="{$edi.module}">
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">功能别称</label>
+								<div class="controls">
+									<input class="span12" name="function_name" type="text" value="{$edi.function_name}">
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">功能标识符</label>
+								<div class="controls">
+									<input class="span12" name="function" type="text" value="{$edi.function}">
+								</div>
+							</div>
+							<div class="control-group margin-top">
+							<button type="submit" class="btn btn-primary">
+                                              &nbsp;&nbsp;{$button}&nbsp;&nbsp;
+							</button>
+							&nbsp;&nbsp;&nbsp;
+							<a href="/hoo/user/regiestModule" class="btn btn-warning">取消</a>
+							</div>
+						</form>
+		    </div>
+    </div>
+    </div>
+</block>

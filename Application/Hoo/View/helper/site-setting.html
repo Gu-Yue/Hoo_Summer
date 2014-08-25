@@ -1,0 +1,154 @@
+<extend name="layout/template"/>
+<block name="title">站点设置</block>
+<block name="control">
+                    <!--breadcrumb-->
+                    <ul class="breadcrumb">
+                        <li><a href="/hoo"><i class="fa fa-sliders"></i> 设置</a></li>
+                        <li>站点设置</li>
+                    </ul>
+</block>
+<block name="content">
+<style>
+	.option-groups  .sortable-placeholder{
+		margin-bottom:6px !important;
+		margin-top:0px !important;
+	}
+	.option-resources .panel-heading{
+		margin-bottom: -1px;
+	}
+	.option-group{
+		margin-bottom:5px;
+		margin-top:0px;
+	}
+</style>
+<form role="form" class="form-horizontal form-bordered" method="post">	
+<div class="row col-md-9">
+<div id="panel-fileinput" class="panel panel-default sortable-widget-item">
+	<div class="panel-body">
+    
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label" for="typeahead-local">站点标题</label>
+                                    <div class="col-sm-5">
+                                            <input  class="form-control" type="text" name="title" value="{$site->title}">          
+                                    </div>
+                                </div>
+                                <!-- 
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label" for="typeahead-local">站点域名</label>
+                                    <div class="col-sm-5">
+                                            <input  class="form-control" type="text" value="{$site->domain}" name="domain">          
+                                    </div>
+                                </div>
+                                <div class="form-group hoo-no-padding-botttom">
+                                    <label class="col-sm-3 control-label" for="typeahead-local">管理邮箱</label>
+                                    <div class="col-sm-5">
+                                            <input  class="form-control" type="text" value="{$site->mail}" name="mail">       
+                                            <span class="help-block">用于发送注册通知等</span>   
+                                    </div>
+                                    
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label" for="typeahead-local">用户注册资格</label>
+                                    <div class="col-sm-5">
+                                    <div class="nice-checkbox">
+                                                <input class="checkbox-o" id="checkbox-regiester" type="checkbox" name="allow_regiest">
+                                                <label for="checkbox-regiester">禁止注册</label>
+                                     </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label" for="typeahead-local">搜索引擎爬取</label>
+                                    <div class="col-sm-5">
+                                    <div class="nice-checkbox">
+                                                <input class="checkbox-o" id="checkbox-search" type="checkbox" name="allow_search">
+                                                <label for="checkbox-search">禁止爬取</label>
+                                     </div>
+                                    <small class="help-block">搜索引擎将本着自觉自愿的原则对待这个请求,并不是所有搜索引擎都会遵守这类请求</small>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label" for="typeahead-local">注册用户默认角色</label>
+                                    <div class="col-sm-5">
+								    <select class="form-control" data-native="" data-input="selectboxit" placeholder="选择角色" name="role">
+								    <option>一般用户</option>
+								    </select>
+                                    </div>
+                                </div> -->
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label" for="typeahead-local">ICP备案号</label>
+                                    <div class="col-sm-5">
+                                            <input  class="form-control" type="text" name="icp" value="{$site->icp}">          
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label" for="typeahead-2datasets">网站简介</label>
+                                    <div class="col-sm-5">
+                                        <textarea class="form-control hoo-textarea-y" rows="10" name="introduce"  placeholder="">{$site->introduce}</textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group hoo-no-padding-botttom">
+                                    <label class="col-sm-3 control-label" for="typeahead-2datasets"></label>
+                                    <div class="col-sm-5">
+                                    <button type="submit" class="btn btn-primary form-control text-white">保存设置</button>	
+                                    </div>
+                                </div>
+                                                          
+   </div><!-- /panel-body -->
+   </div>
+</div>
+
+<div class="row col-md-3 margin-left sor" data-toggle="sortable-widget">
+<div id="panel-fileinput" class="panel panel-default sortable-widget-item">
+                        <div class="panel-heading sortable-widget-handle bg-white">
+                            <h3 class="panel-title">站点LOGO</h3>
+                        </div><!-- /panel-heading -->
+
+                        <div class="panel-body text-center">
+                                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                                            <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;">
+                                                <img data-src="holder.js/100%x100%" alt="">
+                                            </div>
+                                            <div>
+                                                <span class="btn btn-sm btn-icon btn-inverse btn-file">
+                                                    <i class="fa fa-cloud-upload"></i>
+                                                    <span class="fileinput-new">添加LOGO</span>
+                                                    <span class="fileinput-exists">更换LOGO</span>
+                                                    <input name="logo" id="" accept="image/*" type="file" value="{$site->logo}">
+                                                </span>
+                                                <button class="btn btn-sm btn-icon btn-danger fileinput-exists" data-dismiss="fileinput">
+                                                    <i class="fa fa-times"></i>
+                                                    删除
+                                                </button>
+                                            </div>
+                                        </div><!-- /fileinput -->
+                        </div><!-- /panel-body -->
+                    </div>
+                    
+                    <div id="panel-fileinput" class="panel panel-default sortable-widget-item">
+                        <div class="panel-heading sortable-widget-handle bg-white">
+                            <h3 class="panel-title">favico图标</h3>
+                        </div><!-- /panel-heading -->
+
+                        <div class="panel-body text-center">
+                                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                                            <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width:60px; height:60px;">
+                                                <img data-src="holder.js/100%x100%" alt="">
+                                            </div>
+                                            <div>
+                                                <span class="btn btn-sm btn-icon btn-inverse btn-file">
+                                                    <i class="fa fa-cloud-upload"></i>
+                                                    <span class="fileinput-new">添加图标</span>
+                                                    <span class="fileinput-exists">更换图标</span>
+                                                    <input name="favico" id="" accept="image/*" type="file" value="{$site->favico}">
+                                                </span>
+                                                <button class="btn btn-sm btn-icon btn-danger fileinput-exists" data-dismiss="fileinput">
+                                                    <i class="fa fa-times"></i>
+                                                    删除
+                                                </button>
+                                            </div>
+                                        </div><!-- /fileinput -->
+                        </div><!-- /panel-body -->
+                    </div>
+</div>
+</form>
+</block>

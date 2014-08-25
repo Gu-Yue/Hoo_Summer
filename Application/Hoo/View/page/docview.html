@@ -1,0 +1,53 @@
+<extend name="layout/template" />
+<block name="title">页面开发文档</block>
+<block name="headcss"></block>
+<block name="headjs"></block>
+<block name="footjs"></block>
+<block name="content">
+<br />
+<div class="row-fluid" style="margin: 0px auto; max-width: 960px;">
+    <div class="span9 box">
+        <div class="box-header box-padding fb-background">{$page.post_title}</div>
+        <div class="box-content box-padding">
+        <php>foreach($items as $k=>$value):</php>
+        <div class="box">
+        <div class="box-header fb-background"><php>echo $k;</php></div>	
+        <div class="box-content">
+        <ul>	
+        <php>foreach($value as $v):</php>
+        <li>{$v.post_title}</li>
+        <php>endforeach;</php>
+        </ul>
+        </div>
+        </div>
+        <php>endforeach;</php>
+        </div>
+    </div>      
+    <div class="span3 box">
+        <div class="box-content text-center">
+        
+               <a class="btn" href="/admin/item/create/page/{$page.id}" title="添加文章">
+                    <i class="icon-plus" ></i>
+                </a>
+                <a class="btn" href="/admin/page/create/n/{$page.id}" title="编辑">
+                    <i class="icon-edit" ></i>
+                </a>
+                <a class="btn" href="/admin/page/delete/n/{$page.id}" title="数据统计">
+                    <i class="icon-bar-chart"></i>
+                </a>
+            	<a class="btn" href="/admin/page/delete/n/{$page.id}" title="删除">
+                    <i class="icon-remove" ></i>
+                </a>
+        </div>
+        <br>
+        <div class="box-content box-padding">
+        <ul>
+        <php>foreach($groups as $v):</php>	
+        <li class="text-center"><php>echo $v;</php></li>	
+        <php>endforeach;</php>
+        </ul>    	 
+        </div>
+    </div>
+    
+</div>
+</block>

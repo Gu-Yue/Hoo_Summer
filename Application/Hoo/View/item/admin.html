@@ -1,0 +1,193 @@
+<extend name="layout/template" />
+<block name="title">文章管理</block>
+
+
+
+<block name="control">
+<!--control-nav-->
+                    <ul class="control-nav pull-right">
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/hoo/item/create">
+                              新建文章
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#" id="hide_options_button">
+                                显示选项  <i class="fa fa-caret-down"></i>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#" id="hide_help_button">
+                               帮助  <i class="fa fa-caret-down"></i>
+                            </a>
+                        </li>
+                    </ul><!--/control-nav-->
+                    
+                    <!--breadcrumb-->
+                    <ul class="breadcrumb">
+                    	<php>if(isset($_GET['page'])):</php>
+                        <li><i class="fa fa-files-o"></i> <a href="/hoo/page/admin" class="text-primary">页面</a></li>
+                        <li>{$page.post_title}</li>
+                        <php>else:</php>
+                        <li><i class="fa fa-files-o"></i> <a href="/hoo/page/admin" class="text-primary">页面</a></li>
+                        <li><a href="/hoo/item/admin" class="text-primary">所有文章</a></li>
+                        <php>endif;</php>
+                        
+                        <php>if(isset($_GET['tag'])):</php>
+                        <li >标签</li>
+                         <li >{$_GET.tag}</li>
+                        <php>endif;</php>
+                        <php>if(isset($_GET['year'])):</php>
+                        <li >归档</li>
+                        <li >{$_GET.year}年{$_GET.month}月</li>
+                        <php>endif;</php>
+                    </ul>
+</block>
+<block name="content">	
+{$tableDisplay}
+</block>
+
+<block name="side-right">
+<!-- side-right -->
+        <aside class="side-right" id="page-side">
+            <div class="module" data-toggle="niceScroll">
+                <div class="chat-contact">
+                    <h3 class="contact-heading">
+                        <div class="btn-group pull-right">
+                            <a href="#" data-toggle="side-right">
+                                <i class="fa fa-times text-sm"></i>
+                            </a>
+                        </div>
+                        <i class="fa fa-tag"></i> 页面
+                    </h3><!-- /contact-heading -->
+                </div><!-- /chat-contact -->
+
+
+            </div><!-- /module -->
+        </aside><!--/side-right --> 
+<!-- side-right -->
+        <aside class="side-right" id="re-side">
+            <div class="module" data-toggle="niceScroll">
+                <div class="chat-contact">
+                    <h3 class="contact-heading">
+                        <div class="btn-group pull-right">
+                            <a href="#" data-toggle="side-right">
+                                <i class="fa fa-times text-sm"></i>
+                            </a>
+                        </div>
+                        <i class="fa fa-clock-o"></i> 最近编辑
+                    </h3><!-- /contact-heading -->
+                     <div class="contact-body">
+                        <ul class="contacts-list">
+                    <php>
+                        	foreach($reposts as $re){
+                            echo '
+                            <li class="online">
+                            <a href="/hoo/item/view/n/'.$re['id'].'" class="hoo-js-link" title="'.$re['update_date'].'" target="_blank">
+                            <i data-original-title="online" class="fa fa-circle-o" title="" rel="tooltip-bottom"></i>'
+                            .$re['post_title']
+                            .'</a></li>';
+                            }
+                            </php>
+                              </ul><!-- /contacts-list -->
+                    </div>
+                </div><!-- /chat-contact -->
+
+
+            </div><!-- /module -->
+        </aside><!--/side-right -->                    	
+<!-- side-right -->
+        <aside class="side-right" id="tag-side">
+            <div class="module" data-toggle="niceScroll">
+                <div class="chat-contact">
+                    <h3 class="contact-heading">
+                        <div class="btn-group pull-right">
+                            <a href="#" data-toggle="side-right">
+                                <i class="fa fa-times text-sm"></i>
+                            </a>
+                        </div>
+                        <i class="fa fa-tags"></i> 标签
+                    </h3><!-- /contact-heading -->
+                     <div class="contact-body">
+                        <ul class="contacts-list">
+                    <php>
+                        	foreach($tags as $tag){
+                            echo '
+                            <li class="online">
+                            <a href="/hoo/item/admin/tag/'.$tag['tag_name'].'" class="hoo-js-link">
+                            <i data-original-title="online" class="fa fa-tag" title="" rel="tooltip-bottom"></i>'
+                            .$tag['tag_name']
+                            .'</a></li>';
+                            }
+                            </php>
+                              </ul><!-- /contacts-list -->
+                    </div>
+                </div><!-- /chat-contact -->
+
+
+            </div><!-- /module -->
+        </aside><!--/side-right -->        	
+<!-- side-right -->
+        <aside class="side-right" id="pige-side">
+            <div class="module" data-toggle="niceScroll">
+                <div class="chat-contact">
+                    <h3 class="contact-heading">
+                        <div class="btn-group pull-right">
+                            <a href="#" data-toggle="side-right">
+                                <i class="fa fa-times text-sm"></i>
+                            </a>
+                        </div>
+                        <i class="fa fa-bars"></i> 归档
+                    </h3><!-- /contact-heading -->
+                     <div class="contact-body">
+                        <ul class="contacts-list">
+                    <php>
+                        	foreach($piges as $pige){
+                            echo '
+                            <li class="online">
+                            <a href="/hoo/item/admin/year/'.$pige['year'].'/month/'.$pige['month'].'" class="hoo-js-link">
+                            <i data-original-title="online" class="fa fa-circle-o" title="" rel="tooltip-bottom"></i>'
+                            .$pige['year'].'年'.$pige['month'].'月'
+                            .'</a></li>';
+                            }
+                            </php>
+                              </ul><!-- /contacts-list -->
+                    </div>
+                </div><!-- /chat-contact -->
+            </div><!-- /module -->
+        </aside><!--/side-right -->        	
+</block>
+
+
+<block name='hide-header-styles'>
+	
+</block>
+
+
+<block name="page-options">
+	<div class="col-md-12">显示选项</div>	
+                <php>
+                foreach ($table->thead as $item){
+                	if($item->name!='页面名称'){
+                	echo '<div class="col-md-2">	
+            			  <div class="nice-checkbox text-primary">
+                          <input type="checkbox" id="'.$item->class.'">
+                          <label for="'.$item->class.'"><span class="text-inverse">'.$item->name.'</span></label>
+                          </div>
+                          </div>';
+                         }
+                }
+                </php>
+            	<div class="col-md-12 hoo-margin-bottom">每页条目数</div>	
+            	<div class="col-md-1">	
+            	<form role="form" class="form">
+                <input  step="1" min="1" max="999"  name="amount_per_page" maxlength="3" value="20" type="number">	
+                <button class="btn btn-sm btn-primary" id="amount_per_page_apply" type="submit">应用</button> 
+                </form>
+                </div>
+</block>
+
+

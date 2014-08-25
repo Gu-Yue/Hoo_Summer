@@ -1,0 +1,45 @@
+<?php $content = json_decode($item['resource_content']);?>
+<div aria-hidden="true" style="display: none;" class="modal hide fade" id="modal-link" role="dialog" tabindex="-1">
+<div class="modal-header">
+	<button class="close source_cancel" tid="modal-link"  data-dismiss="modal" type="button">×</button>
+	<h3>{$dialogTitle}</h3>
+</div>
+<div class="modal-body">
+	<form class="form form-horizontal" id="source_form_link" style="margin-bottom: 0;">
+		<div class="control-group">
+			<label class="control-label">分组标题</label>
+			<div class="controls">
+				<input class="span12" id="source_link_cate" type="text" maxlength="10" placeholder="默认为:资源文件" value="{$item.resource_group}">
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label">链接标题</label>
+			<div class="controls">
+				<input class="span12" id="source_link_title" type="text" value="{$item.resource_title}">
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label">链接地址</label>
+			<div class="controls">
+				<input class="span12" id="source_link_link" type="text" value="{$content->link}">
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label">显示图片</label>
+			<div class="controls">
+				<input class="span12" id="source_link_image" type="file" title="添加本地图片" >
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label">链接图标</label>
+			<div class="controls">
+				<input class="span12" id="source_link_logo" type="file" title="LOGO">
+			</div>
+		</div>
+	</form>
+</div>
+<div class="modal-footer">
+	<button class="btn source_cancel" data-dismiss="modal" tid="modal-link" id="source_link_clear">取消</button>
+	<button class="btn btn-primary resources_submit"  itemID="{$itemID}" tid="modal-link" editype="Link">{$dialogSubmit}</button>
+</div>
+</div>

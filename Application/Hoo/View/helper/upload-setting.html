@@ -1,0 +1,72 @@
+<extend name="layout/template"/>
+<block name="title">新建页面</block>
+<block name="control">
+                    <!--breadcrumb-->
+                    <ul class="breadcrumb">
+                        <li><a href="/hoo"><i class="fa fa-sliders"></i> 设置</a></li>
+                        <li>上传设置</li>
+                    </ul>
+</block>
+<block name="content">
+<style>
+	.option-groups  .sortable-placeholder{
+		margin-bottom:6px !important;
+		margin-top:0px !important;
+	}
+	.option-resources .panel-heading{
+		margin-bottom: -1px;
+	}
+	.option-group{
+		margin-bottom:5px;
+		margin-top:0px;
+	}
+</style>
+<form role="form" class="form-horizontal form-bordered" method="post">	
+<div class="row col-md-12">
+<div id="panel-fileinput" class="panel panel-default sortable-widget-item">
+	<div class="panel-body">
+    
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label" >上传文件限制大小</label>
+                                    <div class="col-sm-5">
+                                            <div class="input-group">
+                                            <input class="form-control"  type="text" name="max_file_size" value="{$upload->max_file_size}" >
+                                            <span class="input-group-addon">KB</span>
+                                        </div>         
+                                    </div><!--/cols-->
+                                </div><!--/form-group-->
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label" >上传图片大小</label>
+                                    <div class="col-sm-5">
+                                           <div class="input-group">
+                                            <input class="form-control"  type="text" name="max_image_size" value="{$upload->max_image_size}" >
+                                            <span class="input-group-addon">KB</span>
+                                        </div>         
+                                    </div><!--/cols-->
+                                </div><!--/form-group-->
+                                <div class="form-group hoo-no-padding-botttom">
+                                    <label class="col-sm-3 control-label" >生成图片尺寸</label>
+                                    <div class="col-sm-5">
+								     <input type="text" id="tagsinput" data-input="tags" class="form-control" name="image_sizes" value="{$upload->image_sizes}" placeholder="形如100*100" />                                   
+                                     <p class="helper-block">
+                                     	<small>
+                                     	输入形如 100*100 形式,以回车结束，单位为px	
+                                        </small>
+                                     </p>
+                                    </div><!--/cols-->
+                                    
+                                </div><!--/form-group-->
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label" ></label>
+                                    <div class="col-sm-5">
+                                    <button type="submit" class="btn btn-primary form-control text-white">保存设置</button>														
+                                    </div><!--/cols-->
+                                </div><!--/form-group--> 
+                              
+                                                          
+   </div><!-- /panel-body -->
+   </div>
+</div>
+
+</form>
+</block>

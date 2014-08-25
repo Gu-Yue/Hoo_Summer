@@ -1,0 +1,312 @@
+<extend name="layout/template"/>
+<block name="title">新建页面</block>
+<block name="control">
+<!--control-nav-->
+                    <ul class="control-nav pull-right">
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/hoo/page/admin">
+                              所有页面
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/hoo/page/cate">
+      分类管理
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                显示选项  <i class="caret"></i>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                               帮助  <i class="caret"></i>
+                            </a>
+                        </li>
+                    </ul><!--/control-nav-->
+                    
+                    <!--breadcrumb-->
+                    <ul class="breadcrumb">
+                        <li><a href="/hoo"><i class="fa fa-home"></i> 仪盘表</a></li>
+                        <li><a href="/hoo/page/admin">页面</a></li>
+                        <li class="active"><php>echo isset($_GET['n'])?'编辑页面':'新建页面';</php></li>
+                    </ul>
+</block>
+<block name="content">
+<style>
+	.option-groups  .sortable-placeholder{
+		margin-bottom:6px !important;
+		margin-top:0px !important;
+	}
+	.option-resources .panel-heading{
+		margin-bottom: -1px;
+	}
+	.option-group{
+		margin-bottom:5px;
+		margin-top:0px;
+	}
+</style>
+<form role="form" class="form-horizontal form-bordered" method="post">	
+<div class="row col-md-9">
+<div id="panel-fileinput" class="panel panel-default sortable-widget-item">
+	<div class="panel-body">
+                                <input type="hidden" name="id" value="{$page.id}" />
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label" for="typeahead-local">页面名称</label>
+                                    <div class="col-sm-5">
+                                            <input name="post_title" class="form-control" type="text" required="" value="{$page.post_title}">          
+                                    </div><!--/cols-->
+                                </div><!--/form-group-->
+                                <!-- <div class="form-group">
+                                    <label class="col-sm-3 control-label" for="typeahead-local">页面标识符</label>
+                                    <div class="col-sm-5">
+                                            <input name="page_ident" class="form-control" type="text">          
+                                    </div> 
+                                </div>  -->
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label" for="typeahead-prefetches">所属分类</label>
+                                    <div class="col-sm-5">
+                                           <select data-input="select2" placeholder="选择分类" data-native="" name="post_terms">
+                                           <php>foreach($cates as $cate):</php>
+                                           <option value="{$cate.name}" <php>echo $page['post_terms']==$cate['name']?'selected="selected"':'';</php>>{$cate.name}</option>
+                                           <php>endforeach;</php> 
+                                           </select>
+                                    </div> 
+                                </div> 
+                                
+                                <div class="form-group option-groups">
+                                    <label class="col-sm-3 control-label" for="typeahead-prefetches">拥有分组</label>
+                                    <div class="col-sm-5">
+                                            <button type="button" class=" btn btn-primary" data-target="#create-new-group-modal" data-toggle="modal">
+                                            <i class="fa fa-plus"></i>
+                                            </button>
+                                    <div class="row hoo-no-margin hoo-no-height" id="groups-wrap" data-toggle="sortable-widget" style="padding-top: 3px;">
+                                    <php>foreach($groups as $group):</php>
+                                    <div class="panel hoo-bg-slight sortable-widget-item hoo-no-margin-lr option-group" id="panel-close">
+									<div class="panel-heading hoo-bg-slight">
+									<div class="panel-actions">
+									<button class="btn-panel group-close" type="button">
+					                <i class="fa fa-times"></i>
+					                </button>
+									</div>
+									<h5 class="panel-title">
+									<i class="fa fa-sort sortable-widget-handle"></i>
+									{$group}
+									</h5>
+									<input name="groups[]" value="{$group}" type="hidden" />
+									</div>	
+									</div>
+                                    <php>endforeach;</php>
+								     </div>
+                                    </div><!--/cols-->
+                                  
+                                </div><!--/form-group-->
+
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label" for="typeahead-customtemplate">文字栏标题</label>
+                                    <div class="col-sm-5">
+                                      
+                                     <input name="tip_title" class="form-control" placeholder="" type="text" value="{$content->tip_title}">
+                                       
+                                    </div><!--/cols-->
+                                </div><!--/form-group-->
+
+                                <div class="form-group hoo-no-padding-botttom">
+                                    <label class="col-sm-3 control-label" for="typeahead-2datasets">文字栏内容</label>
+                                    <div class="col-sm-5">
+                                        <textarea class="form-control" rows="10" name="tip_content"  placeholder="" style="margin-bottom:20px">{$content->tip_content}</textarea>
+                                    </div><!--/cols-->
+                                </div><!--/form-group-->
+   </div><!-- /panel-body -->
+   </div>
+</div>
+
+<div class="row col-md-3 margin-left" data-toggle="sortable-widget">
+
+<div id="" class="panel panel-default sortable-widget-item hoo-no-padding">
+                        <div class="panel-heading sortable-widget-handle bg-white">
+                            <h3 class="panel-title">发布</h3>
+                        </div><!-- /panel-heading -->
+
+                        <div class="panel-body hoo-no-padding-botttom">
+						
+                                <div class="form-group hoo-no-padding-botttom ">
+                                    <label class="col-sm-3 control-label hoo-text-left hoo-no-padding-lr" for="typeahead-local">发布状态</label>
+                                    <div class="col-sm-9 hoo-no-padding-lr">
+                                    <select data-input="selectboxit" placeholder="立即发布" data-native="" name="post_status" class="form-control">
+                                            <option value="public" <php>echo $page['post_status']=='public'?'selected="selected"':'';</php>>立即发布</option>
+                                            <option value="draft"  <php>echo $page['post_status']=='draft'?'selected="selected"':'';</php>>存为草稿</option>
+                                        </select>
+                                    </div><!--/cols-->
+                                </div><!--/form-group-->
+  
+                        </div><!-- /panel-body -->
+                        <div class="panel-footer bg-white border-cloud hoo-over-hidden hoo-no-padding-lr">
+                        <span class="pull-right">&nbsp;</span>
+                        <button type="submit" class="btn btn-inverse pull-right option-submit" href="#"></i><php>echo isset($_GET['n'])?'保存编辑':'新建页面';</php></button>
+                     
+                        </div>
+                    </div>	
+	
+	
+<div id="panel-fileinput" class="panel panel-default sortable-widget-item">
+                        <div class="panel-heading sortable-widget-handle bg-white">
+                            <div class="panel-actions">
+                                <button data-close="#panel-fileinput" title="close" class="btn-panel">
+                                    <i class="fa fa-times"></i>
+                                </button>
+                            </div><!-- /panel-actions -->
+                            <h3 class="panel-title">封面</h3>
+                        </div><!-- /panel-heading -->
+
+                        <div class="panel-body text-center">
+                                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                                            <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;">
+                                                <img src="<php>echo $content->cover!=''?$content->cover:'holder.js/100%x100%';</php>" alt="">
+                                            </div>
+                                            <div>
+                                                <span class="btn btn-sm btn-icon btn-inverse btn-file">
+                                                    <i class="fa fa-cloud-upload"></i>
+                                                    <span class="fileinput-new">添加封面</span>
+                                                    <span class="fileinput-exists">更换封面</span>
+                                                    <input  tid="cover"  class="hoo-single-image-upload" accept="image/*" type="file"  />
+                                                    <input name="cover" id="cover" value="{$content->cover}" type="hidden" />
+                                                </span>
+                                                <button class="btn btn-sm btn-icon btn-danger fileinput-exists" data-dismiss="fileinput">
+                                                    <i class="fa fa-times"></i>
+                                                    删除
+                                                </button>
+                                            </div>
+                                        </div><!-- /fileinput -->
+                        </div><!-- /panel-body -->
+                    </div>
+<!-- <div id="panel-fileinput" class="panel panel-primary sortable-widget-item bg-white option-resources">
+                        <div class="panel-heading sortable-widget-handle">
+                            <div class="panel-actions">
+                            	
+                                            <button rel="tooltip-bottom" title="文件" class="btn btn-inverse btn-panel"><i class="fa fa-file-o"></i></button>
+                                            <button rel="tooltip-bottom" title="图书" class="btn btn-inverse btn-panel"><i class="fa fa-book"></i></button>
+                                            <button rel="tooltip-bottom" title="链接" class="btn btn-inverse btn-panel"><i class="fa fa-link"></i></button>
+                                            <button rel="tooltip-bottom" title="广告" class="btn btn-inverse btn-panel"><i class="fa fa-jpy"></i></button>
+                                
+                                <button data-close="#panel-fileinput" title="close" class="btn-panel">
+                                    <i class="fa fa-times"></i>
+                                </button>
+                            </div> 
+                            <h3 class="panel-title">资源</h3>
+                        </div> 
+                    </div>  -->                  
+                    
+<div id="panel-fileinput" class="panel panel-default sortable-widget-item">
+                        <div class="panel-heading sortable-widget-handle bg-white">
+                            <div class="panel-actions">
+                                <button data-close="#panel-fileinput" title="close" class="btn-panel">
+                                    <i class="fa fa-times"></i>
+                                </button>
+                            </div><!-- /panel-actions -->
+                            <h3 class="panel-title">页面图标</h3>
+                        </div><!-- /panel-heading -->
+
+                        <div class="panel-body text-center">
+                                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                                            <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 120px; height: 120px;">
+                                                <img src="<php>echo $content->logo!=''?$content->logo:'holder.js/100%x100%';</php>" alt="">
+                                            </div>
+                                            <div>
+                                                <span class="btn btn-sm btn-icon btn-inverse btn-file">
+                                                    <i class="fa fa-cloud-upload"></i>
+                                                    <span class="fileinput-new">添加图标</span>
+                                                    <span class="fileinput-exists">更换封面</span>
+                                                    <input  tid="logo"  class="hoo-single-image-upload" accept="image/*" type="file"  />
+                                                    <input name="logo" id="logo" value="{$content->logo}" type="hidden" />
+                                                    </span>
+                                                <button class="btn btn-sm btn-icon btn-danger fileinput-exists" data-dismiss="fileinput">
+                                                    <i class="fa fa-times"></i>
+                                                    删除
+                                                </button>
+                                            </div>
+                                        </div><!-- /fileinput -->
+                        </div><!-- /panel-body -->
+                    </div>
+</div>
+</form>
+
+<!-- 新建分类Modal -->
+<div style="display: none;" class="modal fade" id="create-new-cate-modal" tabindex="-1" role="dialog" aria-labelledby="modalSmallLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-sm">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                            <h4 class="modal-title" id="modalSmallLabel">添加分类</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <input class="form-control" id="new-cate-name"  placeholder="输入分类名"/>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                            <button type="button" class="btn btn-primary" id="create-new-cate">添加分类</button>
+                                        </div>
+                                    </div><!-- /.modal-content -->
+                                </div><!-- /.modal-dialog -->
+</div> 
+<!-- 新建分组Modal -->
+<div style="display: none;" class="modal fade" id="create-new-group-modal" tabindex="-1" role="dialog" aria-labelledby="modalSmallLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-sm">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                            <h4 class="modal-title" id="modalSmallLabel">添加分组</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <input class="form-control" id="new-group-name"  placeholder="输入分类名"/>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                            <button type="button" class="btn btn-primary" id="create-new-group">添加分组</button>
+                                        </div>
+                                    </div><!-- /.modal-content -->
+                                </div><!-- /.modal-dialog -->
+</div> 
+</block>
+
+<block name="footer-load">
+<script>
+$(function(){
+	$('#create-new-group').click(function(){
+		var groupName = $('#new-group-name').val();
+		var html =   '<div class="panel hoo-bg-slight sortable-widget-item hoo-no-margin-lr option-group" id="panel-close">'
+					+'<div class="panel-heading hoo-bg-slight">'
+					+'<div class="panel-actions">'
+					+'<button class="btn-panel group-close" type="button">'
+	                +'<i class="fa fa-times"></i>'
+	                +'</button>'
+					+'</div>'
+					+'<h5 class="panel-title">'
+					+'<i class="fa fa-sort sortable-widget-handle"></i>'
+					+ groupName
+					+'</h5>'
+					+'<input name="groups[]" value="'+groupName+'" type="hidden" />'
+					+'</div>'	
+					+'</div>';
+		if($.trim(groupName)!=''){			
+		  	$('#groups-wrap').append(html);
+		    }
+		  	$('#create-new-group-modal').modal('hide');
+		  	$('#new-group-name').val('');
+	        //绑定删除事件
+		  	$('.group-close').unbind('click');
+		  	$('.group-close').click(function(){
+		  		$(this).parent().parent().parent().remove();
+			});
+		
+	});
+	$('.group-close').click(function(){
+	  		$(this).parent().parent().parent().remove();
+    });
+})	
+</script>	
+</block>

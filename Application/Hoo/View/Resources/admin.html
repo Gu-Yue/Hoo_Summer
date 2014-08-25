@@ -1,0 +1,247 @@
+<extend name="layout/template" />
+<block name="control">
+<!--control-nav-->
+                    <ul class="control-nav pull-right">
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#" id="hide_options_button">
+                            设置上传图片尺寸
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#" id="hide_options_button">
+                                显示选项  <i class="fa fa-caret-down"></i>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#" id="hide_help_button">
+                               帮助  <i class="fa fa-caret-down"></i>
+                            </a>
+                        </li>
+                    </ul><!--/control-nav-->
+                    
+                    <!--breadcrumb-->
+                    <ul class="breadcrumb">
+                        <li><a href="index.php"><i class="fa fa-folder-o"></i> 资源</a></li>
+                    </ul>
+</block>
+<block name="content">
+<style>
+/*所有的条目的容器*/
+.resources-wrap{
+  padding: 0px;
+  width:72.4%;
+}
+.resources-wrap .navbar-nav li a{
+  height: 30px;
+  margin: 0px 2px;
+  padding: 6px 10px;
+}
+.resources-wrap .navbar-nav li.active a{
+  background: #EEE;
+}
+.resources-wrap input{
+  margin: 1px;
+}
+.resources-wrap .pagination li a{
+  margin: 2px 0 0 0;
+}
+
+/*图片显示容器*/
+.resource-item{
+   margin: 10px;
+   width:auto;
+   border: 2px solid #FFFFFF;
+}
+.resource-item:hover{
+  cursor:pointer;
+  border: 2px solid #13A89E;
+}
+
+.resource-item .progress{
+  margin: 6px 0px 0px 0px;
+}
+.resource-item li{
+  padding: 0px;
+}
+
+/*编辑条目信息栏*/
+.resource-info{
+  padding: 0px;
+   width:240px;
+   margin-top: -1px;
+   display: none;
+}
+.resource-info .list-group-item{
+  padding: 5px 20px;
+  width: 110%;
+  border-radius: 0px !important;
+}
+.resources-manager{
+	min-width:960px;
+}
+.item-info{
+  width: 100px;
+  overflow:hidden;
+  font-size:12px;
+  position: relative;
+  bottom:0;
+  border: none;
+}
+.resource-file{
+  text-align: center;
+}
+.resource-file img{
+  width: 100px;
+  height: 100px;
+  margin: 0px auto !important;;
+}
+.resource-item{
+  height: 150px;
+  overflow: hidden;
+  vertical-align: center;
+  background: #FFF;
+}
+</style>	
+<div class="resources-manager">
+<ul class="col-md-2 nav nav-tabs nav-pills nav-stacked hoo-no-padding hoo-no-border" id="resources-left-nav">
+    
+    <li><button class="btn form-control btn-default" data-target="#create-new-folder-modal" data-toggle="modal">新建文件夹</button></li>
+    <li><hr></li>
+    <li class="active"><a href="#contabs1" data-toggle="tab">默认文件夹</a></li>
+   
+     
+
+</ul>
+<div class="tab-content">	
+<div class="col-md-9 tab-pane fade active in" id="contabs1">
+                            <php>
+                            $image_active = $_GET['type'] != 'file' ? 'active' : '';
+                            $file_active = $_GET['type'] == 'file' ? 'active' : '';
+                            $image_active2 = $_GET['type'] != 'file' ? 'active in' : '';
+                            $file_active2 = $_GET['type'] == 'file' ? 'active in' : '';
+                            </php>
+                            <ul class="nav nav-tabs">
+                                <li class="{$image_active}"><a href="/hoo/resources/admin/type/image" >图片库</a></li>
+							    <li class="{$file_active}"><a href="/hoo/resources/admin/type/file" >文件库</a></li>
+                                <li class=""><a href="#botabs1" data-toggle="tab">上传资源</a></li>
+                                <!-- <li><a href="#upload-by-url" data-toggle="tab">从URL添加</a></li>  -->
+                            </ul>
+                            <div class="tab-content hoo-no-padding" style="padding-top:15px;">
+                          
+                          
+                          
+                                <div class="tab-pane fade" id="botabs1">
+                                <form action="/hoo/resources/upload" data-input="dropzone" class="dropzone" enctype="multipart/form-data">
+		                            <div class="fallback">
+		                                <input name="mydropzone" type="file" multiple />
+		                            </div>
+		                        </form><!--/form-->	
+                                </div>
+                                
+                                <!-- 从URL上传文件 -->
+                                <div class="tab-pane fade" id="upload-by-url">
+                                <br><br><br>	
+								<div class="input-group">
+                                            <input class="form-control" id="upload-by-url-input" type="text" placeholder="输入URL...">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-primary" type="button">上传</button>
+                                            </span>
+                                        </div>
+                                </div>
+                                <!--/ 从URL上传文件 -->
+                                
+                                
+                                <div class="tab-pane fade {$image_active2}" id="botabs2">
+          
+           <div class="col-md-8 resources-wrap hoo-bg-slight">
+           <div class="collapse navbar-collapse hoo-no-padding hoo-no-margin hoo-bg-slight">
+                                    <!-- <ul class="nav navbar-nav hoo-no-padding hoo-no-margin">
+                                        <li class="active hoo-no-padding hoo-no-margin"><a href="#">所有图片</a></li>
+                                        <li class="hoo-no-padding hoo-no-margin"><a href="#">最近使用</a></li>
+                                        <li class="hoo-no-padding hoo-no-margin"><a href="#">常使用</a></li>
+                                    </ul>
+
+                                    <form class="navbar-form navbar-left hoo-no-padding hoo-no-margin" role="search">
+                                        <div class="form-group">
+                                            <input class="form-control input-sm" placeholder="Search" type="text">
+                                        </div>
+                                    </form>
+                                    
+                                    <ul class="navbar-left pagination pagination-sm  pull-right hoo-no-padding hoo-no-margin">
+                                        <li class="disabled"><a href="#">«</a></li>
+                                        <li class="active"><a href="#">1</a></li>
+                                        <li><a href="#">2</a></li>
+                                        <li><a href="#">3</a></li>
+                                        <li><a href="#">4</a></li>
+                                        <li><a href="#">5</a></li>
+                                        <li><a href="#">»</a></li>
+                                    </ul> -->
+                                </div>     	
+
+                	
+						<php>foreach($images as $image):</php>
+                        <ul class="list-group col-md-3 hoo-no-padding resource-item">
+    					<li class="list-group-item resource-file" id="{$image.name}">
+                        <img alt="100*100" src="<php>echo substr($image['path'],1);</php>" style=""> 
+    					</li>
+    					<li class="list-group-item text-blue item-info" title="{$image.alias}">
+                        {$image.alias} 
+    					</li>
+						</ul> 
+                        <php>endforeach;</php>
+                               		
+          
+ 						</div>
+                        <div class="col-md-4  resource-info">
+                        <!-- 图片信息 -->
+ 					    </div>
+ 					    
+                                </div>
+                                <div class="tab-pane fade {$file_active2}" id="botabs3">
+
+                	
+						<php>foreach($files as $file):</php>
+                        <ul class="list-group col-md-3 hoo-no-padding resource-item resource-item-file">
+    					<br/>
+    					<li class="list-group-item resource-file" style="border: none;">
+                        <img alt="100*100" src="/images/file.png" style=""> 
+    					</li>
+    					<li class="list-group-item text-blue item-info" title="{$file.alias}">
+                        {$file.alias} 
+    					</li>
+						</ul> 
+                        <php>endforeach;</php>
+                               		
+          
+ 									</div>
+                            </div><!-- /tab-content -->
+                        
+ </div>	
+ </div>
+</div> 
+
+<!-- 新建文件夹Modal -->
+<div style="display: none;" class="modal fade" id="create-new-folder-modal" tabindex="-1" role="dialog" aria-labelledby="modalSmallLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-sm">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                            <h4 class="modal-title" id="modalSmallLabel">新建文件夹</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <input class="form-control" id="new-folder-name"  placeholder="输入文件夹名称.."/>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                            <button type="button" class="btn btn-primary" id="create-new-folder">新建文件夹</button>
+                                        </div>
+                                    </div><!-- /.modal-content -->
+                                </div><!-- /.modal-dialog -->
+</div>                  
+</block>
+<block name="footer-load">
+<script src="/scripts/functions/resources/resources-admin.js"></script> 	
+</block>

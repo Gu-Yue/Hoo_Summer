@@ -1,0 +1,33 @@
+<script>
+	 function getCookie(name)
+		{
+		    var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+		    if(arr=document.cookie.match(reg))
+		        return (arr[2]);
+		    else
+		        return null;
+		}
+		$("#set_{$selectType}_show_order").find("a").click(function(){
+		  var val = $(this).attr("val");
+		  document.cookie="{$selectType}ShowOrder="+val;
+		  var url = window.location.href;
+		  if(url.indexOf("#")==url.length-1){
+		  	 url = url.substr(0,url.length-1);
+		  } 
+		  window.location.href = url; 	
+		  return false;
+		});
+//自动判断cookie配置显示
+	var pages_show_order = getCookie("{$selectType}ShowOrder")?getCookie("{$selectType}ShowOrder"):"post_date desc";
+	if(pages_show_order){	   
+	   var as = $("#set_{$selectType}_show_order").find("a");
+	   for(var i=0;i<as.length;i++){
+	   	   if($(as[i]).attr("val")==pages_show_order){
+	   	   	  $("#set_{$selectType}_show_order").parent().find("button:first").html($(as[i]).text());
+	   	   	  $("#set_{$selectType}_show_order").parent().find("button:first").append($(as[i]).children().clone());
+	   	      break;
+	   	   }
+	   }
+	}
+	
+</script>           

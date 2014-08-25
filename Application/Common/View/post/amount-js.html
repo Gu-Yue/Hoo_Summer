@@ -1,0 +1,32 @@
+ <script>
+	 function getCookie(name)
+		{
+		    var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+		    if(arr=document.cookie.match(reg))
+		        return (arr[2]);
+		    else
+		        return null;
+		}
+		$("#set_{$selectType}_show_count").change(function(){
+		  var val = $(this).val();
+		  document.cookie="{$selectType}ShowCount="+val; 
+		  var url = window.location.href;
+		  if(url.indexOf("#")==url.length-1){
+		  	 url = url.substr(0,url.length-1);
+		  } 
+		  window.location.href = url; 	
+		  return false;
+		});
+		
+//自动判断cookie配置显示
+	var pages_show_count = getCookie("{$selectType}ShowCount")?getCookie("{$selectType}ShowCount"):5;
+	if(pages_show_count){
+	   var ops = $("#set_{$selectType}_show_count").find("option");
+	   for(var i=0;i<ops.length;i++){
+	   	   //alert($(ops[i]).val());
+	   	   if($(ops[i]).val()==pages_show_count){
+	   	      $(ops[i]).attr("selected","selected");
+	   	   }
+	   }
+	}	
+</script>

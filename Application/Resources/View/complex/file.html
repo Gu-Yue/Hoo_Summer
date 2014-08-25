@@ -1,0 +1,44 @@
+<?php $content = json_decode($item['resource_content']);?>
+<div aria-hidden="true" style="display: none;" class="modal hide fade" id="modal-file" role="dialog" tabindex="-1">
+<div class="modal-header">
+	<button class="close source_cancel" tid="modal-file" data-dismiss="modal" type="button">×</button>
+	<h3>{$dialogTitle}</h3>
+</div>
+<div class="modal-body">
+	<form class="form form-horizontal" style="margin-bottom: 0;" id="source_form_file">
+		<div class="control-group">
+			<label class="control-label">分组标题</label>
+			<div class="controls">
+				<input class="span12" id="source_file_cate" type="text" maxlength="10" placeholder="默认为:资源文件" value="{$item.resource_group}">
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label">上传文件</label>
+			<div class="controls">
+				<input id="source_file_upload" class="find_resources_upload" style="left: -45px; top: 2px;" title="添加本地文件" type="file">
+				<!--
+                         	<span class="file-input-name">CUDA实训.png</span>
+                         -->
+                {$content->filepath}         
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label">文件名</label>
+			<div class="controls">
+				<input id="source_file_name" class="span12" id="full-name" type="text" maxlength="10" value="{$item.resource_title}" nullmsg="文件名不能为空!" datatype="s,s1-255">
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label">描述</label>
+			<div class="controls">
+				<textarea id="source_file_describe" class="span12" size="100">{$content->describe}</textarea>
+			</div>
+		</div>
+	</form>
+</div>
+<div class="modal-footer">
+	<button class="btn source_cancel" tid="modal-file"  data-dismiss="modal" id="source_file_clear">取消</button>
+	<button class="btn btn-primary resources_submit" tid="modal-file"  itemID="{$itemID}" editype="File">{$dialogSubmit}</button>
+</div>
+</div>
+<script src="/front/lib/fileUpload/fileUpload.jquery.js"></script>

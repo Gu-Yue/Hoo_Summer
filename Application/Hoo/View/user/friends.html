@@ -1,0 +1,282 @@
+<extend name="layout/template"/>
+<block name="title">添加用户</block>
+<block name="headcss">
+<style>
+.form-horizontal .controls {
+    margin-left: 80px;
+}	
+.form-horizontal .control-label {
+    float: left;
+    width: 58px;
+    padding-top: 5px;
+    text-align: right;
+}
+.box-quick-link a .header {
+    height: 38px;
+    line-height: 38px;
+    padding-bottom: 2px;
+}
+.box-quick-link a .content {
+    padding: 1px;
+}
+</style>
+</block>
+<block name="headjs"></block>
+<block name="footjs"></block>
+<block name="content">
+<br>
+<br>
+<div class="row">
+		<div class="span9 box">
+			<div class="box-header box-header-small hoo-box-header">
+				<div class="title">
+                       添加一个好友录
+				</div>
+			</div>
+			<div class="box-content box-double-padding">
+				<form class="form form-horizontal">
+					<div class="control-group">
+						<label class="control-label">分组</label>
+						<div class="controls">
+							<input class="span12" id="username" placeholder="" type="text">
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label">姓名</label>
+						<div class="controls">
+							<input class="span12" id="username" placeholder="" type="text">
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label">性别</label>
+						<div class="controls">
+							<div class='input-prepend input-append'>
+								<div class='btn-group'>
+									<button class='btn dropdown-toggle' data-toggle='dropdown'>
+                                                                                                  男
+									<span class='caret'></span>
+									</button>
+									<ul class='dropdown-menu'>
+										<li>
+										<a href='#'>男</a>
+										</li>
+										<li>
+										<a href='#'>女</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="appendedInputButtons">地方</label>
+						<div class="controls">
+							<div class="input-append">
+								<div class='btn-group'>
+									<button class='btn dropdown-toggle' data-toggle='dropdown'>
+                                                                                              故乡
+									<span class='caret'></span>
+									</button>
+									<ul class='dropdown-menu'>
+										<li>
+										<a href='#'>待过</a>
+										</li>
+										<li>
+										<a href='#'>现居</a>
+										</li>
+									</ul>
+								</div>
+								<input id="appendedInputButtons" type="text">
+								<button class="btn" type="button"><i class="icon-plus"></i></button>
+							</div>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label">出生年</label>
+						<div class="controls">
+							<select class='select2 input-block-level span7'>
+								<option value='AK'/>网络编程
+								<option value='HI'/>太美丽
+								<option value='CA'/>California
+								<option value='NV'/>Nevada
+								<option value='OR'/>Oregon
+								<option value='WA'/>中国
+							</select>
+						</div>
+					</div>
+					<div class='control-group'>
+						<label class='control-label' for='appendedPrependedDropdownButton'>生日</label>
+						<div class='controls'>
+							<div class='input-prepend input-append'>
+								<div class='btn-group'>
+									<button class='btn dropdown-toggle' data-toggle='dropdown'>
+                                                                                                  阳历
+									<span class='caret'></span>
+									</button>
+									<ul class='dropdown-menu'>
+										<li>
+										<a href='#'>阳历</a>
+										</li>
+										<li>
+										<a href='#'>农历</a>
+										</li>
+									</ul>
+								</div>
+								<input id='appendedPrependedDropdownButton' type='text'/>
+							</div>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label">星座</label>
+						<div class="controls">
+							<select class='select2 input-block-level span7'>
+								<option value='AK'/>网络编程
+								<option value='HI'/>太美丽
+								<option value='CA'/>California
+								<option value='NV'/>Nevada
+								<option value='OR'/>Oregon
+								<option value='WA'/>中国
+							</select>
+						</div>
+					</div>
+					<div class='control-group'>
+						<label class='control-label' for='appendedPrependedDropdownButton'>学校</label>
+						<div class='controls'>
+							<div class='input-prepend input-append'>
+								<div class='btn-group'>
+									<button class='btn dropdown-toggle' data-toggle='dropdown'>
+                                                                                                  大学
+									<span class='caret'></span>
+									</button>
+									<ul class='dropdown-menu'>
+										<li>
+										<a href='#'>高等院校</a>
+										</li>
+										<li>
+										<a href='#'>高中</a>
+										</li>
+										<li>
+										<a href='#'>高中</a>
+										</li>
+										<li>
+										<a href='#'>小学</a>
+										</li>
+									</ul>
+								</div>
+								<input id='appendedPrependedDropdownButton' type='text'/>
+								<div class='btn-group'>
+									<button class='btn dropdown-toggle' data-toggle='dropdown'>
+                                    入学时间
+									<span class='caret'></span>
+									</button>
+									<ul class='dropdown-menu'>
+										<li>
+										<a href='#'>Action</a>
+										</li>
+										<li>
+										<a href='#'>Another action</a>
+										</li>
+										<li>
+										<a href='#'>Something else here</a>
+										</li>
+										<li class='divider'></li>
+										<li>
+										<a href='#'>Separated link</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label">专业技能</label>
+						<div class="controls">
+							<select class='select2 input-block-level span7'>
+								<option value='AK'/>网络编程
+								<option value='HI'/>太美丽
+								<option value='CA'/>California
+								<option value='NV'/>Nevada
+								<option value='OR'/>Oregon
+								<option value='WA'/>中国
+							</select>
+							<button class="btn" type="button"><i class="icon-plus"></i></button>
+						</div>
+					</div>
+					<div class='control-group'>
+						<label class='control-label' for='appendedPrependedDropdownButton'>联系方式</label>
+						<div class='controls'>
+							<div class='input-prepend input-append'>
+								<div class='btn-group'>
+									<button class='btn dropdown-toggle' data-toggle='dropdown'>
+                                                                                                  手机
+									<span class='caret'></span>
+									</button>
+									<ul class='dropdown-menu'>
+										<li>
+										<a href='#'>手机</a>
+										</li>
+										<li>
+										<a href='#'>邮箱</a>
+										</li>
+										<li>
+										<a href='#'>QQ</a>
+										</li>
+										<li>
+										<a href='#'>座机</a>
+										</li>
+									</ul>
+								</div>
+								<input id='appendedPrependedDropdownButton' type='text'/>
+							</div>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label">工作</label>
+						<div class="controls">
+							<div class='input-prepend input-append'>
+								<div class='btn-group'>
+									<button class='btn dropdown-toggle' data-toggle='dropdown'>
+                                    公司
+									<span class='caret'></span>
+									</button>
+									<ul class='dropdown-menu'>
+										<li>
+										<a href='#'>政府</a>
+										</li>
+										<li>
+										<a href='#'>学校</a>
+										</li>
+										<li>
+										<a href='#'>自由职业</a>
+										</li>
+									</ul>
+								</div>
+								<input id='appendedPrependedDropdownButton' type='text'/>
+								<button class="btn" type="button"><i class="icon-plus"></i></button>
+							</div>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label">备注</label>
+						<div class="controls">
+							<textarea class="span8" rows="4"></textarea>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="span3 box">
+			<div class="box-content">
+				<img class="" alt="250x150" src="http://placehold.it/36x36" style="">
+			</div>
+			<span class="btn btn-small fileinput-button">
+			<span>更换头像</span>
+			<input data-bfi-disabled="" multiple="" name="files[]" type="file">
+			</span>
+		</div>
+		<div class="span3 box">
+			<input class="span12 btn btn-large btn-primary" type="submit" value="添加好友录"/>
+		</div>
+</div>
+	<br/><br/><br/>
+	</block>

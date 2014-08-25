@@ -1,0 +1,109 @@
+<extend name="layout/template" />
+<block name="title">页面开发文档</block>
+<block name="headcss">
+<style>
+.note-content {
+    margin-bottom: 20px;
+}
+</style>
+</block>
+<block name="headjs"></block>
+<block name="footjs">
+<script>	
+$(function(){
+	$(".delete_note_link").live("click",function(){
+		$this = $(this);
+		var r=confirm("确认删除该笔记?");
+        if (r==true){
+          var id = $this.attr("sid");
+		  $.get("/note/delete","id="+id,function(d,s) {
+		  d = JSON.parse(d);
+		  if(d.status=="success"){
+		  	 $this.parent().parent().parent().fadeOut(200,function(){
+		  	 	$(this).remove();
+		  	 });
+		  }else{
+		  	alert(d);
+		  }
+		});
+        }else{
+  
+        }
+		return false;
+	});
+});
+</script>	
+</block>
+<block name="content">
+<br>	
+<br>
+                <div class="row">
+                    <div class="span9 box row-fluid">
+				    <div class="box-header box-header-small hoo-box-header">
+				     <i class="icon-edit"></i>
+                        <span>随笔记</span>
+				    </div>
+				    <div class="box-content timeline">
+                        <ol class="unstyled">
+                        	<?php
+                    	    foreach($notes as $note):
+                    	    ?>
+                            <li>
+                                <div class="icon purple-background">
+                                    <i class="icon-star"></i>
+                                </div>
+                                <div class="title">
+                                    <?php echo $note['title'] ?>
+                                    <small class="muted"><?php echo date('Y-m-d H:i:s',$note['time']).'&nbsp;&nbsp;&nbsp;<a href="#" class="delete_note_link" sid="'.$note['id'].'"><i class="icon-trash"></i></a></small>';; ?></small>
+                                </div>
+                                <div class="content">
+                                <?php echo  html_entity_decode($note['post']); ?>
+                                </div>
+                            </li>
+                         <?php endforeach; ?>
+                        </ol>
+                   
+                </div>
+                        <div class="pagination pagination-centered">
+                        {$page}
+                       </div>
+                       
+                    
+                    </div>
+                    
+                    
+                     <div class="span3">
+                     	<div class="box">
+                     	<div class="box-content">
+                         <div class="row-fluid">
+                            <input class="span12" id="appendedInputButtons" type="text" placeholder="输入关键字...">
+                            <button class="btn btn-primary" type="button">搜索</button>
+                        </div>   
+                        </div>
+                        </div>
+                     	<br />
+                     	<div class="box">
+                     	<div class="box-header box-header-small hoo-box-header"><a href="#" class="text-contrast">归档</a></div>
+                     	<div class="box-content box-padding">
+                            <p>
+                            1月
+                            </p>
+                                      <p>
+                            2月
+                            </p>
+                        </div>
+                        </div>
+                        <br />
+                        <div class="box">
+                        <div class="box-header box-header-small hoo-box-header"><a href="#" class="text-contrast">每页显示条目</a></div>	
+                     	<div class="box-content box-padding">
+                            <select>
+                            <option>10</option>	
+                            <option>15</option>
+                            <option>所有</option>		
+                            </select>
+                        </div>
+                        </div>
+                       </div> 
+ </div>
+</block>

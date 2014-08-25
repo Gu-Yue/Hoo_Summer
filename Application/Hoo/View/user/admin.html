@@ -1,0 +1,103 @@
+<extend name="layout/template" />
+<block name="title">文章管理</block>
+
+
+
+<block name="control">
+<!--control-nav-->
+                    <ul class="control-nav pull-right">
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/hoo/user/create">
+                            添加用户
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#" id="hide_options_button">
+                                显示选项  <i class="fa fa-caret-down"></i>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#" id="hide_help_button">
+                               帮助  <i class="fa fa-caret-down"></i>
+                            </a>
+                        </li>
+                    </ul><!--/control-nav-->
+                    
+                    <!--breadcrumb-->
+                    <ul class="breadcrumb">
+                        <li class=""><i class="fa fa-user"></i> 用户</li>
+                        <li class="">所有用户</li>
+                    </ul>
+</block>
+<block name="content">	
+{$tableDisplay}
+</block>
+
+<block name="side-right">
+<!-- side-right -->
+        <aside class="side-right" id="re-side">
+            <div class="module" data-toggle="niceScroll">
+                <div class="chat-contact">
+                    <h3 class="contact-heading">
+                        <div class="btn-group pull-right">
+                            <a href="#" data-toggle="side-right">
+                                <i class="fa fa-times text-sm"></i>
+                            </a>
+                        </div>
+                        <i class="fa fa-user"></i> 角色
+                    </h3><!-- /contact-heading -->
+                     <div class="contact-body">
+                        <ul class="contacts-list">
+                    <php>
+                        	foreach($reposts as $re){
+                            echo '
+                            <li class="online">
+                            <a href="/hoo/item/view/n/'.$re['id'].'" class="hoo-js-link" title="'.$re['update_date'].'" target="_blank">
+                            <i data-original-title="online" class="fa fa-circle-o" title="" rel="tooltip-bottom"></i>'
+                            .$re['post_title']
+                            .'</a></li>';
+                            }
+                            </php>
+                              </ul><!-- /contacts-list -->
+                    </div>
+                </div><!-- /chat-contact -->
+
+
+            </div><!-- /module -->
+        </aside><!--/side-right -->                    	
+</block>
+
+
+<block name='hide-header-styles'>
+	
+</block>
+
+
+<block name="page-options">
+	<div class="col-md-12">显示选项</div>	
+                <php>
+                foreach ($table->thead as $item){
+                	if($item->name!='页面名称'){
+                	echo '<div class="col-md-2">	
+            			  <div class="nice-checkbox text-primary">
+                          <input type="checkbox" id="'.$item->class.'">
+                          <label for="'.$item->class.'"><span class="text-inverse">'.$item->name.'</span></label>
+                          </div>
+                          </div>';
+                         }
+                }
+                </php>
+            	<div class="col-md-12 hoo-margin-bottom">每页条目数</div>	
+            	<div class="col-md-1">	
+            	<form role="form" class="form">
+                <input  step="1" min="1" max="999"  name="amount_per_page" maxlength="3" value="20" type="number">	
+                <button class="btn btn-sm btn-primary" id="amount_per_page_apply" type="submit">应用</button> 
+                </form>
+                </div>
+</block>
+
+

@@ -1,0 +1,72 @@
+<extend name="layout/template" />
+<block name="title">系统日志</block>
+<block name="control">
+<!--control-nav-->
+                    <ul class="control-nav pull-right">
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/hoo/page/admin">
+               访问统计
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/hoo/page/cate">
+     操作统计
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                            用户统计
+                            </a>
+                        </li>
+                    </ul><!--/control-nav-->
+                    
+                    <!--breadcrumb-->
+                    <ul class="breadcrumb">
+                        <li><i class="fa fa-bar-chart-o"></i> 数据统计</li>
+                        <li class="active">系统日志</li>
+                    </ul>
+</block>
+<block name="content">
+ 
+                    	<div class="col-md-9">
+                    		<div class="panel panel-default">
+                    			<div class="panel-heading bg-white">
+                    				<div class="panel-actions">
+                                        <button id="calendar-viewtoday" class="btn-panel">今天</button>
+                                        <button id="calendar-viewmonth" class="btn-panel active">昨天</button>
+                                        <button id="calendar-viewweek" class="btn-panel">前天</button>
+                                    </div><!--panel-actions-->
+                    				<h4 class="panel-title">日志名</h4>
+                    			</div><!--panel-heading-->
+
+								 
+
+                    			<div class="panel-body">
+                    				 
+                    			</div><!--panel-body-->
+                    		</div><!--panel-->
+                    	</div><!--cols-->
+
+                    	<div class="col-md-3">
+                    		<div id="external-events" class="panel panel-default">
+                    			<div class="panel-heading bg-white"> 
+                    				<h4 class="panel-title">历史日志</h4>
+                    			</div><!--panel-heading-->
+
+                    			<div class="list-group">
+                    				<div class='list-group-item '><a href="#">Atque</a></div>
+									<div class='list-group-item '>Atque, illum, harum, delectus</div>
+									<div class='list-group-item '>Repudiandae quibusdam</div>
+									<div class='list-group-item '>Animi esse ratione quam</div>
+									<div class='list-group-item '>Quaerat suscipit itaque</div>
+									<div class='list-group-item '>Ut ipsa pariatur similique</div>
+                    			</div><!--list-group-->
+
+                    		</div><!--panel-->
+                    	</div><!--cols-->
+ 
+
+</block>

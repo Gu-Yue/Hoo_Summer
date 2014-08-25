@@ -1,0 +1,75 @@
+<extend name="layout/template"/>
+<block name="title">分类管理</block>
+<block name="control">
+		   <ul class="control-nav pull-right">
+		                        <li class="divider"></li>
+		                        <li>
+		                            <a href="/hoo/page/create/n/{$page.id}">
+		                              分组
+		                            </a>
+		                        </li>
+		                        <li class="divider"></li>
+		                        <li class="bg-primary">
+		                            <a href="/hoo/page/create/n/{$page.id}" class="text-white">
+		                              编辑页面
+		                            </a>
+		                        </li>
+		                        <li class="divider"></li>
+		                        <li>
+		                            <a href="/hoo/page/create">
+		                              新建页面
+		                            </a>
+		                        </li>
+		                        <li class="divider"></li>
+		                        <li>
+		                            <a href="/hoo/page/admin">
+		                              所有页面
+		                            </a>
+		                        </li>
+		                        <li class="divider"></li>
+		                    </ul><!--/control-nav-->
+                    
+                    <!--breadcrumb-->
+                    <ul class="breadcrumb">
+                        <li><i class="fa fa-files-o"></i> <a href="/hoo/page/admin" class="text-primary">页面</a></li>
+                        <li class="active">{$page.post_title}</li>
+                    </ul>
+</block>
+<block name="content">
+                    	<div class="col-md-10 col-md-offset-1">
+                    		<div class="panel panel-default">
+                    			<div class="panel-heading bg-primary">
+                    			<h2 class="panel-title" style="font-size: 20px !important;"><strong>{$page.post_title}</strong></h2>
+                    			</div><!--panel-heading-->
+                    			<div class="panel-body list-group hoo-no-border hoo-no-padding">
+                    				<php>foreach($items as $item):</php>
+									<div class='list-group-item user-list'>
+									<a class="hoo-no-padding-lr list-title" href="/hoo/item/view/n/{$item.id}">{$item.post_title}</a>
+									<div class="hoo-no-padding-lr list-foot">
+									<small>	
+									    <i class="fa fa-clock-o"></i>  
+										{$item.post_date}&nbsp;&nbsp;&nbsp;
+										
+										<php>
+										$tags = explode(',',$item['post_terms']);
+										foreach($tags as $tag):
+										</php>
+										<php>if($tag!=""):</php>
+										<i class="fa fa-tag"></i>  
+										{$tag}
+										<php>endif;</php>
+										<php>endforeach;</php>
+										
+									</small>
+									</div>
+									</div>
+									<php>endforeach;</php>
+									
+									
+									
+                                {$pagination}
+                    			</div><!--panel-body-->
+                    		</div><!--panel-->
+                    	</div><!--cols-->
+
+</block>

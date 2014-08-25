@@ -1,0 +1,54 @@
+<extend name="layout/template" />
+<block name="title">访问统计</block>
+<block name="control">
+<!--control-nav-->
+                    <ul class="control-nav pull-right">
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/hoo/page/admin">
+               用户统计
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/hoo/page/cate">
+     操作统计
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                            系统日志
+                            </a>
+                        </li>
+                    </ul><!--/control-nav-->
+                    
+                    <!--breadcrumb-->
+                    <ul class="breadcrumb">
+                        <li><i class="fa fa-bar-chart-o"></i> 数据统计</li>
+                        <li class="active">访问统计</li>
+                    </ul>
+</block>
+<block name="content">
+ 
+                    	<div class="col-md-12">
+                    		<div class="panel panel-default">
+                    			<div class="panel-heading bg-white">
+                    				<div class="panel-actions">
+                    					<button id="calendar-viewweek" class="btn-panel">页面分析</button>
+                    					<button id="calendar-viewweek" class="btn-panel">链接分析</button>
+                    					<button id="calendar-viewweek" class="btn-panel">地域分布</button>
+                                        <button id="calendar-viewtoday" class="btn-panel">月访问量</button>
+                                        <button id="calendar-viewmonth" class="btn-panel active">季度访问量</button>
+                                        <button id="calendar-viewweek" class="btn-panel">年访问量</button>
+                                    </div><!--panel-actions-->
+                    				<h4 class="panel-title">日访问量</h4>
+                    			</div><!--panel-heading-->
+                    			<div class="panel-body">
+                    			<div id="flot-combine" class="graph"></div> 
+                    			</div><!--panel-body-->
+                    		</div><!--panel-->
+                    	</div><!--cols-->
+ 
+
+</block>

@@ -1,0 +1,269 @@
+<extend name="layout/template" />
+<block name="title">新建文章</block>
+<block name="control">
+<!--control-nav-->
+                    <ul class="control-nav pull-right">
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/hoo/item/admin">
+                              所有文章
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                显示选项  <i class="caret"></i>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                               帮助  <i class="caret"></i>
+                            </a>
+                        </li>
+                    </ul><!--/control-nav-->
+                    
+                    <!--breadcrumb-->
+                    <ul class="breadcrumb">
+                        <li><a href="/hoo"><i class="fa fa-home"></i> 仪盘表</a></li>
+                        <li><a href="/hoo/page/admin">文章</a></li>
+                        <li class="active"><php>echo isset($_GET['n'])?'编辑文章':'新建文章';</php></li>
+                    </ul>
+</block>	
+<block name="content">
+<style>
+    /*
+     * 发布文章控制栏
+     */
+	.option-resources .panel-heading{
+		margin-bottom: -1px;
+	}
+	.option-submit{
+		margin-right:15px;
+	}
+  .itme-post-control  .panel-body  .form-group{
+	  padding-bottom: 5px !important;
+		margin-bottom: 5px !important;
+	}
+  .itme-post-control  .panel-body{
+	 padding-top:5px !important;
+	}
+  .itme-post-control  .panel-footer{
+		padding-top: 7px !important;
+	  padding-bottom: 5px !important;
+	}
+
+</style>
+<script src="/scripts/ueditor/ueditor.config.js"></script>
+<script src="/scripts/ueditor/ueditor.all.min.js"></script>
+<form role="form" class="form-horizontal form-bordered" method="post">	
+<input type="hidden" name="id" value="{$item.id}" />	
+<div class="row col-md-9">
+	<input type="text" id="title" name="title" required="" placeholder="文章标题" class="form-control" value="{$item.post_title}" style="text-align: center;font-weight: bold;" />	
+   <textarea name="post" id="editor" rows="15">{$item.post_content}</textarea>
+   <script>
+	//UE.getEditor('editor');
+	var editor = UE.getEditor('editor');
+	editor.ready(function(editor) {
+	//UE.getEditor('editor').execCommand('insertHtml', "<div id='blogtitle'>标题</div>");
+	//UE.getEditor('editor').setContent('初始化完毕');
+	//UE.getEditor('editor').execCommand('anchor', 'anchor1');
+	//UE.getEditor('editor').addListener('selectionchange',function(){
+	//alert( UE.getEditor('editor').selection.getNative());
+	//})
+	$("#title").insertAfter($("#edui1_toolbarbox"));
+	});
+	</script>
+   
+<div id="" class="panel panel-default margin-top hoo-no-padding">
+                        <div class="panel-heading sortable-widget-handle bg-white">
+                            <div class="panel-actions">
+                                <button data-close="#" title="close" class="btn-panel">
+                                    <i class="fa fa-times"></i>
+                                </button>
+                            </div><!-- /panel-actions -->
+                            <h3 class="panel-title">摘要</h3>
+                        </div><!-- /panel-heading -->
+
+                        <div class="panel-body">          
+						 <textarea class="form-control" name="digest">{$meta->digest}</textarea>
+                    </div>
+</div>
+<!-- <div id="" class="panel panel-default margin-top hoo-no-padding">
+                        <div class="panel-heading sortable-widget-handle bg-white">
+                            <div class="panel-actions">
+                                <button data-close="#" title="close" class="btn-panel">
+                                    <i class="fa fa-times"></i>
+                                </button>
+                            </div>
+                            <h3 class="panel-title">历史版本</h3>
+                        </div>
+
+                        <div class="panel-body">          
+						 <textarea class="form-control"></textarea>
+                    </div>
+</div> -->
+</div>
+<div class="itme-post-control row col-md-3 margin-left" data-toggle="sortable-widget">
+<div id="" class="panel panel-default sortable-widget-item hoo-no-padding">
+                        <div class="panel-heading sortable-widget-handle bg-white">
+                            <h3 class="panel-title">发布</h3>
+                        </div><!-- /panel-heading -->
+
+                        <div class="panel-body hoo-no-padding-botttom">
+						
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label hoo-text-left hoo-no-padding-lr" for="typeahead-local">标签</label>
+                                    <div class="col-sm-9 hoo-no-padding-lr">
+                                    <input name="tags" type="text" data-input="tags" id="tagsinput"  class="form-control" value="{$item.post_terms}" placeholder="以回车隔开..."  />
+                                    </div><!--/cols-->
+                                </div><!--/form-group-->
+                                
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label hoo-text-left hoo-no-padding-lr" for="typeahead-local">可见度</label>
+                                    <div class="col-sm-9 hoo-no-padding-lr">
+                                    <select name="view" data-input="selectboxit" placeholder="公开" data-native="" class="form-control">
+                                            <option value="yes" <php>echo $item['post_view']=='yes'?'selected="selected"':'';</php>>公开</option>
+                                            <option value="self" <php>echo $item['post_view']=='self'?'selected="selected"':'';</php>>仅自己可见</option>
+                                        </select>
+                                    </div><!--/cols-->
+                                </div><!--/form-group-->
+                                
+                                <div class="form-group hoo-no-padding-botttom ">
+                                    <label class="col-sm-3 control-label hoo-text-left hoo-no-padding-lr" for="typeahead-local">发布状态</label>
+                                    <div class="col-sm-9 hoo-no-padding-lr">
+                                    <select name="status" data-input="selectboxit" placeholder="立即发布" data-native="" class="form-control">
+                                            <option value="public" <php>echo $item['post_status']=='public'?'selected="selected"':'';</php>>立即发布</option>
+                                            <option value="draft" <php>echo $item['post_status']=='draft'?'selected="selected"':'';</php>>存为草稿</option>
+                                        </select>
+                                    </div><!--/cols-->
+                                </div><!--/form-group-->
+  
+                        </div><!-- /panel-body -->
+                        <div class="panel-footer bg-white border-cloud hoo-over-hidden hoo-no-padding-lr">
+                        <span class="pull-right">&nbsp;</span> 	
+                        <button type="submit" class="btn btn-inverse pull-right option-submit" href="#">
+                        <php>echo isset($_GET['n'])?'保存':'新建';</php>	
+                        </button>
+                        
+                        </div>
+                    </div>
+                   <!-- <div id="" class="panel panel-primary sortable-widget-item bg-white option-resources">
+                        <div class="panel-heading sortable-widget-handle">
+                            <div class="panel-actions">
+                            	
+                                            <button rel="tooltip-bottom" title="文件" type="button" class="btn btn-inverse btn-panel source_add_button"  sourcetype='File' href="#modal-file" data-toggle="modal"><i class="fa fa-file-o"></i></button>
+                                            <button rel="tooltip-bottom" title="图书" class="btn btn-inverse btn-panel"><i class="fa fa-book"></i></button>
+                                            <button rel="tooltip-bottom" title="链接" class="btn btn-inverse btn-panel"><i class="fa fa-link"></i></button>
+                                            <button rel="tooltip-bottom" title="广告" class="btn btn-inverse btn-panel"><i class="fa fa-jpy"></i></button>
+                                
+                                <button data-close="#" title="close" class="btn-panel">
+                                    <i class="fa fa-times"></i>
+                                </button>
+                            </div> 
+                            <h3 class="panel-title">资源</h3>
+                        </div> 
+                    </div>  -->                  
+
+                       <div id="" class="panel panel-default sortable-widget-item">
+                        <div class="panel-heading sortable-widget-handle bg-white">
+                            <div class="panel-actions">
+                                <button data-close="#" title="close" class="btn-panel">
+                                    <i class="fa fa-times"></i>
+                                </button>
+                            </div>
+                            <h3 class="panel-title">页面</h3>
+                        </div>
+            
+                        <div class="panel-body hoo-no-padding-botttom">
+                            <div class="form-group hoo-no-padding-botttom" style="margin-bottom: 0px !important;">
+                                    <label class="col-sm-3 control-label hoo-text-left hoo-no-padding-lr" for="typeahead-local">所属页面</label>
+                                    <div class="col-sm-9 hoo-no-padding-lr">
+                                     <select id="select_item_page"  name="page" class="form-control" style="width:100%;min-width: 0;" placeholder="选择页面">
+                                             <php>foreach($pages as $page):</php>
+                                             <php>$selected = $page['id']==$item['post_parent'] ? 'selected="selected"' : '';</php>
+                                             <option value="{$page.id}" {$selected}>{$page.post_title}</option>
+                                             <php>endforeach;</php>
+                                            
+                                            </select>           
+                                    </div>
+                                </div>
+                            <div id="page-loader" class="demo-box-loader form-group" style="min-height:43px !important;padding-bottom:0;margin-bottom: 0px !important; display: none;"><div class="loader-help" style="top:16%;"></div></div>    
+                            <php>$display = is_array($groups)&&count($groups)>0 ? '' : 'display:none;';</php>
+                            <div class="form-group hoo-no-padding-botttom" id="select_item_group_wrap" style="{$display}">
+                                    <label class="col-sm-3 control-label hoo-text-left hoo-no-padding-lr" for="typeahead-local">所属分组</label>
+                                    <div class="col-sm-9 hoo-no-padding-lr">
+                                     <select id="select_item_group" name="group" style="width:100%;min-width: 0;margin-top:5px;" class="form-control" placeholder="选择分组">
+                                                <php>foreach($groups as $group):</php>
+                                                <php>$selected = $group==$item['post_groups'] ? 'selected="selected"' : '';</php>
+                                                <option value="{$group}" {$selected}>{$group}</option>
+                                                <php>endforeach;</php>
+                                            </select>           
+                                    </div>
+                                </div>
+                        </div>
+                    </div> 
+
+<div id="" class="panel panel-default sortable-widget-item">
+                        <div class="panel-heading sortable-widget-handle bg-white">
+                            <div class="panel-actions">
+                                <button data-close="#" title="close" class="btn-panel">
+                                    <i class="fa fa-times"></i>
+                                </button>
+                            </div><!-- /panel-actions -->
+                            <h3 class="panel-title">封面</h3>
+                        </div><!-- /panel-heading -->
+
+                        <div class="panel-body text-center">
+                                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                                            <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;">
+                                                <img src="<php>echo $meta->cover!=''?$meta->cover:'holder.js/100%x100%';</php>" alt="">
+                                            </div>
+                                            <div>
+                                                <span class="btn btn-sm btn-icon btn-inverse btn-file">
+                                                    <i class="fa fa-cloud-upload"></i>
+                                                    <span class="fileinput-new">添加封面</span>
+                                                    <span class="fileinput-exists">更换封面</span>
+                                                    <input  tid="cover"  class="hoo-single-image-upload" accept="image/*" type="file"  />
+                                                    <input name="cover" id="cover" value="{$meta->cover}" type="hidden" />
+                                                </span>
+                                                <button class="btn btn-sm btn-icon btn-danger fileinput-exists" data-dismiss="fileinput">
+                                                    <i class="fa fa-times"></i>
+                                                    删除
+                                                </button>
+                                            </div>
+                                        </div><!-- /fileinput -->
+                        </div><!-- /panel-body -->
+                    </div> 
+                    
+                    
+</div>
+</form>
+</block>
+<block name='footer-load'>
+<script>
+$(function(){
+	/***************************************************************************
+	 *选择页面，级联变化分组
+	 ***************************************************************************/
+	$("#select_item_page").change(function(){
+	   var pid = $(this).val();
+	   $("#select_item_group_wrap").hide();
+	   $('#page-loader').show();
+	   $.get("/hoo/item/ajaxshowgroup",{pid:pid},function(d,s){
+	   	   $("#select_item_group").children().remove();
+	   	   if($.trim(d)!=''){
+		   	   d = JSON.parse(d);
+		   	   for(var i=0;i<d.length;i++){
+		   	   	$("#select_item_group").append("<option value='"+d[i]+"'>"+d[i]+"</option>");
+		   	   	$("#select_item_group_wrap").show();
+		   	    }
+	   	   }else{
+	   	   	 $("#select_item_group_wrap").hide();
+	   	   }
+	   	   $('#page-loader').hide();
+	   });
+	});
+});	
+</script>
+</block>

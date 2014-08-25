@@ -1,0 +1,181 @@
+<extend name="layout/template" />
+<block name="title">个人中心</block>
+<block name="control">
+					<!--control-nav-->
+                    <ul class="control-nav pull-right">
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/hoo/page/admin">
+               资料编辑
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/hoo/page/cate">
+     修改密码
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/hoo/page/cate">
+    访问统计
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                    </ul><!--/control-nav-->
+                    <!--breadcrumb-->
+                    <ul class="breadcrumb">
+                        <li><i class="fa fa-user"></i> 仪盘表</li>
+                        <li>个人中心</li>
+                    </ul>
+</block>
+<block name="content">
+<style>
+
+.profiles-wrap{
+	width:228px;
+	margin-left: 12.6%;
+}
+.user-profiles{
+	width:228px;
+}
+.user-profiles img{
+	margin-left: -3px;
+}
+.user-links,
+.user-counts{
+	padding: 5px;
+}
+.user-list{
+	padding: 5px 15px;
+}
+.list-title{
+	display: block;
+	width:100%;
+}
+.list-foot{
+	font-size:12px;
+	margin-left:2px;
+}
+.list-foot,.list-foot a{
+	color:#A4A48D;
+}
+</style>	           
+ <div class="col-md-3 hoo-no-padding  profiles-wrap">
+                     	<div class="user-profiles pull-right">
+                    		<div  class="panel panel-default  hoo-no-padding hoo-no-border">
+                    			<div class="list-group hoo-no-border hoo-no-padding">
+                    				<div class='list-group-item  hoo-no-padding hoo-no-border'>
+                    				<img width="230px" height="230px" src="/avatars/default-lg.png" alt="..." class="img-rounded">
+                    				</div>
+									<div class='list-group-item  hoo-no-padding hoo-no-border'>
+                                    <h3><strong>古 月</strong></h3>
+                                    </div>
+									<div class='list-group-item user-links'>
+									<ul class="list-unstyled hoo-no-margin">
+									<li><i class="fa fa-envelope-o"></i> hu@1437.co</li>
+									
+									<li><i class="fa fa-clock-o"></i> 2014年7月5日</li>	
+									</ul>	
+									</div>
+									
+									<div class='list-group-item user-counts'>
+									<ul class="list-unstyled hoo-no-margin">
+									<li>
+                                    
+                                 <small><strong>文章数</strong></small> 1437
+                                    </li>
+									 
+									<li>
+                                     
+                                    <small><strong>页面数</strong></small> 31482
+                                    </li>	
+									 
+									 
+									<li>
+                                     
+                                   <small><strong>访问量</strong></small> 111254668
+                                    </li>	
+									 
+									</ul>	
+									</div>
+									<div class='list-group-item'>
+									</div>
+                    			</div><!--list-group-->
+
+                    		</div><!--panel-->
+                    	</div><!--cols-->
+                        </div><!--cols-->
+ 
+                    	<div class="col-md-7">
+                    		<div class="panel panel-default">
+                    			<div class="panel-heading bg-white">
+                    				<div class="panel-actions">
+                                        <button id="calendar-viewtoday" class="btn-panel">最新文章</button>
+                                        <button id="calendar-viewtoday" class="btn-panel">分类</button>
+                                        <button id="calendar-viewtoday" class="btn-panel">标签</button>
+                                    </div><!--panel-actions-->
+                    				<h4 class="panel-title"><i class="fa fa-files-o"></i>最新页面</h4>
+                    			</div><!--panel-heading-->
+                    			<div class="panel-body list-group hoo-no-border hoo-no-padding">
+									<div class='list-group-item user-list'>
+									<a class="hoo-no-padding-lr list-title" href="#">这是一篇文章呼啦啦</a>
+									<div class="hoo-no-padding-lr list-foot">
+									<small>
+										<i class="fa fa-file-text-o"></i> 
+										<a href="#">3137</a> 
+										<i class="fa fa-bar-chart-o"></i>  
+										<a href="#">3137</a>
+										<i class="fa fa-clock-o"></i>  
+										2014-05-06 12:25
+									</small>
+									</div>
+									</div>
+									<div class='list-group-item user-list'>
+									<a class="hoo-no-padding-lr list-title" href="#">这是一篇文章呼啦啦</a>
+									<div class="hoo-no-padding-lr list-foot">
+									<small>
+										<i class="fa fa-file-text-o"></i> 
+										<a href="#">3137</a> 
+										<i class="fa fa-bar-chart-o"></i>  
+										<a href="#">3137</a>
+										<i class="fa fa-clock-o"></i>  
+										2014-05-06 12:25
+									</small>
+									</div>
+									</div>
+									<div class='list-group-item user-list'>
+									<a class="hoo-no-padding-lr list-title" href="#">这是一篇文章呼啦啦</a>
+									<div class="hoo-no-padding-lr list-foot">
+									<small>
+										<i class="fa fa-file-text-o"></i> 
+										<a href="#">3137</a> 
+										<i class="fa fa-bar-chart-o"></i>  
+										<a href="#">3137</a>
+										<i class="fa fa-clock-o"></i>  
+										2014-05-06 12:25
+									</small>
+									</div>
+									</div>
+
+                    			</div><!--panel-body-->
+                    		</div><!--panel-->
+                    	</div><!--cols-->
+                    	<div class="col-md-7">
+                    		<div class="panel panel-default">
+                    			<div class="panel-heading bg-white">
+                    				<div class="panel-actions">
+                                        <button id="calendar-viewmonth" class="btn-panel active">按天</button>
+                                        <button id="calendar-viewweek" class="btn-panel">按月</button>
+                                        <button id="calendar-viewweek" class="btn-panel">更多</button>
+                                    </div><!--panel-actions-->
+                    				<h4 class="panel-title">访问统计</h4>
+                    			</div><!--panel-heading-->
+                                            <div id="flot-combine" class="graph"></div>
+                    			<div class="panel-body">
+                    				 
+                    			</div><!--panel-body-->
+                    		</div><!--panel-->
+                    	</div><!--cols-->
+
+</block>

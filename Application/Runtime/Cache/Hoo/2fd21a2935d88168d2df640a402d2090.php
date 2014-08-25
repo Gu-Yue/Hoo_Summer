@@ -1,0 +1,37 @@
+<?php if (!defined('THINK_PATH')) exit();?>              <div class="control-group">
+                    <label class="control-label">显示下列条目:</label>
+                    <div class="controls" id="page_option_ident" name="item-create">
+                    	 <label class="checkbox inline">
+                            <input value="" type="checkbox" name="option_page" target="option_page">
+              				所属页面
+                        </label>
+                        <label class="checkbox inline">
+                            <input value="" type="checkbox" name="option_group" target="option_group">
+              				分组
+                        </label>
+                        <label class="checkbox inline">
+                            <input value="" type="checkbox" name="option_tag" target="option_tag">
+                           	 标签
+                        </label>
+                        <label class="checkbox inline">
+                            <input value="" type="checkbox" name="option_visible" target="option_visible">
+             				  公开度
+                        </label>
+                        <label class="checkbox inline">
+                            <input value="" type="checkbox" name="option_resources" target="option_resources">
+              				资源
+                        </label>
+						<label class="checkbox inline">
+                            <input value="" type="checkbox" name="option_cover" target="option_cover">
+              				 封面
+                        </label>
+                        <label class="checkbox inline">
+                            <input value="" type="checkbox" name="option_digest" target="option_digest">
+              				 摘要
+                        </label>
+                        <label class="checkbox inline">
+                            <input value="" type="checkbox" name="option_history" target="option_history">
+              				 历史版本
+                        </label>
+                    </div>
+                </div>

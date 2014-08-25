@@ -1,0 +1,33 @@
+<?php if (!defined('THINK_PATH')) exit();?>              <div class="control-group">
+                    <label class="control-label">显示下列条目:</label>
+                    <div class="controls" id="page_option_ident" name="page-create">
+                        <label class="checkbox inline">
+                            <input value="" type="checkbox" name="option_cate" target="option_cate">
+                           	 所属分类
+                        </label>
+                        <label class="checkbox inline">
+                            <input value="" type="checkbox" name="option_group" target="option_group">
+             				  内容分组
+                        </label>
+                        <label class="checkbox inline">
+                            <input value="" type="checkbox" name="option_resources" target="option_resources">
+              				资源
+                        </label>
+                        <label class="checkbox inline">
+                            <input value="" type="checkbox" name="option_path" target="option_path">
+              				 访问路径标识符
+                        </label>
+						<label class="checkbox inline">
+                            <input value="" type="checkbox" name="option_tip" target="option_tip">
+              				 文字提示栏
+                        </label>
+                        <label class="checkbox inline">
+                            <input value="" type="checkbox" name="option_logo" target="option_logo">
+              				 页面图标
+                        </label>
+                        <label class="checkbox inline">
+                            <input value="" type="checkbox" name="option_cover" target="option_cover">
+              				 页面封面
+                        </label>
+                    </div>
+                </div>

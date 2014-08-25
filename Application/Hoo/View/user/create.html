@@ -1,0 +1,218 @@
+<extend name="layout/template"/>
+<block name="title">添加用户</block>
+<block name="control">
+<!--control-nav-->
+                    <ul class="control-nav pull-right">
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/hoo/user/admin">
+               所有用户
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <!-- <li>
+                            <a href="/hoo/page/cate">
+      角色权限
+                            </a>
+                        </li> -->
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                显示选项  <i class="caret"></i>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                               帮助  <i class="caret"></i>
+                            </a>
+                        </li>
+                    </ul><!--/control-nav-->
+                    
+                    <!--breadcrumb-->
+                    <ul class="breadcrumb">
+                        <li><a href="/hoo"><i class="fa fa-home"></i> 仪盘表</a></li>
+                        <li><a href="/hoo/page/admin">用户</a></li>
+                        <li class="active">添加用户</li>
+                    </ul>
+</block>
+<block name="content">
+<form role="form" class="form-horizontal form-bordered" method="post">	
+<div class="row col-md-9">
+<div id="panel-fileinput" class="panel panel-default sortable-widget-item">
+	<div class="panel-body hoo-no-padding-botttom">
+    <div data-wizard="">
+                            <h3>账户资料</h3>
+                            <section>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label" for="username">用户名 *</label>
+                                    <div class="col-sm-7">
+                                        <div class="input-group input-group-in">
+                                            <span class="input-group-addon text-silver"><i class="fa fa-user"></i></span>
+                                            <input class="form-control" id="username" name="username" minlength="2" required="" type="text" value="{$user.username}" <php>echo isset($_GET['n']) ? 'disabled':'';</php> />
+                                        </div>
+                                    </div>
+                                </div> 
+                                
+                                <php>if(!isset($_GET['n'])):</php>
+                                
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label" for="passwd">密码 *</label>
+                                    <div class="col-sm-7">
+                                        <div class="input-group input-group-in">
+                                            <span class="input-group-addon text-silver"><i class="fa fa-circle-o"></i></span>
+                                            <input class="form-control" id="passwd" name="passwd" minlength="2" required="" type="password">
+                                        </div>
+                                    </div>
+                                </div><!-- /form-group -->
+                                <php>endif;</php>
+                                <div class="clearfix"></div>
+                            </section><!-- /step 1 -->
+
+                            <h3>用户信息</h3>
+                            <section>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label" for="firstname">姓</label>
+                                    <div class="col-sm-7">
+                                        <div class="input-group input-group-in">
+                                            <span class="input-group-addon text-silver"><i class="fa fa-pencil"></i></span>
+                                            <input class="form-control" id="firstname" name="profile[firstname]"  type="text" value="{$profile->firstname}"  <php>echo !$key ? 'disabled':'';</php> />
+                                        </div>
+                                    </div>
+                                </div><!-- /form-group -->
+
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label" for="lastname">名 </label>
+                                    <div class="col-sm-7">
+                                        <div class="input-group input-group-in">
+                                            <span class="input-group-addon text-silver"><i class="fa fa-pencil"></i></span>
+                                            <input class="form-control" id="lastname" name="profile[lastname]"  type="text" value="{$profile->lastname}" <php>echo !$key ? 'disabled':'';</php> />
+                                        </div>
+                                    </div>
+                                </div><!-- /form-group -->
+                                 <div class="form-group">
+                                    <label class="col-sm-3 control-label" for="mail">邮箱 </label>
+                                    <div class="col-sm-7">
+                                        <div class="input-group input-group-in">
+                                            <span class="input-group-addon text-silver"><i class="fa fa-envelope"></i></span>
+                                            <input class="form-control" id="email" name="profile[mail]"  type="email" value="{$profile->mail}" <php>echo !$key ? 'disabled':'';</php> />
+                                        </div>
+                                    </div>
+                                </div><!-- /form-group -->
+							    <div class="form-group">
+                                    <label class="col-sm-3 control-label" for="address">电话</label>
+                                    <div class="col-sm-7">
+                                        <div class="input-group input-group-in">
+                                            <span class="input-group-addon text-silver"><i class="fa fa-mobile"></i></span>
+                                            <input class="form-control"  name="profile[phone]" type="text" value="{$profile->phone}" <php>echo !$key ? 'disabled':'';</php> />
+                                        </div>
+                                    </div>
+                                </div><!-- /form-group -->
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label" for="address">QQ</label>
+                                    <div class="col-sm-7">
+                                        <div class="input-group input-group-in">
+                                            <span class="input-group-addon text-silver"><i class="fa fa-qq"></i></span>
+                                            <input class="form-control"  name="profile[qq]" type="text" value="{$profile->qq}" <php>echo !$key ? 'disabled':'';</php> />
+                                        </div>
+                                    </div>
+                                </div><!-- /form-group -->
+                                
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label" for="address">地址</label>
+                                    <div class="col-sm-7">
+                                        <div class="input-group input-group-in">
+                                            <span class="input-group-addon text-silver"><i class="fa fa-road"></i></span>
+                                            <input class="form-control"  name="profile[address]" type="text" value="{$profile->address}" <php>echo !$key ? 'disabled':'';</php> />
+                                        </div>
+                                    </div>
+                                </div><!-- /form-group -->
+                                
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label" for="address">简介</label>
+                                    <div class="col-sm-7">
+                                            <textarea name="profile[text]" class="form-control" <php>echo !$key ? 'disabled':'';</php> >{$profile->text}</textarea>
+                                    </div>
+                                </div><!-- /form-group -->
+                                
+                            <!-- </section> -->
+                            <!-- <h3>添加用户</h3> -->
+                            <!-- <section> -->
+                             <!--  <div class="form-group">
+                                    <label class="col-sm-3 control-label" for="address"></label>
+                                    <div class="col-sm-7">
+                                       <div class="nice-checkbox">
+                                            <input class="checkbox-o" id="term" name="term" required="" type="checkbox">
+                                            <label for="term">
+                                                第一登陆重置密码？
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="form-group">
+                                    <label class="col-sm-3 control-label" for="address"></label>
+                                    <div class="col-sm-7">
+                                       <div class="nice-checkbox">
+                                            <input class="checkbox-o" id="term" name="term" required="" type="checkbox">
+                                            <label for="term">
+                                               发送账号至邮箱?
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                 -->
+                                <php>if($key):</php> 
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label" for="address"></label>
+                                    <div class="col-sm-7">
+                                        <div class="nice-checkbox">
+                                        <button class="bt btn-lg btn-primary form-control text-white" type="submit"><php>echo isset($_GET['n']) ? '保存修改':'添加用户';</php></button>
+                                        </div>
+                                    </div>
+                                </div><!-- /form-group -->
+                                <php>endif;</php>
+                             </section>
+                        </div>
+   </div><!-- /panel-body -->
+   </div>
+</div>
+
+<div class="row col-md-3 margin-left" data-toggle="sortable-widget">
+<div id="panel-fileinput" class="panel panel-default sortable-widget-item">
+                        <div class="panel-heading sortable-widget-handle bg-white">
+                            <div class="panel-actions">
+                                <button data-close="#panel-fileinput" title="close" class="btn-panel">
+                                    <i class="fa fa-times"></i>
+                                </button>
+                            </div><!-- /panel-actions -->
+                            <h3 class="panel-title">头像</h3>
+                        </div><!-- /panel-heading -->
+
+                        <div class="panel-body text-center">
+                                       <div class="fileinput fileinput-new" data-provides="fileinput">
+                                            <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;">
+                                                <img src="<php>echo $user['avatar']!=''?$user['avatar']:'holder.js/100%x100%';</php>" alt="">
+                                            </div>
+                                            <php>if($key):</php>
+                                            <div>
+                                                <span class="btn btn-sm btn-icon btn-primary btn-file">
+                                                    <i class="fa fa-cloud-upload"></i>
+                                                    <span class="fileinput-new">添加头像</span>
+                                                    <span class="fileinput-exists">更换头像</span>
+                                                    <input  tid="avatar"  class="hoo-single-image-upload" accept="image/*" type="file"  />
+                                                    <input name="avatar" id="avatar" value="{$user->avatar}" type="hidden" />
+                                                </span>
+                                                <input name="avatar2" value="{$user->avatar}" type="hidden" />
+                                                <button class="btn btn-sm btn-icon btn-danger fileinput-exists" data-dismiss="fileinput">
+                                                    <i class="fa fa-times"></i>
+                                                    删除
+                                                </button>
+                                            </div>
+                                            <php>endif;</php>
+                                        </div><!-- /fileinput -->
+                        </div><!-- /panel-body -->
+                    </div>                   
+                                
+</div>
+</form>
+</block>

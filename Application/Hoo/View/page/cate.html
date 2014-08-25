@@ -1,0 +1,201 @@
+<extend name="layout/template"/>
+<block name="title">分类管理</block>
+<block name="control">
+
+<!--control-nav-->
+                    <ul class="control-nav pull-right">
+                    	<li class="divider"></li>
+                        <li>
+                            <a id="save-edi-cate" href="#" data-target="#create-new-cate-modal" data-toggle="modal">
+                              新建分类
+                            </a> 
+                       </li>
+                        <li class="divider"></li>
+                        <li class="bg-primary">
+                            <a id="save-edi-cates" href="#" class="text-white">
+                              保存排序
+                            </a> 
+                       </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/hoo/page/admin">
+                              新建页面
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/hoo/page/cate">
+      所有页面
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                显示选项  <i class="caret"></i>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                               帮助  <i class="caret"></i>
+                            </a>
+                        </li>
+                    </ul><!--/control-nav-->
+                    
+                    <!--breadcrumb-->
+                    <ul class="breadcrumb">
+                        <li><i class="fa fa-files-o"></i> <a href="/hoo/page/admin">页面</a></li>
+                        <li class="active">分类管理</li>
+                    </ul>
+</block>
+<block name="content">
+<style>
+  .option-groups  .sortable-placeholder{
+    margin-bottom:3px !important;
+    margin-top:0px !important;
+  }
+  .option-resources .panel-heading{
+    margin-bottom: -1px;
+  }
+  .option-group{
+    margin-bottom:5px;
+    margin-top:0px;
+  }
+</style>
+<form id="cates-form" method="post">  
+<div class="row col-md-12">
+<div id="panel-fileinput" class="panel panel-default" data-toggle="sortable-widget">
+  <div class="panel-body" id="cates-wrap">
+                                    <php>foreach($cates as $cate):</php>
+                                    <div class="panel hoo-bg-slight sortable-widget-item hoo-no-margin-lr option-group" id="panel-close">
+									<div class="panel-heading hoo-bg-slight">
+									<div class="panel-actions">
+									<button class="btn-panel cate-edi" type="button">
+					                <i class="fa fa-pencil"></i>
+					                </button>	
+									<button class="btn-panel cate-close" type="button" style="{$cate.flag}">
+					                <i class="fa fa-times"></i>
+					                </button>
+									</div>
+									<h5 class="panel-title">
+									<i class="fa fa-sort sortable-widget-handle"></i>
+									<span>{$cate.name}</span>
+									</h5>
+									<input name="cates[]" value="{$cate.name}" class="hidden-cate" type="hidden" />
+									</div>	
+									</div>
+                                    <php>endforeach;</php>      
+                     </div>
+                         
+   </div><!-- /panel-body -->
+   </div>
+</div>
+<!-- 新建分组Modal -->
+<div style="display: none;" class="modal fade" id="create-new-cate-modal" tabindex="-1" role="dialog" aria-labelledby="modalSmallLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-sm">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                            <h4 class="modal-title" id="modalSmallLabel">新建分类</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <input class="form-control" id="new-cate-name"  placeholder="输入分类名"/>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                            <button type="button" class="btn btn-primary" id="create-new-cate">添加分类</button>
+                                        </div>
+                                    </div><!-- /.modal-content -->
+                                </div><!-- /.modal-dialog -->
+</div>  
+</form>
+</block>
+
+<block name="footer-load">
+<script>
+$(function(){
+	function init_edi(){
+		var $wrap = $(this).parent().parent().parent().find('span:first');
+		    var Name = $wrap.find('.edi-input:first').val();
+		    var oldName = $(this).attr('n');
+		    var $this = $(this);
+		    if(Name!=oldName){
+			    $.get('/hoo/page/addcate/oldName/'+oldName,{termname:Name},function(d){
+			    	if(d=='success'){
+			    		$wrap.html(Name);
+			    		$wrap.parent().parent().find('.hidden-cate').val(Name);
+			    		$this.find('i').removeClass('fa-check').addClass('fa-pencil');
+			    		$this.unbind('click').click(edi_cate);
+		    		}else{
+		    			alert(d);
+		    		}
+	    		});
+    		}else{
+    			$wrap.html(Name);
+		    	$(this).find('i').removeClass('fa-check').addClass('fa-pencil');
+		    	$(this).unbind('click').click(edi_cate);
+    		}
+	}
+	function edi_cate(){
+    	$('.cate-edi').unbind('click').click(function(){
+    		var $wrap = $(this).parent().parent().parent().find('span:first');
+    		$(this).attr('n',$wrap.text());
+    		$wrap.html('<input class="form-control input-sm edi-input" type="text" value="'+$wrap.text()+'" style="width:200px;height:20px;display:inline;height: 37px;position: absolute;top: 0px;" />');
+    		$(this).find('i').removeClass('fa-pencil').addClass('fa-check');
+    		$(this).unbind('click').click(init_edi);
+    	});
+    	
+   }
+	$('#create-new-cate').click(function(){
+		var cateName = $('#new-cate-name').val();
+		var html =   '<div class="panel hoo-bg-slight sortable-widget-item hoo-no-margin-lr option-group" id="panel-close">'
+					+'<div class="panel-heading hoo-bg-slight">'
+					+'<div class="panel-actions">'
+					+'<button class="btn-panel cate-edi" type="button">'
+	                +'<i class="fa fa-pencil"></i>'
+	                +'</button>'
+					+'<button class="btn-panel cate-close" type="button">'
+	                +'<i class="fa fa-times"></i>'
+	                +'</button>'
+					+'</div>'
+					+'<h5 class="panel-title">'
+					+'<i class="fa fa-sort sortable-widget-handle"></i>'
+					+ '<span>'+cateName+'</span>'
+					+'</h5>'
+					+'<input cates="cate[]" class="hidden-cate" value="'+cateName+'" type="hidden" />'
+					+'</div>'	
+					+'</div>';
+		if($.trim(cateName)!=''){
+			$.get('/hoo/page/addcate',{termname:cateName},function(d){
+				if(d=='success'){
+				$('#cates-wrap').append(html);
+				$('#create-new-cate-modal').modal('hide');
+			  	$('#new-cate-name').val('');
+		        //绑定删除事件
+			  	$('.cate-close').unbind('click');
+			  	$('.cate-close').click(function(){
+			  		$(this).parent().parent().parent().remove();
+				});
+			    edi_cate();
+			   }else{
+			   	alert(d);
+			   }
+			});			
+		    }else{
+		    	alert('分类名不能为空!');
+		    }
+		  	
+	});
+	$('.cate-close').click(function(){
+	  		$(this).parent().parent().parent().remove();
+    });
+    edi_cate();
+    
+    //保存排序
+    $('#save-edi-cates').click(function(){
+      $('#cates-form').submit();
+      return false;
+    });
+})	
+</script>	
+</block>

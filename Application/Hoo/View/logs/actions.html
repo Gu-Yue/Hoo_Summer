@@ -1,0 +1,51 @@
+<extend name="layout/template" />
+<block name="title">操作统计</block>
+<block name="control">
+<!--control-nav-->
+                    <ul class="control-nav pull-right">
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/hoo/page/admin">
+               访问统计
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/hoo/page/cate">
+     用户统计
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                            系统日志
+                            </a>
+                        </li>
+                    </ul><!--/control-nav-->
+                    
+                    <!--breadcrumb-->
+                    <ul class="breadcrumb">
+                        <li><i class="fa fa-bar-chart-o"></i> 数据统计</li>
+                        <li class="active">操作统计</li>
+                    </ul>
+</block>
+<block name="content">
+ 
+                    	<div class="col-md-12">
+                    		<div class="panel panel-default">
+                    			<div class="panel-heading bg-white">
+                    				<div class="panel-actions">
+                    					<button id="" class="btn-panel">页面增长量</button>
+                    					<button id="" class="btn-panel">文章增长量</button>
+                    					<button id="" class="btn-panel">用户操作统计</button>
+                                    </div><!--panel-actions-->
+                    				<h4 class="panel-title">页面</h4>
+                    			</div><!--panel-heading-->
+                    			<div class="panel-body">
+                    			<div id="flot-bar" class="graph"></div> 
+                    			</div><!--panel-body-->
+                    		</div><!--panel-->
+                    	</div><!--cols-->
+ 
+
+</block>

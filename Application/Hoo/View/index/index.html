@@ -1,0 +1,241 @@
+<extend name="layout/template" />
+<block name="title">仪盘表</block>
+<block name="control">
+					<!--control-nav-->
+                    <ul class="control-nav pull-right">
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/hoo/helper/sitesetting">
+               站点设置
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li class="divider"></li>
+                    </ul><!--/control-nav-->
+                    <!--breadcrumb-->
+                    <ul class="breadcrumb">
+                        <li><i class="fa fa-dashboard"></i> 仪盘表</li>
+                    </ul>
+</block>
+<block name="content">
+<style>
+.panel > .panel-heading > .nav{
+	left:0px !important;
+}
+.dashboard-counts .lead{
+	padding:4px 10px;
+}	
+.dashboard-counts .nav-tabs > li > a{
+	border-radius: 0px;
+	border: none !important;
+}
+.dashboard-counts .nav-tabs > li > a{
+	margin: 0px;
+	border-radius: 0px;
+}
+.dashboard-main  .placeholder{
+	min-height:50px;
+}
+ 
+.dashboard-dynamic li{
+	border-radius:0px;
+	border-style: solid none none none !important;
+}
+
+</style>
+<div class="col-md-12 dashboard-main" data-toggle="sortable-widget">	
+ <div class="col-md-6">
+                             
+                            <div class="panel border-cloud sortable-widget-item">
+                                <div class="panel-heading bg-white border-cloud sortable-widget-handle">
+                                    <h4 class="panel-title"><i class="fa fa-bullhorn"></i>发布公告</h4>
+                                </div> 
+
+                                <div class="panel-body">
+                                	<form action="" role="form" method="post">
+                                    <div class="form-group">
+                                        <input  name="notice[title]" type="text" class="form-control" placeholder="标题">
+                                    </div>
+                                    <div class="form-group">
+                                        <textarea name="notice[content]" class="form-control hoo-textarea-y" data-link="false" style="width:100%" rows="3" placeholder="正文"></textarea>
+                                    </div> 
+                                </div> 
+
+                                <div class="panel-footer bg-white bordered-top clearfix">
+                                    <div class="pull-right">
+                                        <input type="reset" class="btn btn-sm btn-default" value="取消" />
+                                        <input type="submit" class="btn btn-sm btn-primary" value="发布" />
+                                    </div>
+                                  </form>  
+                                </div> 
+                            </div> 
+                            
+                            
+<div class="panel border-cloud sortable-widget-item dashboard-dynamic">
+                                <div class="panel-heading bg-white border-cloud sortable-widget-handle">
+                                    <h4 class="panel-title"><i class="fa fa-bullhorn"></i>历史公告</h4>
+                                </div> 
+
+                                <div class="panel-body hoo-no-padding">
+                              <ul class="list-group hoo-no-margin">
+    <php>foreach($notices as $notice):</php>
+    <li class="list-group-item">
+        <span class="badge badge-primary"><php>echo date('Y-m-d H:i',$notice['time'])</php></span>
+        {$notice.title}
+    </li>
+    <php>endforeach;</php>
+</ul>
+                                </div> 
+                            </div>  
+                            
+<div class="placeholder sortable-widget-item">
+</div>
+
+                                                         
+                             
+ </div> 
+<div class="col-md-6">
+<div class="panel border-cloud hoo-no-padding  profiles-wrap dashboard-counts sortable-widget-item">	
+<div class="panel-heading sortable-widget-handle border-cloud" style="padding-top:30px">
+<ul class="nav nav-tabs panel-heading bg-white hoo-no-padding pull-left">
+        <li class="active"><a href="#botabs1" data-toggle="tab">统计</a></li>
+        <li class=""><a href="#botabs2" data-toggle="tab" class="">系统</a></li>
+</ul>
+</div>
+<div class="tab-content panel-body hoo-no-padding-lr" style="padding-top:25px">
+     <div class="tab-pane fade active in" id="botabs1">
+     	
+     <div class="col-md-12">
+                                    <div id="overall-visitor" class="panel  bg-primary">
+                                        <div class="panel-body hoo-no-padding">
+                                            <div class="panel-actions-fly">
+                                                <button data-refresh="#overall-visitor" data-error-place="#error-placement" title="刷新数据" class="btn-panel">
+                                                    <i class="glyphicon glyphicon-refresh"></i>
+                                                </button><!--/btn-panel-->
+                                                <a href="#" title="查看详细统计" class="btn-panel">
+                                                    <i class="glyphicon glyphicon-stats"></i>
+                                                </a><!--/btn-panel-->
+                                            </div><!--/panel-action-fly-->
+
+                                            <p class="lead"><strong>访问量</strong></p><!--/lead as title-->
+
+                                            <ul class="list-percentages row">
+                                                <li class="col-xs-4 hoo-no-padding">
+                                                    <p class="text-ellipsis">本月</p>
+                                                    <p class="text-lg"><strong>765,298</strong></p>
+                                                </li>
+                                                <li class="col-xs-4 hoo-no-padding">
+                                                    <p class="text-ellipsis">本周</p>
+                                                    <p class="text-lg"><strong>1,765</strong></p>
+                                                </li>
+                                                <li class="col-xs-4 hoo-no-padding">
+                                                    <p class="text-ellipsis">今天</p>
+                                                    <p class="text-lg"><strong>563</strong></p>
+                                                </li>
+                                            </ul><!--/list-percentages-->
+                                        </div><!--/panel-body-->
+                                    </div><!--/panel overal-visitor-->
+                                </div><!--/cols-->
+								
+                                <!-- <div class="col-md-12">
+                                    <div id="overall-users" class="panel  bg-primary">
+                                        <div class="panel-body hoo-no-padding">
+                                            <div class="panel-actions-fly">
+                                                <button data-refresh="#overall-users" data-error-place="#error-placement" title="刷新数据" class="btn-panel">
+                                                    <i class="glyphicon glyphicon-refresh"></i>
+                                                </button> 
+                                                <a href="#" title="查看详细统计" class="btn-panel">
+                                                    <i class="glyphicon glyphicon-stats"></i>
+                                                </a> 
+                                            </div> 
+
+                                            <p class="lead"><strong>用户量</strong></p> 
+
+                                            <ul class="list-percentages row">
+                                                <li class="col-xs-4 hoo-no-padding">
+                                                    <p class="text-ellipsis">所有用户</p>
+                                                    <p class="text-lg"><strong>1437</strong></p>
+                                                </li>
+                                                <li class="col-xs-4 hoo-no-padding">
+                                                    <p class="text-ellipsis">上月</p>
+                                                    <p class="text-lg"><strong>+287</strong></p>
+                                                </li>
+                                                <li class="col-xs-4 hoo-no-padding">
+                                                    <p class="text-ellipsis">本月</p>
+                                                    <p class="text-lg"><strong>+87</strong></p>
+                                                </li>
+                                            </ul> 
+                                        </div> 
+                                    </div> 
+                                </div>  -->
+                                	
+     											<div class="col-md-12">
+                                    <div id="overall-orders" class="panel  bg-primary">
+                                        <div class="panel-body hoo-no-padding">
+                                            <div class="panel-actions-fly">
+                                                <button data-refresh="#overall-orders" data-error-place="#error-placement" title="刷新数据" class="btn-panel">
+                                                    <i class="glyphicon glyphicon-refresh"></i>
+                                                </button><!--/btn-panel-->
+                                                <a href="#" title="查看详细统计" class="btn-panel">
+                                                    <i class="glyphicon glyphicon-stats"></i>
+                                                </a><!--/btn-panel-->
+                                            </div><!--/panel-action-fly-->
+
+                                            <p class="lead"><strong>文章数</strong></p><!--/lead as title-->
+
+                                            <ul class="list-percentages row">
+                                                <li class="col-xs-4 hoo-no-padding">
+                                                    <p class="text-ellipsis">所有文章</p>
+                                                    <p class="text-lg"><strong>1,954,452</strong></p>
+                                                </li>
+                                                <li class="col-xs-4 hoo-no-padding">
+                                                    <p class="text-ellipsis">本月+</p>
+                                                    <p class="text-lg"><strong>43,671</strong></p>
+                                                </li>
+                                                <li class="col-xs-4 hoo-no-padding">
+                                                    <p class="text-ellipsis">今天+</p>
+                                                    <p class="text-lg"><strong>1,219</strong></p>
+                                                </li>
+                                            </ul><!--/list-percentages-->
+                                        </div><!--/panel-body-->
+                                    </div><!--/panel overal-orders-->
+                               </div><!--/cols-->  
+     </div>
+     <div class="tab-pane fade" id="botabs2">
+     	<div class="col-md-12">
+                            <div id="overall-phisicmem" class="panel  panel-primary bg-primary">
+                                        <div class="panel-body">
+                                             <div class="panel-actions-fly">
+                                                <button data-refresh="#overall-bandwidth" data-error-place="#error-placement" title="refresh" class="btn-panel">
+                                                    <i class="glyphicon glyphicon-refresh"></i>
+                                                </button><!--/btn-panel-->
+                                                <a href="#" title="Go to server stats page" class="btn-panel">
+                                                    <i class="glyphicon glyphicon-stats"></i>
+                                                </a><!--/btn-panel-->
+                                            </div><!--/panel-action-fly-->
+
+                                            <p class="lead">Bandwidth</p><!--/lead as title-->
+
+                                            <p>
+                                                </p><div class="easyPieChart" data-barcolor="#232332" data-trackcolor="#ecf0f1" data-scalecolor="#ecf0f1" data-percent="16" data-size="120">
+                                                    <span>16%</span>
+                                                <canvas width="120" height="120"></canvas></div>
+                                                <p class="text-ellipsis text-center">Bandwidth Usage 120,4 GB / 2 TB</p>
+                                            <p></p>
+                                        </div><!--/panel-body-->
+                                    </div><!--/panel overal-phisicmem-->
+                            </div>
+     </div>
+</div><!-- /tab-content -->
+	
+	
+	
+	
+									
+</div>           
+<div class="placeholder sortable-widget-item">
+                             </div>                  
+</div>
+
+</div>
+</block>

@@ -20,11 +20,10 @@
 	<!-- fieldsets -->
 	<fieldset>
 	    <br><br><br><br><br>
-		<h1 class="fs-title">欢迎使用 Hoo!</h1>
+		<h1 class="fs-title">安装  Hoo!</h1>
 		<h3 class="fs-subtitle"></h3>
 		<h3 class="fs-subtitle"><a target="_blank" href="http://www.findcms.com">使用手册</a></h3>
 		<h3 class="fs-subtitle"><a target="_blank" href="http://www.findcms.com">开发手册</a></h3>
-		<h3 class="fs-subtitle"><a href="/install?nodata">不安装示例数据</a></h3>
 		<br><br><br>
 		<input type="button" name="next" class="next action-button" value="下一步" />
 	</fieldset>
@@ -41,9 +40,8 @@
 	<fieldset>
 		<h2 class="fs-title">创建管理员</h2>
 		<h3 class="fs-subtitle"></h3>
-		<div class="text-left"><label>管理员</label><input type="text" name="db_adminname" placeholder="管理员用户名" value="admin"/></div>
-		<div class="text-left"><label>密码</label><input type="text" name="db_adminpw" placeholder="密码" value="admin123"/></div>
-		<div class="text-left"><label>确认密码</label><input type="text" name="db_adminpwaffirm" placeholder="确认密码" value="admin123"/></div>
+		<div class="text-left"><label>管理员</label><input type="text" name="user[username]" placeholder="管理员用户名" value="admin"/></div>
+		<div class="text-left"><label>密码</label><input type="text" name="user[password]" placeholder="密码" value="admin123"/></div>
 		 
 		<input type="button" name="previous" class="previous action-button" value="上一步" />
 		<input type="submit" name="submit" class="submit action-button" value="安装 Hoo！" />

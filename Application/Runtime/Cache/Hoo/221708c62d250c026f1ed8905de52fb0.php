@@ -107,6 +107,14 @@
         .hoo-margin-bottom{
         	margin-bottom:10px;
         }
+        .hoo-auto-buzz-out{
+			transform: translateZ(0px);
+			box-shadow: 0px 0px 1px transparent;
+			animation-name: wobble-vertical;
+			animation-duration: 1s;
+			animation-timing-function: ease-in-out;
+			animation-iteration-count: 2;
+        }
         /* 全局设定 */
         .panel-title{
         	font-size:13px !important;
@@ -121,7 +129,7 @@
 		    outline:none;
 		    -moz-outline:none;
 		}
-
+        
         /* /全局设定 */
         
         /* 页面隐藏选项 */
@@ -197,15 +205,15 @@
                         <span class="fa fa-angle-down"></span>
                     </a>
                     <ul class="dropdown-menu animated flipInX pull-right" role="menu">
-                        <li><a href="#"><i class="fa fa-user"></i>个人中心</a></li>
-                        <li><a href="#"><i class="fa fa-pencil-square-o"></i>资料编辑</a></li> 
-                        <li><a href="#"><i class="fa fa-circle-o"></i>修改密码</a></li> 
+                        <!-- <li><a href="/hoo/user/profiles"><i class="fa fa-user"></i>个人中心</a></li> -->
+                        <li><a href="/hoo/user/create/n/<?php echo USER_ID; ?>"><i class="fa fa-pencil-square-o"></i> 资料编辑</a></li> 
+                        <li><a href="/hoo/user/repassword"><i class="fa fa-circle-o"></i> 修改密码</a></li> 
                         <li class="divider"></li>
-                        <li><a href="/hoo/user/logout"><i class="fa fa-sign-out"></i>注销</a></li>
+                        <li><a href="/hoo/user/logout"><i class="fa fa-sign-out"></i> 注销</a></li>
                     </ul>
                 </div>
                 <div class="profile-picture">
-                    <img alt="" src="/avatars/default.gif">
+                    <img alt="" src="<?php echo USER_AVATAR; ?>">
                 </div>
             </div><!-- header-profile -->
 
@@ -291,7 +299,7 @@
                     </li><!--/sidebar-item-->
                     <li>
                         <a href="/hoo/item/admin" data-pjax=".content-body">
-                            <i class="sidebar-icon fa fa-bar-chart-o"></i>
+                            <i class="sidebar-icon fa fa-file-text-o"></i>
                             <span class="sidebar-text">文章</span>
                         </a>
                         <ul class="sidebar-child animated flipInY">
@@ -342,11 +350,12 @@
                             <span class="sidebar-text">用户</span>
                         </a>
                         <ul class="sidebar-child animated flipInY">
-                        	<li>
+                        	<!-- <li>
                                 <a href="/hoo/user/profiles" data-pjax=".content-body">
                                     <span class="sidebar-text">个人中心</span>
                                 </a>
-                            </li>
+                            </li> -->
+                            <li><a href="/hoo/user/create/n/<?php echo USER_ID; ?>">资料编辑</a></li>
                         	<li>
                                 <a href="/hoo/user/repassword" data-pjax=".content-body">
                                     <span class="sidebar-text">修改密码</span>
@@ -366,11 +375,11 @@
                     </li> 
                     <!--sidebar-item-->
                     <li>
-                        <a href="/hoo/user/admin" data-pjax=".content-body">  
+                        <a href="/hoo/logs/system" data-pjax=".content-body">  
                             <i class="sidebar-icon fa fa-bar-chart-o"></i>
-                            <span class="sidebar-text">数据统计</span>
+                            <span class="sidebar-text">系统日志</span>
                         </a>
-                        <ul class="sidebar-child animated flipInY">
+                        <!-- <ul class="sidebar-child animated flipInY">
                             <li>
                                 <a href="/hoo/logs/visitors" data-pjax=".content-body">
                                     <span class="sidebar-text">访问统计</span>
@@ -391,8 +400,8 @@
                                     <span class="sidebar-text">系统日志</span>
                                 </a>
                             </li>
-                        </ul><!--/sidebar-child-->
-                    </li><!--/sidebar-item-->
+                        </ul>  -->
+                    </li> 
                     <!--sidebar-item-->
                     <li>
                         <a href="/hoo/helper/sitesetting" data-pjax=".content-body">  
@@ -453,34 +462,26 @@
                 	
 <!--control-nav-->
                     <ul class="control-nav pull-right">
-                        <li class="divider"></li>
+                     <li class="divider"></li>
                         <li>
-                            <a href="/hoo/page/admin">
-               访问统计
+                            <a href="#" id="hide_help_button">
+                               帮助  <i class="fa fa-caret-down"></i>
                             </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="/hoo/page/cate">
-     操作统计
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                            用户统计
-                            </a>
-                        </li>
+                        </li>	
                     </ul><!--/control-nav-->
                     
                     <!--breadcrumb-->
                     <ul class="breadcrumb">
-                        <li><i class="fa fa-bar-chart-o"></i> 数据统计</li>
-                        <li class="active">系统日志</li>
+                        <li><i class="fa fa-bar-chart-o"></i> 系统日志</li>
                     </ul>
 
                 </div><!-- /content-control -->
                 <div class="content-body">
+                  <?php if(isset($hoo_message)&&is_array($hoo_message)): ?>
+                  <div class="row col-md-12">
+                  	 <?php foreach($hoo_message['error'] as $info){ echo '<div class="callout callout-danger fade in hoo-auto-buzz-out">'.$info.'<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>'; } foreach($hoo_message['success'] as $info){ echo '<div class="callout callout-info fade in">'.$info.'<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>'; } ?>
+                  </div>
+                  <?php endif; ?>
                   
  
                     	<div class="col-md-9">
@@ -771,6 +772,7 @@
         $(".hoo-single-image-upload").change(function(){
 			// alert(this.files.length);
 			// alert(this.files[0].name);
+			// alert(this.files[0].type);
 			var formData = new FormData();
 			var $this = $(this);
 		　　     formData.append('file',this.files[0]);

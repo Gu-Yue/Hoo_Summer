@@ -172,8 +172,9 @@ class UserController extends Controller {
     $re->icon='fa fa-user';
     $re->href='#re-side'; 
       
-    $table->actions = array($status,
-                            $order,
+    $table->actions = array(
+                            //$status,
+                            //$order,
                             // $re
                             );
     //赋值表头
@@ -188,13 +189,13 @@ class UserController extends Controller {
     //确定操作标识符
     $table->ident = 'uid';
     //确定索引数组
-    $table->index= array((object)array('name'=>'username','href'=>'y','link'=>'/hoo/user/create/n','ident'=>'y'),
+    $table->index= array((object)array('name'=>'username','href'=>'y','link'=>'/hoo/user/create/n','ident'=>'y','_blank'=>'y'),
                          (object)array('name'=>'regist_time','href'=>'','link'=>'')
                          );
     
     //确定操作选项
     $table->options=array(
-                    (object)array('title'=>'用户信息','class'=>'','icon'=>'fa fa-bar-chart-o','href'=>'/hoo/item/count'),
+                    //(object)array('title'=>'用户信息','class'=>'','icon'=>'fa fa-bar-chart-o','href'=>'/hoo/item/count'),
                     (object)array('title'=>'删除用户','class'=>'','icon'=>'fa fa-times-circle','href'=>'/hoo/user/delete','flag'=>'y'),
                     );
     //获取表格分页

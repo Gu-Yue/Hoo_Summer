@@ -485,7 +485,7 @@
                     <!--breadcrumb-->
                     <ul class="breadcrumb">
                         <li><i class="fa fa-file-o"></i> <a href="/hoo/page/admin" class="text-primary">页面</a></li>
-                        <li class=""><a href="/hoo/page/view/n/<?php echo ($page["id"]); ?>" class="text-primary"><?php echo ($page["post_title"]); ?></a></li>
+                        <li class=""><a href="/hoo/item/admin/page/<?php echo ($page["id"]); ?>" class="text-primary"><?php echo ($page["post_title"]); ?></a></li>
                         <li class="active"><?php echo ($item["post_title"]); ?></li>
                     </ul>
 

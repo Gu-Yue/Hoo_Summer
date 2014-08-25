@@ -1,4 +1,5 @@
 <div class="panel panel-default hoo-admin-table">
+	<php>if(is_array($table->actions)&&count($table->actions)>0):</php>
 	<div class="panel-heading bg-white">
 		<ul class="nav nav-tabs hoo-admin-table-actions">
 			<php>
@@ -43,6 +44,7 @@
 		</div> -->
 		<h1></h1>
 	</div>
+	<php>endif;</php>
 	<!-- /panel-heading -->
 	<div class="panel-body hoo-no-padding">
 	  <form>
@@ -81,7 +83,8 @@
                                 		echo '<td class="'.$table->thead[$i]->class.'">';
                                 		if($index->href=='y'){	
                                 		$link = $index->ident == 'y' ? $index->link.'/'.$row[$table->ident] : $index->link;
-                                		echo '<a href="'.$link.'">'.$row[$index->name].'</a>';
+                                		$_blank = $index->_blank == 'y'?'target="_blank"':'';
+                                		echo '<a href="'.$link.'" '.$_blank.'>'.$row[$index->name].'</a>';
                                 	    }else{
                                 	    echo $row[$index->name];
                                 	    }

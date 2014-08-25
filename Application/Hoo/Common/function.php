@@ -137,7 +137,7 @@
     // $return["groupParent"]=$pages = $pages?$pages:null;
     $return["group"]=$group?$group:null;
     if($page){
-        $page = hoo_get_page(array("id"=>$page,"uid"=>USER_ID),array("field"=>"post_title,post_groups"));
+        $page = hoo_get_page(array("id"=>$page,"uid"=>USER_ID),array("field"=>"id,post_title,post_groups"));
         $page['post_groups'] = explode("#",$page['post_groups']);
         $temp = array();
         foreach($page['post_groups'] as $v){

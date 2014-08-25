@@ -138,11 +138,18 @@ class ItemController extends Controller {
     $pige->name='归档';  
     $pige->icon='fa fa-bars';
     $pige->href='#pige-side'; 
-      
+    
+    //分组
+    $groups = null;
+    $groups->tag = 'side';
+    $groups->name='分组';  
+    $groups->icon='fa fa-circle-o';
+    $groups->href='#groups-side'; 
     $table->actions = array($status,$order,$re,$tag,$pige);
+    $page ? array_push($table->actions,$groups) : '';
     //赋值表头
     $table->thead =array((object)array('name'=>"文章标题",'class'=>'item-post-title'),
-                         (object)array('name'=>"标签",'class'=>'item-post-tags'),
+                        // (object)array('name'=>"标签",'class'=>'item-post-tags'),
                          (object)array('name'=>"页面",'class'=>'item-post-cate'),
                          (object)array('name'=>"分组",'class'=>'item-post-group'),
                          (object)array('name'=>"创建日期",'class'=>'item-post-date'),
@@ -154,8 +161,8 @@ class ItemController extends Controller {
     //确定操作标识符
     $table->ident = 'id';
     //确定索引数组
-    $table->index= array((object)array('name'=>'post_title','href'=>'y','link'=>'/hoo/item/view/n','ident'=>'y'),
-                         (object)array('name'=>'post_terms','href'=>'','link'=>''),
+    $table->index= array((object)array('name'=>'post_title','href'=>'y','link'=>'/hoo/item/view/n','ident'=>'y','_blank'=>'y'),
+                         //(object)array('name'=>'post_terms','href'=>'','link'=>''),
                          (object)array('name'=>'post_parent_title','href'=>'','link'=>''),
                          (object)array('name'=>'post_groups','href'=>'','link'=>''),
                          (object)array('name'=>'post_date','href'=>'','link'=>'')
@@ -164,7 +171,7 @@ class ItemController extends Controller {
     //确定操作选项
     $table->options=array(
                     (object)array('title'=>'编辑文章','class'=>'','icon'=>'fa fa-pencil','href'=>'/hoo/item/create/n'),
-                    (object)array('title'=>'查看统计','class'=>'','icon'=>'fa fa-bar-chart-o','href'=>'/hoo/item/count'),
+                    //(object)array('title'=>'查看统计','class'=>'','icon'=>'fa fa-bar-chart-o','href'=>'/hoo/item/count'),
                     (object)array('title'=>'删除页面','class'=>'','icon'=>'fa fa-times-circle','href'=>'/hoo/item/delete'),
                     );
     //无数据项的提示信息
@@ -187,7 +194,10 @@ class ItemController extends Controller {
      *获取归档
      *****************************/
     $this->assign('piges',hoo_get_admin_piges(array('uid'=>USER_ID,'post_type'=>'item')));
-    
+    /*****************
+     *获取分组 
+     *****************/
+    $this->assign('groups',json_decode($datas['page']['post_groups'][0]));
     $this->assign('page',$datas['page']);
     $this->display('admin');
     }

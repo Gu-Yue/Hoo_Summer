@@ -1,4 +1,5 @@
 <?php if (!defined('THINK_PATH')) exit();?><div class="panel panel-default hoo-admin-table">
+	<?php if(is_array($table->actions)&&count($table->actions)>0): ?>
 	<div class="panel-heading bg-white">
 		<ul class="nav nav-tabs hoo-admin-table-actions">
 			<?php foreach($table->actions as $action){ if($action->tag =='dropdown'){ echo '<li class="dropdown">
@@ -21,6 +22,7 @@
 		</div> -->
 		<h1></h1>
 	</div>
+	<?php endif; ?>
 	<!-- /panel-heading -->
 	<div class="panel-body hoo-no-padding">
 	  <form>
@@ -41,7 +43,7 @@
                             </tr>
                         </tfoot>
                         <tbody>
-                                <?php foreach($table->rows as $row){ echo '<tr>'; echo '<td><input class="checkbox-o hoo-check" type="checkbox" value="'.$row['id'].'"></td>'; $i = 0; foreach($table->index as $index){ echo '<td class="'.$table->thead[$i]->class.'">'; if($index->href=='y'){ $link = $index->ident == 'y' ? $index->link.'/'.$row[$table->ident] : $index->link; echo '<a href="'.$link.'">'.$row[$index->name].'</a>'; }else{ echo $row[$index->name]; } echo '</td>'; $i++; } echo '<td class="'.$table->thead[$i]->class.'">'; foreach($table->options as $option){ $flag = $option->flag =='y' ? $row['flag'] : ''; echo '<a title="'.$option->title.'" '.$flag.' class="'.$option->class.'" href="'.$option->href.'/'.$row[$table->ident].'">
+                                <?php foreach($table->rows as $row){ echo '<tr>'; echo '<td><input class="checkbox-o hoo-check" type="checkbox" value="'.$row['id'].'"></td>'; $i = 0; foreach($table->index as $index){ echo '<td class="'.$table->thead[$i]->class.'">'; if($index->href=='y'){ $link = $index->ident == 'y' ? $index->link.'/'.$row[$table->ident] : $index->link; $_blank = $index->_blank == 'y'?'target="_blank"':''; echo '<a href="'.$link.'" '.$_blank.'>'.$row[$index->name].'</a>'; }else{ echo $row[$index->name]; } echo '</td>'; $i++; } echo '<td class="'.$table->thead[$i]->class.'">'; foreach($table->options as $option){ $flag = $option->flag =='y' ? $row['flag'] : ''; echo '<a title="'.$option->title.'" '.$flag.' class="'.$option->class.'" href="'.$option->href.'/'.$row[$table->ident].'">
                                 			  <i class="'.$option->icon.'"></i>
                                 			  </a>'; } echo '</td>'; echo '</tr>'; } ?>
                         </tbody>

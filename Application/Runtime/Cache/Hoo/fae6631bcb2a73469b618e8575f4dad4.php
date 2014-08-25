@@ -376,9 +376,9 @@
                     <li>
                         <a href="/hoo/user/admin" data-pjax=".content-body">  
                             <i class="sidebar-icon fa fa-bar-chart-o"></i>
-                            <span class="sidebar-text">数据统计</span>
+                            <span class="sidebar-text">系统日志</span>
                         </a>
-                        <ul class="sidebar-child animated flipInY">
+                        <!-- <ul class="sidebar-child animated flipInY">
                             <li>
                                 <a href="/hoo/logs/visitors" data-pjax=".content-body">
                                     <span class="sidebar-text">访问统计</span>
@@ -399,8 +399,8 @@
                                     <span class="sidebar-text">系统日志</span>
                                 </a>
                             </li>
-                        </ul><!--/sidebar-child-->
-                    </li><!--/sidebar-item-->
+                        </ul>  -->
+                    </li> 
                     <!--sidebar-item-->
                     <li>
                         <a href="/hoo/helper/sitesetting" data-pjax=".content-body">  

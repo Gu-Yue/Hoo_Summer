@@ -1,6 +1,14 @@
 <extend name="layout/template"/>
 <block name="title">站点设置</block>
 <block name="control">
+	<ul class="control-nav pull-right">
+		<li class="divider"></li>
+                       <li>
+                            <a href="#" id="hide_help_button">
+                               帮助  <i class="fa fa-caret-down"></i>
+                            </a>
+                        </li>
+                    </ul><!--/control-nav-->
                     <!--breadcrumb-->
                     <ul class="breadcrumb">
                         <li><a href="/hoo"><i class="fa fa-sliders"></i> 设置</a></li>
@@ -152,3 +160,7 @@
 </div>
 </form>
 </block>
+
+<block name="page-help">
+<p>在这里进行站点设置.</p>	
+</block> 

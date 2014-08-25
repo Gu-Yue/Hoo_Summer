@@ -29,17 +29,29 @@
                     <!--breadcrumb-->
                     <ul class="breadcrumb">
                     	<php>if(isset($_GET['page'])):</php>
+                        
                         <li><i class="fa fa-files-o"></i> <a href="/hoo/page/admin" class="text-primary">页面</a></li>
-                        <li>{$page.post_title}</li>
+                        <li>
+                        <php>if(isset($_GET['group'])) echo '<a href="/hoo/item/admin/page/'.$page['id'].'" class="text-primary">';</php>
+                        {$page.post_title}
+                        <php>if(isset($_GET['group'])) echo '</a>';</php>
+                        </li>
+                        
                         <php>else:</php>
                         <li><i class="fa fa-files-o"></i> <a href="/hoo/page/admin" class="text-primary">页面</a></li>
                         <li><a href="/hoo/item/admin" class="text-primary">所有文章</a></li>
+                        <php>endif;</php>
+                        
+                        <php>if(isset($_GET['group'])):</php>
+                        <li >分组</li>
+                         <li >{$_GET.group}</li>
                         <php>endif;</php>
                         
                         <php>if(isset($_GET['tag'])):</php>
                         <li >标签</li>
                          <li >{$_GET.tag}</li>
                         <php>endif;</php>
+                        
                         <php>if(isset($_GET['year'])):</php>
                         <li >归档</li>
                         <li >{$_GET.year}年{$_GET.month}月</li>
@@ -158,7 +170,38 @@
                     </div>
                 </div><!-- /chat-contact -->
             </div><!-- /module -->
-        </aside><!--/side-right -->        	
+        </aside><!--/side-right -->     
+<!-- side-right -->
+        <aside class="side-right" id="groups-side">
+            <div class="module" data-toggle="niceScroll">
+                <div class="chat-contact">
+                    <h3 class="contact-heading">
+                        <div class="btn-group pull-right">
+                            <a href="#" data-toggle="side-right">
+                                <i class="fa fa-times text-sm"></i>
+                            </a>
+                        </div>
+                        <i class="fa fa-tags"></i> 分组
+                    </h3><!-- /contact-heading -->
+                     <div class="contact-body">
+                        <ul class="contacts-list">
+                    <php>
+                        	foreach($groups as $group){
+                            echo '
+                            <li class="online">
+                            <a href="/hoo/item/admin/page/'.$page['id'].'/group/'.$group.'" class="hoo-js-link">
+                            <i data-original-title="online" class="fa fa-tag" title="" rel="tooltip-bottom"></i>'
+                            .$group
+                            .'</a></li>';
+                            }
+                            </php>
+                              </ul><!-- /contacts-list -->
+                    </div>
+                </div><!-- /chat-contact -->
+
+
+            </div><!-- /module -->
+        </aside><!--/side-right -->            	
 </block>
 
 
@@ -181,13 +224,15 @@
                          }
                 }
                 </php>
-            	<div class="col-md-12 hoo-margin-bottom">每页条目数</div>	
+            	<!-- <div class="col-md-12 hoo-margin-bottom">每页条目数</div>	
             	<div class="col-md-1">	
             	<form role="form" class="form">
                 <input  step="1" min="1" max="999"  name="amount_per_page" maxlength="3" value="20" type="number">	
                 <button class="btn btn-sm btn-primary" id="amount_per_page_apply" type="submit">应用</button> 
                 </form>
-                </div>
+                </div> -->
 </block>
 
-
+<block name="page-help">
+<p>在这里列出所有的文章，可以对它们进行编辑.</p>	
+</block> 

@@ -32,7 +32,20 @@
 								 
 
                     			<div class="panel-body">
-                    				 
+            <php>
+            $default_file = $system_logs_file[0] == "index.html"? $system_logs_file[1] : $system_logs_file[0];	
+            $filesize = (int)filesize(LOG_PATH.$default_file);
+            $times = 0;
+            while($filesize>1000){
+            $filesize = round($filesize/1000,2);
+            $times++;
+            }
+            switch($times){
+            	case 1 : $filesize = (int)$filesize; $filesize.="K"; break;
+            	case 2 : $filesize.="M"; break;
+            	case 3 : $filesize.="G"; break;
+            }
+            </php>	 
                     			</div><!--panel-body-->
                     		</div><!--panel-->
                     	</div><!--cols-->
@@ -43,7 +56,7 @@
                     				<h4 class="panel-title">历史日志</h4>
                     			</div><!--panel-heading-->
 
-                    			<div class="list-group">
+                    			<div class="list-group" id="tree1">
                     				<div class='list-group-item '><a href="#">Atque</a></div>
 									<div class='list-group-item '>Atque, illum, harum, delectus</div>
 									<div class='list-group-item '>Repudiandae quibusdam</div>
@@ -56,4 +69,45 @@
                     	</div><!--cols-->
  
 
+</block>
+
+
+<block name="footer-load">
+<script>	
+$(function(){
+	$("#tree1").find("a").click(function(){
+		$("span.dynatree-active").removeClass("dynatree-active");
+		$("#log_display").find(".box-content").html('<div class="text-center"><i class="icon-2x icon-spinner icon-spin"></i></div>');
+		$("#log_display").find("span.filename").html($(this).text());
+		$("#span_delete_file").find("a").attr("filename",$(this).text());
+		var data = { filename : $(this).text() };
+		$.get("/admin/logs/ajaxgetlog",data,function(d,s){
+			$("#log_display").find(".box-content").html(d);
+			$("div.one-bg:last").remove();
+	        $("div.two-bg:last").remove();
+		});
+		$.get("/admin/logs/getfilesize",data,function(d,s){
+	       $("#log_display").find("span.filename").append("&nbsp;(文件大小:"+d+")");
+		});
+	});
+	$("#span_delete_file").find("a").click(function(){
+		var data = {filename:$(this).attr("filename")};
+		var r=confirm("确认删除日志:"+data.filename+"?");
+        if (!r) return false;
+		$.get("/admin/logs/deletefilelog",data,function(d,s){
+	    	 if(d=="success"){
+	    	 	var url = window.location.href;
+			    if(url.indexOf("#")==url.length-1){
+			  	   url = url.substr(0,url.length-1);
+			    } 
+			    window.location.href = url; 
+	    	 }
+	    });
+	    return false;
+	});
+	$("#tree1").find("span:first").addClass("dynatree-active");
+	$("div.one-bg:last").remove();
+	$("div.two-bg:last").remove();
+});	
+</script>	
 </block>

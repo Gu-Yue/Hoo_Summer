@@ -375,7 +375,7 @@
                     </li> 
                     <!--sidebar-item-->
                     <li>
-                        <a href="/hoo/user/admin" data-pjax=".content-body">  
+                        <a href="/hoo/logs/system" data-pjax=".content-body">  
                             <i class="sidebar-icon fa fa-bar-chart-o"></i>
                             <span class="sidebar-text">系统日志</span>
                         </a>

@@ -192,7 +192,7 @@
             <!-- header brand -->
             <div class="header-brand">
                 <!-- <h2><a data-pjax=".content-body" href="index.php"><span class="text-primary">Sti</span>learn</a></h2> -->
-                <a data-pjax=".content-body" href="index.php">
+                <a data-pjax=".content-body" href="/hoo">
                     <span "brand-logo"><h3><strong>Hoo</strong></h3></span>
                 </a>
             </div><!-- header brand -->
@@ -586,7 +586,7 @@
                                                 </a> 
                                             </div>  -->
 
-                                            <p class="lead">内存使用</p><!--/lead as title-->
+                                            <p class="lead">磁盘空间</p><!--/lead as title-->
 
                                             <p>
                                                 </p><div class="easyPieChart" data-barcolor="#232332" data-trackcolor="#ecf0f1" data-scalecolor="#ecf0f1" data-percent="<?php echo ($disk["percent"]); ?>" data-size="120">

@@ -30,7 +30,7 @@
                     <ul class="breadcrumb">
                     	<php>if(isset($_GET['page'])):</php>
                         
-                        <li><i class="fa fa-files-o"></i> <a href="/hoo/page/admin" class="text-primary">页面</a></li>
+                        <li><i class="fa fa-files-o"></i> <a href="/hoo/page/admin" class="text-primary"> 页面</a></li>
                         <li>
                         <php>if(isset($_GET['group'])) echo '<a href="/hoo/item/admin/page/'.$page['id'].'" class="text-primary">';</php>
                         {$page.post_title}
@@ -38,7 +38,7 @@
                         </li>
                         
                         <php>else:</php>
-                        <li><i class="fa fa-files-o"></i> <a href="/hoo/page/admin" class="text-primary">页面</a></li>
+                        <li><i class="fa fa-files-o"></i> <a href="/hoo/page/admin" class="text-primary"> 页面</a></li>
                         <li><a href="/hoo/item/admin" class="text-primary">所有文章</a></li>
                         <php>endif;</php>
                         

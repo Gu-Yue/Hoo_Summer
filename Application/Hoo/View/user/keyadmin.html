@@ -13,8 +13,8 @@
 }
 .roles-ul a.role_active{
 	color:#FFFFFF;
-}	
-</style>	
+}
+</style>
 </block>
 <block name="headjs"></block>
 <block name="footjs">
@@ -53,94 +53,101 @@ $(function(){
     	$("#select2").find("option").attr("selected","selected");
     })
 });
-</script>	
+</script>
 </block>
 <block name="content">
-
-
-	<div class="panel col-md-9">
-		<div class="panel-heading bg-white">
-		<span class="pull-left"><php>if($showNew) echo "编辑角色";else echo "新建角色";</php></span> 
+<div class="panel col-md-9">
+	<div class="panel-heading bg-white">
+		<span class="pull-left"><php>if($showNew) echo "编辑角色";else echo "新建角色";</php></span>
 		<php>if($showNew):</php><span class="pull-right"><a href="/admin/user/keyadmin" style="color:#FFFFFF;">新建角色</a></span><php>endif;</php>
-		</div>
-		<div class="panel-body" style="overflow:hidden;padding-left:20px;">
-			<php>if($roleExist):</php>
-			<div class="alert alert-error">
-	                        <a href="#" class="close" data-dismiss="alert">×
-	                        </a>
-	                        <i class="icon-remove-sign"></i>
-	                         该角色已经存在!
-	        </div>
-	    	<php>endif;</php>
-	    	<php>if(isset($saveSuccess)):</php>
-			<div class="alert alert-success">
-	                        <a href="#" class="close" data-dismiss="alert">×
-	                        </a>
-	                        <i class="icon-check-sign"></i>
-	                         修改成功!
-	        </div>
-	    	<php>endif;</php>
-			<form class="form" method="post">
-			<div class="control-group"><label class="control-label">角色别名</label><input   name="role_name" type="text"  value="{$edirole.value}" /></div>
-			<div class="control-group"><label class="control-label">角色标识符</label><input id="input_role" name="role" type="text" value="{$edirole.key}" <php>if(isset($edirole)) echo "disabled=''";</php>/></div>
-	        <div>角色权限</div>
-	        <br />
-	        <div>
-	        <div class="span5 text-center">
-	                              所有模块功能	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	          <select multiple="multiple" id="select1" style="overflow:hidden; width:280px;min-height:280px; padding:4px; ">
-	            <php>foreach($mfs as $v):</php>
-	            <option value="{$v.function}-{$v.module}">{$v.module_name}&nbsp;-&nbsp;{$v.function_name}</option>
-	            <php>endforeach;</php>
-	          </select>
-	        </div>
-	        <div class="span1">
-	         <br>
-	         <br>	 
-	          <span id="add">
-	          <button class="btn icon-angle-right" type="button"></button>
-	          </span>
-	          <br>
-	          <br>
-	          <span id="add_all">
-	          <button class="btn  icon-double-angle-right" type="button"></button>
-	          </span> 
-	          <br>
-	          <br>
-	          <span id="remove">
-	          <button class="btn icon-angle-left" type="button"></button>
-	          </span>
-	          <br>
-	          <br>
-	          <span id="remove_all">
-	          <button class="btn icon-double-angle-left" type="button"></button>
-	          </span> 
-	        </div>
-	        <div class="col-md-6">
-	                             <div class="text-center row-fluid">拥有权限&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>  	
-	          <select name="role_keys[]" multiple="multiple" id="select2" style="width: 280px;height:200px;padding:4px;">
-	          	<php>foreach($role_mfs as $v):</php>
-	            <option value="{$v.function}-{$v.module}">{$v.module_name}&nbsp;-&nbsp;{$v.function_name}</option>
-	            <php>endforeach;</php>
-	          </select>
-	          <div><button class="btn btn-primary" id="form_submit"  type="submit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$button_value}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button></div>
-	        </div>
-		</div>
-		</form>
-		</div>
-	  </div>
-	  <div class="panel col-md-3">
-	  	<div class="panel-heading bg-white">
-	  	角色
-	    </div>
-	    <div class="panel-body" style="padding-left: 0px;">
-	  	<ul class="roles-ul">
-	  	<foreach name="roles" item="v">
-	  		<php>$active = $v['key']==$edirole['key'] ? "role_active fb-background":"";</php>
-	  		<li title="{$v.key}"><a href="/admin/user/keyadmin/para/{$v.key}" class="{$active}">{$v.value}</a></li>
-	  	</foreach>	
-	  	</ul>
-	    </div>	
 	</div>
-
+	<div class="panel-body" style="overflow:hidden;padding-left:20px;">
+		<php>if($roleExist):</php>
+		<div class="alert alert-error">
+			<a href="#" class="close" data-dismiss="alert">×
+			</a>
+			<i class="icon-remove-sign"></i>
+	                         该角色已经存在!
+		</div>
+		<php>endif;</php>
+		<php>if(isset($saveSuccess)):</php>
+		<div class="alert alert-success">
+			<a href="#" class="close" data-dismiss="alert">×
+			</a>
+			<i class="icon-check-sign"></i>
+	                         修改成功!
+		</div>
+		<php>endif;</php>
+		<form class="form" method="post">
+			<div class="control-group">
+				<label class="control-label">角色别名</label><input name="role_name" type="text" value="{$edirole.value}"/>
+			</div>
+			<div class="control-group">
+				<label class="control-label">角色标识符</label><input id="input_role" name="role" type="text" value="{$edirole.key}" <php>if(isset($edirole)) echo "disabled=''";</php>/>
+			</div>
+			<div>
+				角色权限
+			</div>
+			<br/>
+			<div>
+				<div class="span5 text-center">
+	                              所有模块功能	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<select multiple="multiple" id="select1" style="overflow:hidden; width:280px;min-height:280px; padding:4px; ">
+						<php>foreach($mfs as $v):</php>
+						<option value="{$v.function}-{$v.module}">{$v.module_name}&nbsp;-&nbsp;{$v.function_name}</option>
+						<php>endforeach;</php>
+					</select>
+				</div>
+				<div class="span1">
+					<br>
+					<br>
+					<span id="add">
+					<button class="btn icon-angle-right" type="button"></button>
+					</span>
+					<br>
+					<br>
+					<span id="add_all">
+					<button class="btn icon-double-angle-right" type="button"></button>
+					</span>
+					<br>
+					<br>
+					<span id="remove">
+					<button class="btn icon-angle-left" type="button"></button>
+					</span>
+					<br>
+					<br>
+					<span id="remove_all">
+					<button class="btn icon-double-angle-left" type="button"></button>
+					</span>
+				</div>
+				<div class="col-md-6">
+					<div class="text-center row-fluid">
+						拥有权限&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					</div>
+					<select name="role_keys[]" multiple="multiple" id="select2" style="width: 280px;height:200px;padding:4px;">
+						<php>foreach($role_mfs as $v):</php>
+						<option value="{$v.function}-{$v.module}">{$v.module_name}&nbsp;-&nbsp;{$v.function_name}</option>
+						<php>endforeach;</php>
+					</select>
+					<div>
+						<button class="btn btn-primary" id="form_submit" type="submit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$button_value}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+<div class="panel col-md-3">
+	<div class="panel-heading bg-white">
+	  	角色
+	</div>
+	<div class="panel-body" style="padding-left: 0px;">
+		<ul class="roles-ul">
+			<foreach name="roles" item="v">
+			<php>$active = $v['key']==$edirole['key'] ? "role_active fb-background":"";</php>
+			<li title="{$v.key}"><a href="/admin/user/keyadmin/para/{$v.key}" class="{$active}">{$v.value}</a></li>
+			</foreach>
+		</ul>
+	</div>
+</div>
 </block>

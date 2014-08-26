@@ -147,3 +147,12 @@
 <block name="page-help">
 <p>在这里列出所有的页面，可以对它们进行编辑.</p>	
 </block>
+
+<block name="footer-load">
+<script>
+$(".del").click(function(){
+var r=confirm("确认删除该页面?");
+if (!r) return false;
+});	
+</script>	
+</block>

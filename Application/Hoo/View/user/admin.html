@@ -104,3 +104,12 @@
 <block name="page-help">
 <p>在这里列出所有的用户，可批量编辑.</p>	
 </block> 
+
+<block name="footer-load">
+<script>
+$(".del").click(function(){
+var r=confirm("确认删除该用户?");
+if (!r) return false;
+});	
+</script>	
+</block>

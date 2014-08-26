@@ -2,63 +2,65 @@
 <block name="title">{$item.post_title}</block>
 <block name="control">
 <!--control-nav-->
-                    <ul class="control-nav pull-right">
-                        <li class="divider"></li>
-                        <li class="bg-primary">
-                            <a href="/hoo/item/create/n/{$item.id}" class="text-white">
+<ul class="control-nav pull-right">
+	<li class="divider"></li>
+	<li class="bg-primary">
+	<a href="/hoo/item/create/n/{$item.id}" class="text-white">
                               编辑文章
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="/hoo/item/create">
+	</a>
+	</li>
+	<li class="divider"></li>
+	<li>
+	<a href="/hoo/item/create">
                               新建文章
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="/hoo/item/admin">
+	</a>
+	</li>
+	<li class="divider"></li>
+	<li>
+	<a href="/hoo/item/admin">
                               所有文章
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                    </ul><!--/control-nav-->
-                    
-                    <!--breadcrumb-->
-                    <ul class="breadcrumb">
-                        <li><i class="fa fa-file-o"></i> <a href="/hoo/page/admin" class="text-primary">页面</a></li>
-                        <li class=""><a href="/hoo/item/admin/page/{$page.id}" class="text-primary">{$page.post_title}</a></li>
-                        <li class="active">{$item.post_title}</li>
-                    </ul>
-</block>	
+	</a>
+	</li>
+	<li class="divider"></li>
+</ul>
+<!--/control-nav-->
+<!--breadcrumb-->
+<ul class="breadcrumb">
+	<li><i class="fa fa-file-o"></i><a href="/hoo/page/admin" class="text-primary">页面</a></li>
+	<li class=""><a href="/hoo/item/admin/page/{$page.id}" class="text-primary">{$page.post_title}</a></li>
+	<li class="active">{$item.post_title}</li>
+</ul>
+</block>
 <block name="content">
 <div class="col-md-10 col-md-offset-1">
-                    		<div class="panel panel-default">
-                    			<div class="panel-heading bg-primary border-primary" style="border-radius:0px !important;">
-                    			<h4 class="panel-title" style="font-size: 20px !important;">
+	<div class="panel panel-default">
+		<div class="panel-heading bg-primary border-primary" style="border-radius:0px !important;">
+			<h4 class="panel-title" style="font-size: 20px !important;">
                     			{$item.post_title}
-                    			</h4>
-                    			</div><!--panel-heading-->
-                    			
-                    			<php>if($item['post_terms']!=""):</php>
-                    			<div class="panel-heading bg-white" style="border-radius:0px !important;border-style: none none solid none !important;">
-                    			<h4 class="panel-title">
-                    			        <php>   
+			</h4>
+		</div>
+		<!--panel-heading-->
+		<php>if($item['post_terms']!=""):</php>
+		<div class="panel-heading bg-white" style="border-radius:0px !important;border-style: none none solid none !important;">
+			<h4 class="panel-title">
+			<php>   
                     				    $tags = explode(',',$item['post_terms']);
 										foreach($tags as $tag):
-										</php>
-										<php>if($tag!=""):</php>
-										<i class="fa fa-tag"></i>{$tag} 
-										<php>endif;</php>
-										<php>endforeach;</php>
-                    			</h4>
-                    			</div><!--panel-heading-->
-                    			<php>endif;</php>
-                    			
-                    			<div class="panel-body">
-                    			{$item.post_content}	
-                    			</div><!--panel-body-->
-                    		</div><!--panel-->
-                    	</div><!--cols-->	
-
+			</php>
+			<php>if($tag!=""):</php>
+			<i class="fa fa-tag"></i>{$tag} 
+			<php>endif;</php>
+			<php>endforeach;</php>
+			</h4>
+		</div>
+		<!--panel-heading-->
+		<php>endif;</php>
+		<div class="panel-body">
+                    			{$item.post_content}
+		</div>
+		<!--panel-body-->
+	</div>
+	<!--panel-->
+</div>
+<!--cols-->
 </block>

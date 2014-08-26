@@ -94,7 +94,8 @@
                     </h3><!-- /contact-heading -->
                      <div class="contact-body">
                         <ul class="contacts-list">
-                    <php>   if(is_array($reposts)&&count($reposts)>0){
+                          <php>   
+                    	  if(is_array($reposts)&&count($reposts)>0){
                     	       foreach($reposts as $re){
 	                            echo '
 	                            <li class="online">
@@ -106,7 +107,7 @@
                             }else{
                         	   echo '<li class="disable"><a href="/hoo/item/create" class="hoo-js-link">点击添加文章</a></li>';
                             }
-                            </php>
+                           </php>
                               </ul><!-- /contacts-list -->
                     </div>
                 </div><!-- /chat-contact -->
@@ -253,4 +254,12 @@
 <p>在这里列出所有的文章，可以对它们进行编辑.</p>	
 </block> 
 
+<block name="footer-load">
+<script>
+$(".del").click(function(){
+var r=confirm("确认删除该文章?");
+if (!r) return false;
+});	
+</script>	
+</block>
 

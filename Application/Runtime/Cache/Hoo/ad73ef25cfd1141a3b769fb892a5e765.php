@@ -422,7 +422,7 @@
                         </ul>
                     </li><!--/sidebar-item-->
                     
-                    <!-- <li>
+                    <li>
                         <a href="#">
                             <i class="sidebar-icon fa fa-th-large"></i>
                             <span class="sidebar-text">开发</span>
@@ -435,7 +435,7 @@
                                 </a>
                             </li>
                         </ul> 
-                    </li>  -->
+                    </li> 
                 </ul><!--/sidebar-->
             </aside><!--/side-left-->
 
@@ -453,7 +453,9 @@
             	<div class="panel hoo-hide hoo-no-padding hoo-no-margin" id="hide_help_wrap">
             	<div class="panel-body bg-cloud">
             	
-<p>在这里可进行上传设置.</p>	
+<p>
+	在这里可进行上传设置.
+</p>
  
             	</div>
             	</div>
@@ -463,19 +465,20 @@
                 <div class="content-control">
                 	
 <ul class="control-nav pull-right">
-                        <li class="divider"></li>
-                       <li>
-                            <a href="#" id="hide_help_button">
-                               帮助  <i class="fa fa-caret-down"></i>
-                            </a>
-                        </li>
-                    </ul><!--/control-nav-->
-                    
-                    <!--breadcrumb-->
-                    <ul class="breadcrumb">
-                        <li><a href="/hoo"><i class="fa fa-sliders"></i> 设置</a></li>
-                        <li>上传设置</li>
-                    </ul>
+	<li class="divider"></li>
+	<li>
+	<a href="#" id="hide_help_button">
+                               帮助  
+	<i class="fa fa-caret-down"></i>
+	</a>
+	</li>
+</ul>
+<!--/control-nav-->
+<!--breadcrumb-->
+<ul class="breadcrumb">
+	<li><a href="/hoo"><i class="fa fa-sliders"></i> 设置</a></li>
+	<li>上传设置</li>
+</ul>
 
                 </div><!-- /content-control -->
                 <div class="content-body">
@@ -498,53 +501,57 @@
 		margin-top:0px;
 	}
 </style>
-<form role="form" class="form-horizontal form-bordered" method="post">	
-<div class="row col-md-12">
-<div id="panel-fileinput" class="panel panel-default sortable-widget-item">
-	<div class="panel-body">
-    
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label" >上传文件限制大小</label>
-                                    <div class="col-sm-5">
-                                            <div class="input-group">
-                                            <input class="form-control"  type="text" name="max_file_size" value="<?php echo ($upload->max_file_size); ?>" >
-                                            <span class="input-group-addon">KB</span>
-                                        </div>         
-                                    </div><!--/cols-->
-                                </div><!--/form-group-->
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label" >上传图片大小</label>
-                                    <div class="col-sm-5">
-                                           <div class="input-group">
-                                            <input class="form-control"  type="text" name="max_image_size" value="<?php echo ($upload->max_image_size); ?>" >
-                                            <span class="input-group-addon">KB</span>
-                                        </div>         
-                                    </div><!--/cols-->
-                                </div><!--/form-group-->
-                                <div class="form-group hoo-no-padding-botttom">
-                                    <label class="col-sm-3 control-label" >生成图片尺寸</label>
-                                    <div class="col-sm-5">
-								     <input type="text" id="tagsinput" data-input="tags" class="form-control" name="image_sizes" value="<?php echo ($upload->image_sizes); ?>" placeholder="形如100*100" />                                   
-                                     <p class="helper-block">
-                                     	<small>
+<form role="form" class="form-horizontal form-bordered" method="post">
+	<div class="row col-md-12">
+		<div id="panel-fileinput" class="panel panel-default sortable-widget-item">
+			<div class="panel-body">
+				<div class="form-group">
+					<label class="col-sm-3 control-label">上传文件限制大小</label>
+					<div class="col-sm-5">
+						<div class="input-group">
+							<input class="form-control" type="text" name="max_file_size" value="<?php echo ($upload->max_file_size); ?>" >
+							<span class="input-group-addon">KB</span>
+						</div>
+					</div>
+					<!--/cols-->
+				</div>
+				<!--/form-group-->
+				<div class="form-group">
+					<label class="col-sm-3 control-label">上传图片大小</label>
+					<div class="col-sm-5">
+						<div class="input-group">
+							<input class="form-control" type="text" name="max_image_size" value="<?php echo ($upload->max_image_size); ?>" >
+							<span class="input-group-addon">KB</span>
+						</div>
+					</div>
+					<!--/cols-->
+				</div>
+				<!--/form-group-->
+				<div class="form-group hoo-no-padding-botttom">
+					<label class="col-sm-3 control-label">生成图片尺寸</label>
+					<div class="col-sm-5">
+						<input type="text" id="tagsinput" data-input="tags" class="form-control" name="image_sizes" value="<?php echo ($upload->image_sizes); ?>" placeholder="形如100*100" />
+						<p class="helper-block">
+							<small>
                                      	输入形如 100*100 形式,以回车结束，单位为px	
-                                        </small>
-                                     </p>
-                                    </div><!--/cols-->
-                                    
-                                </div><!--/form-group-->
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label" ></label>
-                                    <div class="col-sm-5">
-                                    <button type="submit" class="btn btn-primary form-control text-white">保存设置</button>														
-                                    </div><!--/cols-->
-                                </div><!--/form-group--> 
-                              
-                                                          
-   </div><!-- /panel-body -->
-   </div>
-</div>
-
+							</small>
+						</p>
+					</div>
+					<!--/cols-->
+				</div>
+				<!--/form-group-->
+				<div class="form-group">
+					<label class="col-sm-3 control-label"></label>
+					<div class="col-sm-5">
+						<button type="submit" class="btn btn-primary form-control text-white">保存设置</button>
+					</div>
+					<!--/cols-->
+				</div>
+				<!--/form-group-->
+			</div>
+			<!-- /panel-body -->
+		</div>
+	</div>
 </form>
   
                 </div><!--/content-body -->

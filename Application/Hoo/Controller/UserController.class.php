@@ -214,7 +214,7 @@ class UserController extends Controller {
     //确定操作选项
     $table->options=array(
                     //(object)array('title'=>'用户信息','class'=>'','icon'=>'fa fa-bar-chart-o','href'=>'/hoo/item/count'),
-                    (object)array('title'=>'删除用户','class'=>'','icon'=>'fa fa-times-circle','href'=>'/hoo/user/admin/delete','flag'=>'y'),
+                    (object)array('title'=>'删除用户','class'=>'del','icon'=>'fa fa-times-circle','href'=>'/hoo/user/admin/delete','flag'=>'y'),
                     );
     //获取表格分页
     $table->pagination = $datas['pagination'];
@@ -297,14 +297,14 @@ class UserController extends Controller {
           if($del){
              $del = explode("-",$del);
              $this->assign("edi", M("Modules")->where("module = '%s' and function ='%s'",$del[1],$del[0])->delete());
-             redirect("/admin/user/regiestModule");
+             redirect("/hoo/user/regiestModule");
           }
           
           if($_POST&&isLocalData()){
              $Data = filterData($_POST);
              if($edi){
                  M("Modules")->where("module = '%s' and function ='%s'",$edi[1],$edi[0])->save($Data);
-                 redirect("/admin/user/regiestModule"); 
+                 redirect("/hoo/user/regiestModule"); 
              }else{
                 M("Modules")->add($Data);    
              } 

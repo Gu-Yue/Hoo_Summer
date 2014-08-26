@@ -192,7 +192,7 @@ class ItemController extends Controller {
     $table->options=array(
                     (object)array('title'=>'编辑文章','class'=>'','icon'=>'fa fa-pencil','href'=>'/hoo/item/create/n','_blank'=>'y'),
                     //(object)array('title'=>'查看统计','class'=>'','icon'=>'fa fa-bar-chart-o','href'=>'/hoo/item/count'),
-                    (object)array('title'=>'删除页面','class'=>'','icon'=>'fa fa-times-circle','href'=>'/hoo/item/admin/delete'),
+                    (object)array('title'=>'删除页面','class'=>'del','icon'=>'fa fa-times-circle','href'=>'/hoo/item/admin/delete'),
                     );
     //无数据项的提示信息
     $table->message = '暂无文章! &nbsp;&nbsp;<a href="/hoo/item/create">新建一篇文章</a>';                

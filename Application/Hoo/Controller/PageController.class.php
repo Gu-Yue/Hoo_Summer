@@ -147,7 +147,7 @@ class PageController extends Controller {
                     (object)array('title'=>'添加文章','class'=>'','icon'=>'fa fa-plus-circle','href'=>'/hoo/item/create/add'),
                     (object)array('title'=>'编辑页面','class'=>'','icon'=>'fa fa-pencil','href'=>'/hoo/page/create/n','_blank'=>'y'),
                     //(object)array('title'=>'查看统计','class'=>'','icon'=>'fa fa-bar-chart-o','href'=>'/hoo/page/view/n'),
-                    (object)array('title'=>'删除页面','class'=>'','icon'=>'fa fa-times-circle','href'=>'/hoo/page/admin/delete','flag'=>'y'),
+                    (object)array('title'=>'删除页面','class'=>'del','icon'=>'fa fa-times-circle','href'=>'/hoo/page/admin/delete','flag'=>'y'),
                     );
     //无数据项的提示信息
     $table->message = '该目录没有页面! &nbsp;&nbsp;<a href="/hoo/page/create">新建页面</a>';                    

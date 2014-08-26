@@ -4,3 +4,18 @@ ERR: 无法加载控制器:Common
 [ 2014-08-26T05:00:44+08:00 ] 127.0.0.1 /bower_components/animate.css/animate.css
 ERR: 无法加载控制器:BowerComponents
 
+[ 2014-08-26T07:47:22+08:00 ] 127.0.0.1 /bower_components/animate.css/animate.css
+ERR: 无法加载控制器:BowerComponents
+
+[ 2014-08-26T07:48:00+08:00 ] 127.0.0.1 /admin/user/regiestModule
+ERR: 无法加载控制器:Admin
+
+[ 2014-08-26T07:48:00+08:00 ] 127.0.0.1 /bower_components/animate.css/animate.css
+ERR: 无法加载控制器:BowerComponents
+
+[ 2014-08-26T07:49:47+08:00 ] 127.0.0.1 /admin/user/regiestModule
+ERR: 无法加载控制器:Admin
+
+[ 2014-08-26T07:49:47+08:00 ] 127.0.0.1 /bower_components/animate.css/animate.css
+ERR: 无法加载控制器:BowerComponents
+

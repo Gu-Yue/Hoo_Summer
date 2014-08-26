@@ -424,7 +424,7 @@
                         </ul>
                     </li><!--/sidebar-item-->
                     
-                    <!-- <li>
+                    <li>
                         <a href="#">
                             <i class="sidebar-icon fa fa-th-large"></i>
                             <span class="sidebar-text">开发</span>
@@ -437,7 +437,7 @@
                                 </a>
                             </li>
                         </ul> 
-                    </li>  -->
+                    </li> 
                 </ul><!--/sidebar-->
             </aside><!--/side-left-->
 
@@ -580,7 +580,7 @@
                     </h3><!-- /contact-heading -->
                      <div class="contact-body">
                         <ul class="contacts-list">
-                    <?php if(is_array($reposts)&&count($reposts)>0){ foreach($reposts as $re){ echo '
+                          <?php if(is_array($reposts)&&count($reposts)>0){ foreach($reposts as $re){ echo '
 	                            <li class="online">
 	                            <a href="/hoo/item/view/n/'.$re['id'].'" class="hoo-js-link" title="'.$re['update_date'].'" target="_blank">
 	                            <i data-original-title="online" class="fa fa-circle-o" title="" rel="tooltip-bottom"></i>' .$re['post_title'] .'</a></li>'; } }else{ echo '<li class="disable"><a href="/hoo/item/create" class="hoo-js-link">点击添加文章</a></li>'; } ?>
@@ -931,6 +931,13 @@
         
         <!-- footer load 模块 -->
         
+<script>
+$(".del").click(function(){
+var r=confirm("确认删除该文章?");
+if (!r) return false;
+});	
+</script>	
+
         <!--/ footer load 模块 -->
     </body>
 </html>

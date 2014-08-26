@@ -1,0 +1,1 @@
+a:6:{i:0;s:11:"module_name";i:1;s:6:"module";i:2;s:8:"function";i:3;s:13:"function_name";s:3:"_pk";s:8:"function";s:5:"_type";a:4:{s:11:"module_name";s:12:"varchar(100)";s:6:"module";s:12:"varchar(100)";s:8:"function";s:12:"varchar(100)";s:13:"function_name";s:12:"varchar(100)";}}

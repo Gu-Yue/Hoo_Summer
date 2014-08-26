@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Hoo</title>
+        <title>系统日志</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="stilearning">
@@ -22,7 +22,7 @@
         <!-- bower:css -->
         <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
         <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.css">
-        <link rel="stylesheet" href="/bower_components/animate.css/animate.min.css">
+        <link rel="stylesheet" href="/bower_components/animate/animate.min.css">
         <link rel="stylesheet" href="/bower_components/Hover/css/hover.css">
         <!-- endbower -->
         <!-- endbuild -->
@@ -217,13 +217,13 @@
                 </div>
             </div><!-- header-profile -->
 
-            <form role="form" class="form-inline">
+            <!-- <form role="form" class="form-inline">
                 <button type="button" class="btn btn-default btn-expand-search"><i class="fa fa-search"></i></button>
                 <div class="toggle-search">
                     <input type="text" class="form-control" placeholder="搜索" />    
                     <button type="button" class="btn btn-default btn-collapse-search"><i class="fa fa-times"></i></button>
                 </div>
-            </form><!--/form-search-->
+            </form> -->
 
             <!-- header menu -->
             <ul class="hidden-xs header-menu pull-right">
@@ -338,12 +338,12 @@
                             </li>
                         </ul>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a href="/hoo/resources/admin">
                             <i class="sidebar-icon fa fa-folder-o "></i>
                             <span class="sidebar-text">资源</span>
                         </a>
-                    </li><!--/sidebar-item-->
+                    </li>  -->
                     <li>
                         <a href="/hoo/user/admin" data-pjax=".content-body">
                             <i class="sidebar-icon fa fa-user"></i>
@@ -422,7 +422,7 @@
                         </ul>
                     </li><!--/sidebar-item-->
                     
-                    <!-- <li>
+                    <li>
                         <a href="#">
                             <i class="sidebar-icon fa fa-th-large"></i>
                             <span class="sidebar-text">开发</span>
@@ -435,7 +435,7 @@
                                 </a>
                             </li>
                         </ul> 
-                    </li>  -->
+                    </li> 
                 </ul><!--/sidebar-->
             </aside><!--/side-left-->
 
@@ -573,7 +573,6 @@
         <script src="/bower_components/jquery.tagsinput/jquery.tagsinput.min.js"></script>
         <script src="/bower_components/multiselect/js/jquery.multi-select.js"></script>
         <script src="/bower_components/select2/select2.js"></script>
-        <script src="/bower_components/jquery-selectboxit/src/javascripts/jquery.selectBoxIt.js"></script>
         <script src="/bower_components/momentjs/moment.js"></script>
         <script src="/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
         <script src="/bower_components/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
@@ -705,12 +704,7 @@
         
         //--  管理表格全选
         $(".hoo-check-all").click(function(){
-        	var check = $(this).is(":checked");
-    		if(check == false){
-    	   	   $(".hoo-check").removeAttr("checked");
-    		}else{
-    	   	   $(".hoo-check").attr("checked",'checked');	
-    	    }
+    	    $(".hoo-check").click();
     	    
         });
         //--/ 管理表格全选
